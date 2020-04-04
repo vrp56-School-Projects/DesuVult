@@ -13,7 +13,7 @@ public class playerMovement : MonoBehaviour
     public LayerMask GroundMask;
     public float jumpHeight = 2f;
 
-    public bool isGrounded;
+    bool isGrounded;
 
     // Update is called once per frame
     void Update()
