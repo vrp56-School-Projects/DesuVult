@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 100
+  min: 0
+  max: 100
+  regenerationRate: 0
   limitRange: 1
 --- !u!114 &5267687407643267369
 MonoBehaviour:
@@ -60,6 +63,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 100
+  min: 0
+  max: 100
+  regenerationRate: 0
   limitRange: 1
 --- !u!114 &3367324345374487183
 MonoBehaviour:
@@ -74,6 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 100
+  min: 0
+  max: 100
+  regenerationRate: 0
   limitRange: 1
 --- !u!1 &2534368671878851556
 GameObject:
@@ -294,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49540c6d013e81419f4a6287bd363e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2534368672774506929}
-  health: {fileID: 0}
+  model: {fileID: 7404179217735094381}
+  health: {fileID: 1293369265097278603}
 --- !u!1 &8241732669663016620
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,22 +480,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 404802, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404802, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404802, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404802, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 404802, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
@@ -504,6 +497,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404802, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}
       propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 404802, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404802, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}
+      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9571248, guid: 7320372aefdc71442a2cf8b68a738f3b, type: 3}

@@ -5,8 +5,9 @@ using UnityEngine;
 public class playerStateManager : MonoBehaviour
 {
 
-    public CharacterController controller;
-    public Stat health;
+    public Transform model;
+    public Health health;
+    float deathRotation = 0f;
     void Start()
     {
 
@@ -15,6 +16,7 @@ public class playerStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health.value == 0) {controller.enabled = false;}
+        deathRotation += Mathf.Clamp(deathRotation+1f,0f,90f);
+        if (health.value == 0) {model.Rotate(deathRotation,0f,0f);}
     }
 }

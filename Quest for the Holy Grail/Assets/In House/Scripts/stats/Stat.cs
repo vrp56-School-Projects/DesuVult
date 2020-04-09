@@ -4,29 +4,37 @@ using UnityEngine;
 
 public class Stat : MonoBehaviour
 {
-    public int value = 100;
-    readonly int[] limits = {0,100};
+    public float value = 100f;
+    public float min = 0f;
+    public float max = 100f;
+    public float regenerationRate = 0f;
 
     public bool limitRange = true;
 
-    public void Damage(int amount) {
+    void Update() {
+        value += regenerationRate * Time.deltaTime;
+        clamp();
+    }
+
+    public void damage(float amount) {
         subtract(amount);
         clamp();
     }
 
-    public void subtract(int amount) {
+    public void subtract(float amount) {
         value -= amount;
         clamp();
     }
 
-    public void add(int amount) {
+    public void add(float amount) {
         value += amount;
         clamp();
     }
 
     void clamp() {
         if (limitRange) {
-            value = Mathf.Clamp(value, limits[0], limits[1]);
+            value = Mathf.Clamp(value, min, max);
         }
     }
+
 }
