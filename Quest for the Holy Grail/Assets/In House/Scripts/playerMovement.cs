@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-    public CharacterController controller;
-    public float speed = 13f;
-    Vector3 velocity;
-    public float gravity = -9.81f;
-    public float jumpHeight = 2f;
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float jumpHeight = 2f;
 
     public bool isGrounded;
+
+    private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
 
@@ -21,7 +22,7 @@ public class playerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
