@@ -8,13 +8,14 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float moveAcceleration = 2f;
+
 
     public bool isGrounded;
 
     private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
+    private Vector2 impulse;
 
     void Start() {
         tempSlopeLimit = controller.slopeLimit;
@@ -23,10 +24,12 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        impulse.x = Input.GetAxisRaw("Horizontal");
+        impulse.y = Input.GetAxisRaw("Vertical");
+        impulse.Normalize();
 
-        Vector3 move = transform.right * x + transform.forward * z;
+
+        Vector3 move = transform.right * impulse.x + transform.forward * impulse.y;
 
         controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
 
@@ -64,6 +67,27 @@ public class playerMovement : MonoBehaviour
             velocity.y = 0f;
         }
 
+
     }
 
+    //Experimental Code
+    bool up() {
+        return Input.GetAxisRaw("Vertical") == 1;
+    }
+
+    bool down() {
+        return Input.GetAxisRaw("Vertical") == -1;
+    }
+
+    bool left() {
+        return Input.GetAxisRaw("Horizontal") == -1;
+    }
+
+    bool right() {
+        return Input.GetAxisRaw("Horizontal") == 1;
+    }
+
+    bool isMoving() {
+        return up() || down() || left() || right();
+    }
 }
