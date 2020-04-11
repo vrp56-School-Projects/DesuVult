@@ -8,12 +8,18 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float moveAcceleration = 2f;
 
     public bool isGrounded;
 
     private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
+
+    void Start() {
+        tempSlopeLimit = controller.slopeLimit;
+        tempStepOffset = controller.stepOffset;
+    }
 
     void Update()
     {
