@@ -95,6 +95,8 @@ public class SamuraiController : MonoBehaviour
         {
             transform.LookAt(_target.transform);
         }
+
         
+
     }
 }
