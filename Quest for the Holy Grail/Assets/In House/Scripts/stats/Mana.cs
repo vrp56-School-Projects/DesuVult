@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeusVult : Stat
+public class Mana : Stat
 {
 
 }
