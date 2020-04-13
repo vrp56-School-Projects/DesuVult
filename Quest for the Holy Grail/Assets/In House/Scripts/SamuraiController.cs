@@ -8,11 +8,12 @@ public class SamuraiController : MonoBehaviour
     [SerializeField]
     private GameObject _target;
     [SerializeField]
-    private float _attackRate = 1.5f;
+    private float _attackRate = 2f;
     
     private Transform _player;
     private NavMeshAgent _navMeshAgent;
     private SamuraiAttackSlotManager _slotManager;
+    private Health _playerHealthScript;
     private int _slot = -1;
     private float _pathtime = 0f;
     private float _attackTime = 0f;
@@ -29,6 +30,7 @@ public class SamuraiController : MonoBehaviour
     {
         // Set variables for the AI to use
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _playerHealthScript = _player.GetComponentInChildren<Health>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _slotManager = _player.GetComponentInParent<SamuraiAttackSlotManager>();
         _attackDistance = _slotManager.distance + 0.5f;
@@ -88,6 +90,7 @@ public class SamuraiController : MonoBehaviour
         else if (_distance <= _attackDistance && _attackTime > _attackRate)
         {
             _attackTime = 0f;
+            _playerHealthScript.damage(5f);
             Debug.Log(gameObject.name + " Attacked player");
         }
 
