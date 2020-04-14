@@ -9,11 +9,13 @@ public class SamuraiController : MonoBehaviour
     private GameObject _target;
     [SerializeField]
     private float _attackRate = 2f;
+
     
     private Transform _player;
     private NavMeshAgent _navMeshAgent;
     private SamuraiAttackSlotManager _slotManager;
     private Health _playerHealthScript;
+    private Animator _anim;
     private int _slot = -1;
     private float _pathtime = 0f;
     private float _attackTime = 0f;
@@ -21,8 +23,16 @@ public class SamuraiController : MonoBehaviour
     private float _attackDistance = 0f;
     private float _distance;
 
-   
+    // The possible state that a samurai can be in
+    private enum _samuraiState
+    {
+        IDLE,
+        ATTACKSLOT,
+        WAITSLOT
+    }
 
+    // track the current state of the samurai
+    private _samuraiState _currentState = _samuraiState.IDLE;
 
 
     // Start is called before the first frame update
@@ -33,6 +43,7 @@ public class SamuraiController : MonoBehaviour
         _playerHealthScript = _player.GetComponentInChildren<Health>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _slotManager = _player.GetComponentInParent<SamuraiAttackSlotManager>();
+        _anim = this.GetComponent<Animator>();
         _attackDistance = _slotManager.distance + 0.5f;
     }
 
@@ -99,6 +110,11 @@ public class SamuraiController : MonoBehaviour
             transform.LookAt(_target.transform);
         }
 
+        if (_navMeshAgent.remainingDistance > 0f)
+        {
+            _anim.SetBool("Run", true);
+        }
+        else _anim.SetBool("Run", false);
         
 
     }
