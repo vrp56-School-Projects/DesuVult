@@ -298,8 +298,9 @@ MonoBehaviour:
   speed: 5
   gravity: -25
   jumpHeight: 2
-  moveAcceleration: 3
   isGrounded: 0
+  instantIsGrounded: 0
+  airTimeThreshold: 0.1
 --- !u!1 &5801935107001202319
 GameObject:
   m_ObjectHideFlags: 0

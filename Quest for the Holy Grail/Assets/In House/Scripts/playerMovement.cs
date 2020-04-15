@@ -10,12 +10,14 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 2f;
 
 
-    public bool isGrounded;
-
     private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
     private Vector2 impulse;
+
+    public bool isGrounded = false;
+    public bool instantIsGrounded = false;
+
 
     void Start() {
         tempSlopeLimit = controller.slopeLimit;
@@ -33,30 +35,20 @@ public class playerMovement : MonoBehaviour
 
         controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-
-            //this block helps prevent the player from getting stuck on walls
-            tempSlopeLimit = controller.slopeLimit;
-            controller.slopeLimit = 90f;
-            tempStepOffset = controller.stepOffset;
-            controller.stepOffset = .1f;
-
-
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        jump();
 
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
 
-        isGrounded = ((controller.collisionFlags & CollisionFlags.Below) != 0);
+        smoothGroundCheck();
+        groundCheck();
 
         //If you land on the ground, don't accumulate negative velocity
         //OR
         //If you bump your head, lose upward velocity
-        if((isGrounded && velocity.y < 0)||((controller.collisionFlags & CollisionFlags.Above)!= 0))
+        if ((groundCheck() && velocity.y < 0)||((controller.collisionFlags & CollisionFlags.Above)!= 0))
         {
 
             //reset our parameters
@@ -68,6 +60,49 @@ public class playerMovement : MonoBehaviour
         }
 
 
+    }
+
+    private float airTimer;
+    [SerializeField] private float airTimeThreshold = .5f;
+    bool smoothGroundCheck() {
+        if (!groundCheck()) {
+            airTimer += Time.deltaTime;
+        }
+        else {
+            airTimer = 0f;
+        }
+        if (airTimer > airTimeThreshold) {
+            isGrounded = false;
+            return false;
+        }
+        isGrounded = true;
+        return true;
+    }
+
+    bool groundCheck() {
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0) {
+            instantIsGrounded = true;
+            return true;
+        }
+        instantIsGrounded = false;
+        return false;
+    }
+
+    void jump() {
+        if (Input.GetButtonDown("Jump") && smoothGroundCheck())
+        {
+
+            //this block helps prevent the player from getting stuck on walls
+            tempSlopeLimit = controller.slopeLimit;
+            controller.slopeLimit = 90f;
+            tempStepOffset = controller.stepOffset;
+            controller.stepOffset = .1f;
+
+
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            // smoothedIsGrounded = false;
+            airTimer = airTimeThreshold*2;
+        }
     }
 
     //Experimental Code
