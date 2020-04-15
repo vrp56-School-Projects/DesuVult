@@ -26,20 +26,10 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        impulse.x = Input.GetAxisRaw("Horizontal");
-        impulse.y = Input.GetAxisRaw("Vertical");
-        impulse.Normalize();
 
-
-        Vector3 move = transform.right * impulse.x + transform.forward * impulse.y;
-
-        controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
-
-        jump();
-
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        handleMove();
+        handleJump();
+        handleGravity();
 
 
         smoothGroundCheck();
@@ -88,7 +78,7 @@ public class playerMovement : MonoBehaviour
         return false;
     }
 
-    void jump() {
+    void handleJump() {
         if (Input.GetButtonDown("Jump") && smoothGroundCheck())
         {
 
@@ -103,6 +93,22 @@ public class playerMovement : MonoBehaviour
             // smoothedIsGrounded = false;
             airTimer = airTimeThreshold*2;
         }
+    }
+
+    void handleMove() {
+        impulse.x = Input.GetAxisRaw("Horizontal");
+        impulse.y = Input.GetAxisRaw("Vertical");
+        impulse.Normalize();
+
+
+        Vector3 move = transform.right * impulse.x + transform.forward * impulse.y;
+
+        controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
+    }
+
+    void handleGravity() {
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
     //Experimental Code
