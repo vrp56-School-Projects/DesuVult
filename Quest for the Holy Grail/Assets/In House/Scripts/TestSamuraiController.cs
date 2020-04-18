@@ -5,55 +5,157 @@ using UnityEngine.AI;
 
 public class TestSamuraiController : MonoBehaviour
 {
-    private Transform _player;
-    private NavMeshAgent _navMeshAgent;
-    private SamuraiAttackSlotManager _slotManager;
-    private float _distance;
-    private float _attackRange = 15.0f;
+    public float aggroRadius = 15.0f;
     private int _attackSlot = -1;
+    private int _waitSlot = -1;
+    private bool _attacking = false;
+    private bool _waiting = false;
+    private float _attackDistance = 0f;
+    
 
-   
+    Transform target;
+    NavMeshAgent agent;
+    SamuraiAttackSlotManager attackSlotManager;
+    WaitSlotManager waitSlotManager;
 
-    // Start is called before the first frame update
-    void Start()
+
+    // remove after changing stats code
+    Health playerHealthScript;
+    public float attackSpeed = 1.5f;
+    private float _attackCooldown = 0f;
+    private float _attackDelay = 0.6f;
+
+    private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _slotManager = _player.GetComponentInParent<SamuraiAttackSlotManager>();
-
-        _distance = GetDistanceToPlayer();
-        //Idle();
+        target = PlayerManager.instance.player.transform;
+        agent = GetComponent<NavMeshAgent>();
+        attackSlotManager = target.GetComponentInParent<SamuraiAttackSlotManager>();
+        waitSlotManager = target.GetComponentInParent<WaitSlotManager>();
+        playerHealthScript = target.GetComponentInChildren<Health>();
+        _attackDistance = attackSlotManager.distance + 0.5f;
     }
 
-    // if the samurai is idle i need to check if the player is within aggro range
-    // then i need to check for an open attack slot and reserve it if possible
-    // if no open attack slot, fill a wait slot 
-    // attack when in range if in attack slot at specified rate (NEED TO FIND ATTACK ANIMS)
-    // should also do coroutines for timing 
+    
 
-    private float GetDistanceToPlayer()
+    private void CheckAttackSlot()
     {
-        return Vector3.Distance(transform.position, _player.position);
+        if (attackSlotManager != null)
+        {
+            if (_attackSlot == -1)
+            {
+                _attackSlot = attackSlotManager.Reserve(gameObject);
+            }
+            if (_attackSlot == -1)
+                CheckWaitSlot();
+            else
+            {
+                // Set the destination for the AI (player location)
+                if (agent == null)
+                {
+                    return;
+                }
+                agent.SetDestination(attackSlotManager.GetSlotPosition(_attackSlot));
+                _attacking = true;
+            }
+        }
     }
 
-    // Check if player is in aggro range and then attemp to fill and attack slot
-    private void Idle()
+    private void CheckWaitSlot()
     {
-        Debug.Log("GOT HERE");
+        if (waitSlotManager != null)
+        {
+            if (_waitSlot == -1)
+            {
+                _waitSlot = waitSlotManager.Reserve(gameObject);
+            }
+            if (_waitSlot == -1)
+                return;
+            // Set the destination for the AI (player location)
+            if (agent == null)
+            {
+                return;
+            }
+            agent.SetDestination(waitSlotManager.GetSlotPosition(_waitSlot));
+            _waiting = true;
+        }
     }
+
+    private void Attack()
+    {
+        if (_attackCooldown <= 0f)
+        {
+            StartCoroutine(DoDamage(playerHealthScript, _attackDelay));
+            Debug.Log(gameObject.name + " Attacked Player");
+            _attackCooldown = 1 / attackSpeed;
+        }
+    }
+
+    IEnumerator DoDamage(Health playerHealth, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        playerHealth.damage(5f);
+    }
+
+    
 
     private void Update()
     {
-        // Determine distance between player and samurai
-        _distance = GetDistanceToPlayer();
+        float distance = Vector3.Distance(target.position, transform.position);
+        _attackCooldown -= Time.deltaTime;
 
-        
-        // look at the player
-        if (_player.GetComponentInParent<playerMovement>().isGrounded)
+        if (distance < aggroRadius)
         {
-            transform.LookAt(_player);
-        }
+            CheckAttackSlot();
 
-       
+            if (target.GetComponentInParent<playerMovement>().isGrounded)
+            {
+                // face the player
+                transform.LookAt(target.position);
+            }
+
+            // attack the player if in attack slot
+            if (distance <= _attackDistance)
+            {
+                while (_attacking)
+                    Attack();
+            }
+        }
+        else
+        {
+            if (_waitSlot != -1)
+            {
+                waitSlotManager.Release(_waitSlot);
+                _waiting = false;
+                _waitSlot = -1;
+                if (agent == null)
+                {
+                    return;
+                }
+                agent.ResetPath();
+            }
+            if (_attackSlot != -1)
+            {
+                attackSlotManager.Release(_attackSlot);
+                _attacking = false;
+                _attackSlot = -1;
+                // Reset the destination for the AI (Not following)
+                if (agent == null)
+                {
+                    return;
+                }
+                agent.ResetPath();
+            }
+            
+        }
+        
+    }
+
+   
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, aggroRadius);
     }
 }

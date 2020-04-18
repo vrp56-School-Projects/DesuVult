@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SamuraiAttackSlotManager : MonoBehaviour
+public class WaitSlotManager : MonoBehaviour
 {
     private List<GameObject> _slots;
     [SerializeField]
     private int count = 4;
     [SerializeField]
     public float distance = 1.5f;
-    
+    [SerializeField]
+    private float degrees = 360f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,7 @@ public class SamuraiAttackSlotManager : MonoBehaviour
 
     public Vector3 GetSlotPosition(int index)
     {
-        float degreesPerIndex = 240f / count;
+        float degreesPerIndex = degrees / count;
         Vector3 pos = transform.localPosition;
         Vector3 offset = new Vector3(0f, 0f, distance);
         return pos + (Quaternion.Euler(new Vector3(0f, degreesPerIndex * index, 0f)) * offset);
@@ -52,7 +54,7 @@ public class SamuraiAttackSlotManager : MonoBehaviour
         return bestSlot;
     }
 
-	public void Release(int slot)
+    public void Release(int slot)
     {
         _slots[slot] = null;
     }
@@ -62,16 +64,10 @@ public class SamuraiAttackSlotManager : MonoBehaviour
         for (int index = 0; index < count; ++index)
         {
             if (_slots == null || _slots.Count <= index || _slots[index] == null)
-                Gizmos.color = Color.green;
+                Gizmos.color = Color.yellow;
             else
                 Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(GetSlotPosition(index), 0.5f);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
