@@ -62,7 +62,7 @@ public class SamuraiAttackSlotManager : MonoBehaviour
         for (int index = 0; index < count; ++index)
         {
             if (_slots == null || _slots.Count <= index || _slots[index] == null)
-                Gizmos.color = Color.black;
+                Gizmos.color = Color.green;
             else
                 Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(GetSlotPosition(index), 0.5f);
