@@ -5,6 +5,10 @@ using UnityEngine;
 public class Health : Stat
 {
     void Start() {
-        Pickup.onPlayerCollideHealth += add;
+        EventManager.HealthPickup += add;
+    }
+
+    void onDisabled() {
+        EventManager.HealthPickup -= add;
     }
 }

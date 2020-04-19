@@ -36,13 +36,13 @@ public class Pickup : MonoBehaviour
 
         switch(stat){
             case statType.Health:
-            onPlayerCollideHealth?.Invoke(value);
+            EventManager.CallHealthPickup(value);
             break;
             case statType.Stamina:
-            onPlayerCollideStamina?.Invoke(value);
+            EventManager.CallStaminaPickup(value);
             break;
             case statType.DeusVult:
-            onPlayerCollideDeusVult?.Invoke(value);
+            EventManager.CallDeusVultPickup(value);
             break;
         }
         // onPlayerCollide(value);

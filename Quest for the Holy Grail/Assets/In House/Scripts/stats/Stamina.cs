@@ -5,6 +5,11 @@ using UnityEngine;
 public class Stamina : Stat
 {
     void Start() {
-        Pickup.onPlayerCollideStamina += add;
+        EventManager.StaminaPickup += add;
     }
+
+    void onDisabled() {
+        EventManager.StaminaPickup -= add;
+    }
+
 }

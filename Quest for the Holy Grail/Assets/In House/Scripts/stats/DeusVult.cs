@@ -5,6 +5,11 @@ using UnityEngine;
 public class DeusVult : Stat
 {
     void Start() {
-        Pickup.onPlayerCollideDeusVult += add;
+        EventManager.DeusVultPickup += add;
     }
+
+    void onDisabled() {
+        EventManager.DeusVultPickup -= add;
+    }
+
 }
