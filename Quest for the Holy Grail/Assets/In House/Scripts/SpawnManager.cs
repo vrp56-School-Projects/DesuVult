@@ -6,10 +6,12 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
     private int _MaxEnemies = 6;
-    [SerializeField]
-    private float _spawnRate = 2.0f;
+
     [SerializeField]
     private GameObject[] _spawns;
+
+    private float _spawnRate = 2.0f;
+    
     
 
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
@@ -19,7 +21,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 7; i > 1; --i)
+        for (int i = _MaxEnemies; i > 0; --i)
         {
             GameObject newEnemy = Instantiate(_enemies[_enemyIndex], new Vector3(_spawns[i].transform.position.x, _spawns[i].transform.position.y, _spawns[i].transform.position.z), _spawns[i].transform.rotation);
             Debug.Log("Added new enemy at location " + i);
@@ -33,19 +35,37 @@ public class SpawnManager : MonoBehaviour
         
     }
 
+    IEnumerator SpawnDelay()
+    {
+        yield return new WaitForSeconds(_spawnRate);
+
+
+    }
+
+    private void SpawnNewEnemy(Vector3 NewLocaton, Quaternion rotation, GameObject EnemyPrefab)
+    {
+        StartCoroutine(SpawnDelay());
+        GameObject newEnemy = Instantiate(EnemyPrefab, NewLocaton, rotation);
+        Debug.Log("Added new enemy at location " + _spawnPoint);
+        _spawnedEnemies.Add(newEnemy);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        _spawnPoint = Random.Range(0, _spawns.Length);
-        _enemyIndex = Random.Range(0, _enemies.Length);
+        
 
         // need to detect collisions before spawning in case spawnPoints overlap with enemies
 
         if (_spawnedEnemies.Count < _MaxEnemies)
         {
-            GameObject newEnemy = Instantiate(_enemies[_enemyIndex], new Vector3(_spawns[_spawnPoint].transform.position.x, _spawns[_spawnPoint].transform.position.y, _spawns[_spawnPoint].transform.position.z), _spawns[_spawnPoint].transform.rotation);
-            Debug.Log("Added new enemy at location " + _spawnPoint);
-            _spawnedEnemies.Add(newEnemy);
+            _spawnPoint = Random.Range(0, _spawns.Length);
+            _enemyIndex = Random.Range(0, _enemies.Length);
+
+            Vector3 location = new Vector3(_spawns[_spawnPoint].transform.position.x, _spawns[_spawnPoint].transform.position.y, _spawns[_spawnPoint].transform.position.z);
+
+            SpawnNewEnemy(location, _spawns[_spawnPoint].transform.rotation, _enemies[_enemyIndex]);
+            
         }
     }
 }

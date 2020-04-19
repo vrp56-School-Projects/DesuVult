@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_currentEnemy != null)
         {
-            if (_currentEnemy.GetComponent<SamuraiController>().isLookedAt)
+            if (_currentEnemy.GetComponent<TestSamuraiController>().isLookedAt)
             {
                 AttackOption();
             }

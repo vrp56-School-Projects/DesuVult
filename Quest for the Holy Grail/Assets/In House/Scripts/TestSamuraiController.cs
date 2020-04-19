@@ -11,24 +11,29 @@ public class TestSamuraiController : MonoBehaviour
     private bool _attacking = false;
     private bool _waiting = false;
     private float _attackDistance = 0f;
-    
+    public bool isLookedAt;
+
 
     Transform target;
     NavMeshAgent agent;
+    PlayerController playerControllerScript;
     SamuraiAttackSlotManager attackSlotManager;
     WaitSlotManager waitSlotManager;
+    Animator anim;
 
 
     // remove after changing stats code
     Health playerHealthScript;
-    public float attackSpeed = 1.5f;
-    private float _attackCooldown = 0f;
-    private float _attackDelay = 0.6f;
+    public float _attackRate = 1.5f;
+    private float _attackTime = 0f;
+    private float _attackDelay = 0.0f; // set to some value when adding animations
 
     private void Start()
     {
         target = PlayerManager.instance.player.transform;
+        playerControllerScript = target.GetComponentInParent<PlayerController>();
         agent = GetComponent<NavMeshAgent>();
+        anim = this.GetComponentInParent<Animator>();
         attackSlotManager = target.GetComponentInParent<SamuraiAttackSlotManager>();
         waitSlotManager = target.GetComponentInParent<WaitSlotManager>();
         playerHealthScript = target.GetComponentInChildren<Health>();
@@ -82,12 +87,9 @@ public class TestSamuraiController : MonoBehaviour
 
     private void Attack()
     {
-        if (_attackCooldown <= 0f)
-        {
-            StartCoroutine(DoDamage(playerHealthScript, _attackDelay));
-            Debug.Log(gameObject.name + " Attacked Player");
-            _attackCooldown = 1 / attackSpeed;
-        }
+        StartCoroutine(DoDamage(playerHealthScript, _attackDelay));
+        Debug.Log(gameObject.name + " Attacked Player");
+        _attackTime = 0;
     }
 
     IEnumerator DoDamage(Health playerHealth, float delay)
@@ -97,16 +99,24 @@ public class TestSamuraiController : MonoBehaviour
         playerHealth.damage(5f);
     }
 
-    
 
     private void Update()
     {
         float distance = Vector3.Distance(target.position, transform.position);
-        _attackCooldown -= Time.deltaTime;
+
+        // Start run animation when moving
+        if (agent.remainingDistance > 0f)
+        {
+            anim.SetBool("Run", true);
+        }
+        else anim.SetBool("Run", false);
 
         if (distance < aggroRadius)
         {
             CheckAttackSlot();
+
+            
+
 
             if (target.GetComponentInParent<playerMovement>().isGrounded)
             {
@@ -117,8 +127,23 @@ public class TestSamuraiController : MonoBehaviour
             // attack the player if in attack slot
             if (distance <= _attackDistance)
             {
-                while (_attacking)
+                _attackTime += Time.deltaTime;
+
+                while (_attackTime > _attackRate)
+                {
                     Attack();
+                }
+
+                // call function in playercontroller to see if looking at samurai
+                isLookedAt = playerControllerScript.IsLooking(transform);
+            }
+
+            // Clear wait slot when enemy moves to newly open attack slot
+            if (_attacking && _waiting)
+            {
+                waitSlotManager.Release(_waitSlot);
+                _waiting = false;
+                _waitSlot = -1;
             }
         }
         else
@@ -146,6 +171,7 @@ public class TestSamuraiController : MonoBehaviour
                 }
                 agent.ResetPath();
             }
+            
             
         }
         
