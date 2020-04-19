@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private SpawnManager _spawnManager;
 
+    [SerializeField]
+    private Stamina playerStamina;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,19 +25,45 @@ public class PlayerController : MonoBehaviour
 
     public void AttackOption()
     {
-        _attackText.text = "Press F to Attack";
-        if (Input.GetKeyDown(KeyCode.F))
+        
+        if (playerStamina.value < 5.0f)
         {
-            BasicAttack(_currentEnemy);
+            _attackText.text = "Not Enough Stamina!";
         }
+        else
+        {
+            _attackText.text = "Press F to Attack";
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                playerStamina.subtract(5.0f);
+                BasicAttack(_currentEnemy);
+            }
+        }
+        
     }
 
     public void BasicAttack(GameObject enemy)
     {
         Debug.Log(enemy.name + " has been attacked");
-        _spawnManager.EnemyKilled(enemy);
-        Destroy(enemy);
-        _attackText.text = "";
+
+        // Enemies have health and need to hit mulitiple times 
+        // THIS WHOLE THING IS MESSY AND I NEED TO CHANGE HOW THE STATS WORK TO CLEAN IT UP
+        
+        enemy.GetComponent<TestSamuraiController>().health -= 1;
+        
+
+        if (enemy.GetComponent<TestSamuraiController>().health == 0)
+        {
+            _spawnManager.EnemyKilled(enemy);
+            Destroy(enemy);
+            _attackText.text = "";
+        }
+
+
+        // One Hit KO
+        //_spawnManager.EnemyKilled(enemy);
+        //Destroy(enemy);
+        //_attackText.text = "";
     }
 
     public bool IsLooking(Transform target)

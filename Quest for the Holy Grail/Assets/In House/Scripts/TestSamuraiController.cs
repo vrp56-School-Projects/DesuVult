@@ -1,32 +1,37 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class TestSamuraiController : MonoBehaviour
 {
-    public float aggroRadius = 15.0f;
+    private float aggroRadius = 15.0f;
+    private float _attackDistance = 0f;
+    private float _patrolTimer = 0f;
+    private float _patrolDelay = 3.0f;
+    private float _patrolSpeed = 1.5f;
     private int _attackSlot = -1;
     private int _waitSlot = -1;
     private bool _attacking = false;
     private bool _waiting = false;
-    private float _attackDistance = 0f;
+    private bool _patroling = false;
+
     public bool isLookedAt;
-
-
+    
     Transform target;
     NavMeshAgent agent;
     PlayerController playerControllerScript;
     SamuraiAttackSlotManager attackSlotManager;
     WaitSlotManager waitSlotManager;
     Animator anim;
-
+    WeaponController sword;
 
     // remove after changing stats code
     Health playerHealthScript;
-    public float _attackRate = 1.5f;
+    public int health = 3;
+
+    public float _attackRate = 1.34f;
     private float _attackTime = 0f;
-    private float _attackDelay = 0.0f; // set to some value when adding animations
+    private float _attackDelay = 1.3f; // set to some value when adding animations
 
     private void Start()
     {
@@ -34,10 +39,13 @@ public class TestSamuraiController : MonoBehaviour
         playerControllerScript = target.GetComponentInParent<PlayerController>();
         agent = GetComponent<NavMeshAgent>();
         anim = this.GetComponentInParent<Animator>();
+        sword = this.GetComponentInChildren<WeaponController>();
         attackSlotManager = target.GetComponentInParent<SamuraiAttackSlotManager>();
         waitSlotManager = target.GetComponentInParent<WaitSlotManager>();
         playerHealthScript = target.GetComponentInChildren<Health>();
         _attackDistance = attackSlotManager.distance + 0.5f;
+
+        SetRandomLocation();
     }
 
     
@@ -61,6 +69,7 @@ public class TestSamuraiController : MonoBehaviour
                 }
                 agent.SetDestination(attackSlotManager.GetSlotPosition(_attackSlot));
                 _attacking = true;
+                _patroling = false;
             }
         }
     }
@@ -82,6 +91,7 @@ public class TestSamuraiController : MonoBehaviour
             }
             agent.SetDestination(waitSlotManager.GetSlotPosition(_waitSlot));
             _waiting = true;
+            _patroling = false;
         }
     }
 
@@ -89,34 +99,44 @@ public class TestSamuraiController : MonoBehaviour
     {
         StartCoroutine(DoDamage(playerHealthScript, _attackDelay));
         Debug.Log(gameObject.name + " Attacked Player");
-        _attackTime = 0;
+        
     }
 
     IEnumerator DoDamage(Health playerHealth, float delay)
     {
+        _attackTime = 0;
+        anim.SetTrigger("Attack");
         yield return new WaitForSeconds(delay);
+        
 
+        sword.playSound();
         playerHealth.damage(5f);
     }
 
+    private void SetRandomLocation()
+    {
+        float currentX = gameObject.transform.position.x;
+        float currentZ = gameObject.transform.position.z;
+
+        float xPos = Random.Range(-aggroRadius, aggroRadius) + currentX;
+        float zPos = Random.Range(-aggroRadius, aggroRadius) + currentZ;
+        
+        Vector3 randomLocation = new Vector3(xPos, gameObject.transform.position.y, zPos);
+
+        agent.SetDestination(randomLocation);
+
+        _patrolTimer = 0f;
+
+    }
 
     private void Update()
     {
         float distance = Vector3.Distance(target.position, transform.position);
 
-        // Start run animation when moving
-        if (agent.remainingDistance > 0f)
-        {
-            anim.SetBool("Run", true);
-        }
-        else anim.SetBool("Run", false);
-
+        // Player within aggro range and need to try to fill attack or wait slot
         if (distance < aggroRadius)
         {
             CheckAttackSlot();
-
-            
-
 
             if (target.GetComponentInParent<playerMovement>().isGrounded)
             {
@@ -129,7 +149,7 @@ public class TestSamuraiController : MonoBehaviour
             {
                 _attackTime += Time.deltaTime;
 
-                while (_attackTime > _attackRate)
+                while (_attackTime >= _attackRate)
                 {
                     Attack();
                 }
@@ -137,6 +157,7 @@ public class TestSamuraiController : MonoBehaviour
                 // call function in playercontroller to see if looking at samurai
                 isLookedAt = playerControllerScript.IsLooking(transform);
             }
+            else isLookedAt = false;
 
             // Clear wait slot when enemy moves to newly open attack slot
             if (_attacking && _waiting)
@@ -146,6 +167,7 @@ public class TestSamuraiController : MonoBehaviour
                 _waitSlot = -1;
             }
         }
+        // Player not in aggro range and need to go back to patroling
         else
         {
             if (_waitSlot != -1)
@@ -153,28 +175,32 @@ public class TestSamuraiController : MonoBehaviour
                 waitSlotManager.Release(_waitSlot);
                 _waiting = false;
                 _waitSlot = -1;
-                if (agent == null)
-                {
-                    return;
-                }
-                agent.ResetPath();
             }
             if (_attackSlot != -1)
             {
                 attackSlotManager.Release(_attackSlot);
                 _attacking = false;
                 _attackSlot = -1;
-                // Reset the destination for the AI (Not following)
-                if (agent == null)
-                {
-                    return;
-                }
-                agent.ResetPath();
             }
             
+            if (_patrolTimer >= _patrolDelay)
+            {
+                SetRandomLocation();
+            }
             
         }
-        
+
+        // Start run animation when moving
+        if (agent.remainingDistance > 0f)
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+            _patrolTimer += Time.deltaTime;
+        }
+
     }
 
    

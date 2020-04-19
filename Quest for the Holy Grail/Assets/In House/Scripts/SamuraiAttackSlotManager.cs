@@ -8,7 +8,7 @@ public class SamuraiAttackSlotManager : MonoBehaviour
     [SerializeField]
     private int count = 4;
     [SerializeField]
-    public float distance = 1.5f;
+    public float distance = 1.2f;
     
 
     // Start is called before the first frame update

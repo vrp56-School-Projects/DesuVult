@@ -21,12 +21,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = _MaxEnemies; i > 0; --i)
-        {
-            GameObject newEnemy = Instantiate(_enemies[_enemyIndex], new Vector3(_spawns[i].transform.position.x, _spawns[i].transform.position.y, _spawns[i].transform.position.z), _spawns[i].transform.rotation);
-            Debug.Log("Added new enemy at location " + i);
-            _spawnedEnemies.Add(newEnemy);
-        }
+        
     }
 
     public void EnemyKilled(GameObject enemy)
@@ -53,8 +48,6 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         // need to detect collisions before spawning in case spawnPoints overlap with enemies
 
         if (_spawnedEnemies.Count < _MaxEnemies)
