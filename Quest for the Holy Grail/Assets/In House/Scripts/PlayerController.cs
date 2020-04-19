@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     private bool _lookingAtEnemey = false;
     private GameObject _currentEnemy = null;
+    private float _attackCooldown = 0f;
+    public float attackSpeed = 2f;
 
     [SerializeField]
     private TextMeshProUGUI _attackText;
@@ -17,6 +19,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Stamina playerStamina;
 
+    [SerializeField]
+    private Health playerHealth;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,20 +32,26 @@ public class PlayerController : MonoBehaviour
 
     public void AttackOption()
     {
-        
         if (playerStamina.value < 5.0f)
         {
             _attackText.text = "Not Enough Stamina!";
         }
         else
         {
-            _attackText.text = "Press F to Attack";
-            if (Input.GetKeyDown(KeyCode.F))
+            if (_attackCooldown <= 0f)
             {
-                playerStamina.subtract(5.0f);
-                BasicAttack(_currentEnemy);
+                _attackText.text = "Press F to Attack";
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    playerStamina.subtract(2.5f);
+                    BasicAttack(_currentEnemy);
+                    _attackCooldown = 1f / attackSpeed;
+                }
             }
+            else _attackText.text = "Attack on cooldown";
         }
+         
+        
         
     }
 
@@ -84,6 +97,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _attackCooldown -= Time.deltaTime;
+
         if (_currentEnemy != null)
         {
             if (_currentEnemy.GetComponent<TestSamuraiController>().isLookedAt)
@@ -91,6 +106,11 @@ public class PlayerController : MonoBehaviour
                 AttackOption();
             }
             else _attackText.text = "";
+        }
+
+        if (playerHealth.value == 0)
+        {
+            PlayerManager.instance.KillPlayer();
         }
        
     }
