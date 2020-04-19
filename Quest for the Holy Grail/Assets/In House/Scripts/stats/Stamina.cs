@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Stamina : Stat
 {
-
+    void Start() {
+        Pickup.onPlayerCollideStamina += add;
+    }
 }

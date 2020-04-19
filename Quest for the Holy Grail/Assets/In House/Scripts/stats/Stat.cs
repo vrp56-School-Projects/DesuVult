@@ -11,6 +11,7 @@ public class Stat : MonoBehaviour
 
     public bool limitRange = true;
 
+
     void Update() {
         value += regenerationRate * Time.deltaTime;
         clamp();

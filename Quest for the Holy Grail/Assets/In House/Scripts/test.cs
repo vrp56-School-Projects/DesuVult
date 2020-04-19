@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public Health health;
-    // Start is called before the first frame update
+    public delegate void eventHandler();
+    public static event eventHandler eventHandled;
+
+    protected virtual void onEventHandled() {
+        Debug.Log("Event Handled");
+    }
+
     void Start()
     {
-
+        eventHandled += onEventHandled;
     }
 
     // Update is called once per frame
     void Update()
     {
-        health.damage(0.5f * Time.deltaTime);
+        if (eventHandled != null) {
+            eventHandled();
+        }
     }
 }
