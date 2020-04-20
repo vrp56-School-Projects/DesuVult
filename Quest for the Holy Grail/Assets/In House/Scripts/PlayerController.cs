@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Health playerHealth;
 
+    [SerializeField]
+    private AudioSource _attack;
+
 
 
     // Start is called before the first frame update
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
                 {
                     playerStamina.subtract(2.5f);
                     BasicAttack(_currentEnemy);
+                    _attack.PlayOneShot(_attack.clip);
                     _attackCooldown = 1f / attackSpeed;
                 }
             }
