@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public delegate void eventHandler();
-    public static event eventHandler eventHandled;
-
-    protected virtual void onEventHandled() {
-        Debug.Log("Event Handled");
-    }
-
+    // Start is called before the first frame update
     void Start()
     {
-        eventHandled += onEventHandled;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (eventHandled != null) {
-            eventHandled();
+        if (Input.GetButtonDown("Fire1")) {
+            // Debug.Log("Fire1");
+            EventManager.CallEnemyDied();
         }
     }
 }

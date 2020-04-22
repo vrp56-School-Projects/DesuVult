@@ -8,7 +8,7 @@ public class Stamina : Stat
         EventManager.StaminaPickup += add;
     }
 
-    void onDisabled() {
+    void onDisable() {
         EventManager.StaminaPickup -= add;
     }
 

@@ -8,7 +8,7 @@ public class DeusVult : Stat
         EventManager.DeusVultPickup += add;
     }
 
-    void onDisabled() {
+    void onDisable() {
         EventManager.DeusVultPickup -= add;
     }
 

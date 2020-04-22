@@ -14,9 +14,6 @@ public class Pickup : MonoBehaviour
         DeusVult
     }   
 
-    public static event onCollision onPlayerCollideHealth;
-    public static event onCollision onPlayerCollideStamina;
-    public static event onCollision onPlayerCollideDeusVult;
     public Collider player;
     [SerializeField] private statType stat;
     public float value = 10f;
@@ -45,7 +42,7 @@ public class Pickup : MonoBehaviour
             EventManager.CallDeusVultPickup(value);
             break;
         }
-        // onPlayerCollide(value);
+        EventManager.CallPickup(value);
         Destroy(gameObject);
     
     }

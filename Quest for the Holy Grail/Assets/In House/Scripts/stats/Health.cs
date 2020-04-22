@@ -8,7 +8,7 @@ public class Health : Stat
         EventManager.HealthPickup += add;
     }
 
-    void onDisabled() {
+    void onDisable() {
         EventManager.HealthPickup -= add;
     }
 }

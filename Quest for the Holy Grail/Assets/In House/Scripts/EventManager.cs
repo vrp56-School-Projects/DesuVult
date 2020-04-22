@@ -2,6 +2,13 @@
 
 public class EventManager
 {
+
+    //Item Pickups
+    public static event Action<float> Pickup;
+    public static void CallPickup (float value) {
+        Pickup?.Invoke(value);
+    }
+
     public static event Action<float> HealthPickup;
     public static void CallHealthPickup (float value) {
         HealthPickup?.Invoke(value);
@@ -15,6 +22,17 @@ public class EventManager
     public static event Action<float> DeusVultPickup;
     public static void CallDeusVultPickup (float value) {
         DeusVultPickup?.Invoke(value);
+    }
+    //End Item Pickups
+
+    public static event Action EnemyDied;
+    public static void CallEnemyDied() {
+        EnemyDied?.Invoke();
+    }
+
+    public static event Action PlayerDied;
+    public static void CallPlayerDied() {
+        PlayerDied?.Invoke();
     }
 
 }
