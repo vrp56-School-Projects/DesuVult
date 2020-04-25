@@ -7,7 +7,7 @@ public class BlinkFade : MonoBehaviour
 
     public float FadeDuration, StayDuration;
 
-    bool doBlink;
+    bool doBlink = false;
 
     void StartBlinking()
     {

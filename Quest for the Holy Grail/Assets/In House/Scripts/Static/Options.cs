@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Options
 {
-    // static variables
+    // static gameplay option variables
     static float Volume = 1f;
     static int Sensitivity = 5;
     static int FOV = 60;
