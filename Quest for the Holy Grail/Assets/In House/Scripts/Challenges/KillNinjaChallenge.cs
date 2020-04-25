@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KillChallenge : Challenge
+public class KillNinjaChallenge : Challenge
 {
+
     void Start()
     {
-        EventManager.EnemyDied += IncreaseCount;
+        EventManager.EnemyNinjaDied += IncreaseCount;
     }
-
 }

@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class CollectChallenge : Challenge
 {
-    [SerializeField] private int pickupsCollected = 0;
-    [SerializeField] private int pickupsNeeded = 3;
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.Pickup += updatePickupTotal;
+        // SetMessage("Collected 3 Pickups!");
+        EventManager.Pickup += IncreaseCount;
     }
 
-    void updatePickupTotal(float value) {
-        pickupsCollected++;
-        if (pickupsCollected == pickupsNeeded) {
-            Complete("Collected 3 Pickups!");
-        }
+    //overload base so that it matches our delegate
+    void IncreaseCount(float value){
+        base.IncreaseCount();
     }
+
 }

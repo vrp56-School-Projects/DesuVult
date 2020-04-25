@@ -30,9 +30,23 @@ public class EventManager
         EnemyDied?.Invoke();
     }
 
+    public static event Action EnemyNinjaDied;
+    public static void CallEnemyNinjaDied() {
+        EnemyNinjaDied?.Invoke();
+    }
+
+    public static event Action EnemySamuraiDied;
+    public static void CallEnemySamuraiDied() {
+        EnemySamuraiDied?.Invoke();
+    }
+
     public static event Action PlayerDied;
     public static void CallPlayerDied() {
         PlayerDied?.Invoke();
     }
 
+    public static event Action Explore;
+    public static void CallExplored() {
+        Explore?.Invoke();
+    }
 }

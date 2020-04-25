@@ -16,6 +16,11 @@ public class test : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) {
             // Debug.Log("Fire1");
             EventManager.CallEnemyDied();
+            EventManager.CallEnemySamuraiDied();
+            EventManager.CallEnemyNinjaDied();
+            EventManager.CallExplored();
+
+
         }
     }
 }
