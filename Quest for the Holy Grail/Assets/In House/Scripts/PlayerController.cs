@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private Health health;
 
 
     private Vector3 velocity;
@@ -30,6 +31,7 @@ public class playerMovement : MonoBehaviour
         handleMove();
         handleJump();
         handleGravity();
+        handleDeath();
 
 
         smoothGroundCheck();
@@ -109,6 +111,12 @@ public class playerMovement : MonoBehaviour
     void handleGravity() {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void handleDeath() {
+        if (health.value <= 0f) {
+            gameObject.SetActive(false);
+        }
     }
 
     //Experimental Code

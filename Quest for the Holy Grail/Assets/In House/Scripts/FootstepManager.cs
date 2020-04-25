@@ -6,7 +6,7 @@ using UnityEngine;
 public class FootstepManager : MonoBehaviour
 {
     public AudioSource audioSource;
-    public playerMovement playerMovement;
+    public PlayerController playerMovement;
     bool canPlaySound = false;
     public AudioClip[] audioClipsLeft;
     public AudioClip[] audioClipsRight;
