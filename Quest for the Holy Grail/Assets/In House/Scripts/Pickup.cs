@@ -30,20 +30,21 @@ public class Pickup : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-
-        switch(stat){
-            case statType.Health:
-            EventManager.CallHealthPickup(value);
-            break;
-            case statType.Stamina:
-            EventManager.CallStaminaPickup(value);
-            break;
-            case statType.DeusVult:
-            EventManager.CallDeusVultPickup(value);
-            break;
+        if (other.tag == "Player"){
+            switch(stat){
+                case statType.Health:
+                EventManager.CallHealthPickup(value);
+                break;
+                case statType.Stamina:
+                EventManager.CallStaminaPickup(value);
+                break;
+                case statType.DeusVult:
+                EventManager.CallDeusVultPickup(value);
+                break;
+            }
+            EventManager.CallPickup(value);
+            Destroy(gameObject);
         }
-        EventManager.CallPickup(value);
-        Destroy(gameObject);
     
     }
 }
