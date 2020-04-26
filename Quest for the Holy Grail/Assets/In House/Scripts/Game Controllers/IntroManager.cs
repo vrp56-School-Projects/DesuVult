@@ -57,7 +57,7 @@ public class IntroManager : MonoBehaviour
         /**
             Set proper scene
         */
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Level1Dungeon");
     }
 
     public void PlayClip(int clip)

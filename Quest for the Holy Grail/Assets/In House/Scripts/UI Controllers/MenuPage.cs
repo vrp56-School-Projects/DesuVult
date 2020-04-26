@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuPage : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class MenuPage : MonoBehaviour
 
     public void StartGame()
     {
-        // Load First Scene
+        SceneManager.LoadScene("IntroCutscene");
     }
 
     public void ExitGame()
