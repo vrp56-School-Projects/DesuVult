@@ -724,9 +724,11 @@ GameObject:
   - component: {fileID: 4597513304480383801}
   - component: {fileID: 4597513304480383800}
   - component: {fileID: 2551218505089295940}
+  - component: {fileID: 3386627734590774868}
+  - component: {fileID: -8841911630724569266}
   m_Layer: 0
   m_Name: Samurai1.2
-  m_TagString: Untagged
+  m_TagString: EnemyDV
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -823,6 +825,37 @@ MonoBehaviour:
   isLookedAt: 0
   health: 3
   _attackRate: 1.5
+--- !u!54 &3386627734590774868
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597513304480226149}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-8841911630724569266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597513304480226149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3332909bed30014db3a90c5f919eadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inWindZone: 0
+  windZone: {fileID: 0}
+  enemy: []
 --- !u!1 &4597513304480226387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3809,35 +3842,6 @@ Transform:
   m_Father: {fileID: 4597513304479968613}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &9113045107586945512
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6192145302444992176}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &6900291538622846419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6192145302444992176}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd7541069a5c934a83bf5cbc569a443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swoosh: {fileID: 804360583271678812}
 --- !u!82 &804360583271678812
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3934,6 +3938,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6900291538622846419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192145302444992176}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd7541069a5c934a83bf5cbc569a443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swoosh: {fileID: 804360583271678812}
 --- !u!1 &8174988890977340195
 GameObject:
   m_ObjectHideFlags: 0
@@ -4093,15 +4110,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d44f072607d893145b2f6d39c8229bef, type: 3}
---- !u!4 &6192145302444766570 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 416848, guid: d44f072607d893145b2f6d39c8229bef,
-    type: 3}
-  m_PrefabInstance: {fileID: 6192145302444878138}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6192145302444992176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 184202, guid: d44f072607d893145b2f6d39c8229bef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6192145302444878138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6192145302444766570 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 416848, guid: d44f072607d893145b2f6d39c8229bef,
     type: 3}
   m_PrefabInstance: {fileID: 6192145302444878138}
   m_PrefabAsset: {fileID: 0}
