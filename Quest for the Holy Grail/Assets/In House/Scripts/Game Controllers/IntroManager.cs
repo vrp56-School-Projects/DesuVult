@@ -9,6 +9,7 @@ public class IntroManager : MonoBehaviour
     public GameObject light1, light2, light3;
     public float l1_appear, l1_disappear, l2_appear, l2_disappear, l3_appear, l3_disappear;
     public float nextSceneDelay;
+    public AudioClip[] clips;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,9 @@ public class IntroManager : MonoBehaviour
 
     IEnumerator AppearRoutine(float d, GameObject o)
     {
+
         yield return new WaitForSeconds(d);
+
         o.SetActive(true);
     }
 
@@ -55,5 +58,11 @@ public class IntroManager : MonoBehaviour
             Set proper scene
         */
         SceneManager.LoadScene(0);
+    }
+
+    public void PlayClip(int clip)
+    {
+        GetComponent<AudioSource>().clip = clips[clip];
+        GetComponent<AudioSource>().Play();
     }
 }

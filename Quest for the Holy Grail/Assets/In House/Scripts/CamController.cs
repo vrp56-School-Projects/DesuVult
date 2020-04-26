@@ -22,9 +22,13 @@ public class CamController : MonoBehaviour
 
     public int[] ints;
 
+    IntroManager manager;
+    int ind = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.FindObjectOfType<IntroManager>();
         StartCoroutine(Transform(actions));
         StartCoroutine(Rotate(actions));
     }
@@ -32,6 +36,8 @@ public class CamController : MonoBehaviour
     // transform and repeat control
     IEnumerator Transform(action[] a)
     {
+        manager.PlayClip(0);
+
         // initialize
         float newX = a[0].startLoc[0];
         float newY = a[0].startLoc[1];
@@ -44,6 +50,7 @@ public class CamController : MonoBehaviour
 
         // do action
         float start = Time.time;
+        manager.PlayClip(1);
 
         while(true)
         {
