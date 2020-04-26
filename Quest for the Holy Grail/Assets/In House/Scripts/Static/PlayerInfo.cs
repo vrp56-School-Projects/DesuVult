@@ -9,21 +9,29 @@ public class PlayerInfo : MonoBehaviour
     static float MaxStamina = 100f;
     static float MaxMana = 100f;
 
-    static float CurrentHealth = 50f;
-    static float CurrentStamina = 50f;
-    static float CurrentMana = 50f;
+    static float CurrentHealth = 100f;
+    static float CurrentStamina = 100f;
+    static float CurrentMana = 100f;
 
-    static int Points = 10;
+    static int TotalQuestsComplete;
 
-    static int SelectedSword;
     /*
-        SELECTION INDEX:
+        USE THESE TO FIND WHICH SWORD THE PLAYER IS USING:
+        SWORDS CAN BE FOUDN IN PREFABS
 
         0: NATSUKI
         1: SATOMI
         2: MEGUMI
         3: HARUNO
     */
+    static int SelectedSword;
+
+    /*
+        UPDATE THESE DURING EACH DUNGEON LEVEL
+    */
+    static int Points = 0;                  // Number of quests completed
+    static int TotalEnemiesKilled = 0;      // Number of enemies killed
+    static int Abilities = 0;               // Number of Abilities Unlocked
 
     // getters
     public static float GetMaxHealth()
