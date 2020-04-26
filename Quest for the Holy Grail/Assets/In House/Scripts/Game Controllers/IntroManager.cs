@@ -57,7 +57,7 @@ public class IntroManager : MonoBehaviour
         /**
             Set proper scene
         */
-        SceneManager.LoadScene("Level1Dungeon");
+        SceneManager.LoadScene("SwordSelect");
     }
 
     public void PlayClip(int clip)

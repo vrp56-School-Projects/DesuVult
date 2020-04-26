@@ -15,6 +15,16 @@ public class PlayerInfo : MonoBehaviour
 
     static int Points = 10;
 
+    static int SelectedSword;
+    /*
+        SELECTION INDEX:
+
+        0: NATSUKI
+        1: SATOMI
+        2: MEGUMI
+        3: HARUNO
+    */
+
     // getters
     public static float GetMaxHealth()
     {
@@ -51,6 +61,11 @@ public class PlayerInfo : MonoBehaviour
         return Points;
     }
 
+    public static int GetSwordIndex()
+    {
+        return SelectedSword;
+    }
+
     // setters
     public static void UpgradeHealth()
     {
@@ -73,6 +88,11 @@ public class PlayerInfo : MonoBehaviour
     public static void SetPoints(int points)
     {
         Points = points;
+    }
+
+    public static void SetSwordIndex(int index)
+    {
+        SelectedSword = index;
     }
 
     // set all variables

@@ -13,7 +13,6 @@ public class OutlineObject : MonoBehaviour
     void Start()
     {
         Renderer = GetComponent<MeshRenderer>();
-        HideOutline();
     }
 
     public void ShowOutline()
