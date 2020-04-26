@@ -721,7 +721,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4597513304479952897}
   - component: {fileID: 4597513304472913007}
-  - component: {fileID: 4597513304480383801}
   - component: {fileID: 4597513304480383800}
   - component: {fileID: 2551218505089295940}
   m_Layer: 0
@@ -773,19 +772,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4597513304480383801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4597513304480226149}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69958356b63469244a12f8776360ae4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLookedAt: 0
 --- !u!195 &4597513304480383800
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3825,19 +3811,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6900291538622846419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6192145302444992176}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd7541069a5c934a83bf5cbc569a443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swoosh: {fileID: 804360583271678812}
 --- !u!82 &804360583271678812
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3934,6 +3907,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6900291538622846419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192145302444992176}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd7541069a5c934a83bf5cbc569a443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swoosh: {fileID: 804360583271678812}
 --- !u!1 &8174988890977340195
 GameObject:
   m_ObjectHideFlags: 0
