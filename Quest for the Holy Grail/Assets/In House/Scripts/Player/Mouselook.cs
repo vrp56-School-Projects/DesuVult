@@ -38,7 +38,12 @@ public class Mouselook : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             EventManager.CallPlayerLooked(hit);
+            if(Input.GetButtonDown("Fire1")){
+              EventManager.CallEnemyDamaged(10f, hit.transform.gameObject);
+              // print("fired");
+            }
         }
     }
+  
     
 }
