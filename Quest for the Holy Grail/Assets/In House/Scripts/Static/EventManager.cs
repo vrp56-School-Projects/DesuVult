@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class EventManager
 {
@@ -53,5 +54,11 @@ public class EventManager
     public static event Action ChallengeCompleted;
     public static void CallChallengeCompleted() {
         ChallengeCompleted?.Invoke();
+    }
+
+    public delegate void Looked(RaycastHit hit);
+    public static event Looked PlayerLooked;
+    public static void CallPlayerLooked(RaycastHit hit) {
+        PlayerLooked?.Invoke(hit);
     }
 }

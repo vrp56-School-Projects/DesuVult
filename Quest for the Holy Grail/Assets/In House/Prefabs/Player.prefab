@@ -129,6 +129,7 @@ MonoBehaviour:
   yawSpeed: 100
   pitchSpeed: 100
   playerBody: {fileID: 2534368672774506928}
+  camera: {fileID: 2534368672256581183}
 --- !u!1 &2534368672774506894
 GameObject:
   m_ObjectHideFlags: 0
