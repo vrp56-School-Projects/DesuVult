@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class PlayerController_Haruno : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
-
+    [SerializeField] private Animator anim;
 
     private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
     private Vector2 impulse;
 
+
     public bool isGrounded = false;
     public bool instantIsGrounded = false;
+
+    public bool isAttacking = false;
 
 
     void Start() {
@@ -27,29 +30,30 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
 
-        handleMove();
-        handleJump();
-        handleGravity();
-
-
-        smoothGroundCheck();
-        groundCheck();
-
-        //If you land on the ground, don't accumulate negative velocity
-        //OR
-        //If you bump your head, lose upward velocity
-        if ((groundCheck() && velocity.y < 0)||((controller.collisionFlags & CollisionFlags.Above)!= 0))
+        if(!isAttacking)
         {
+            handleMove();
+            handleJump();
+            handleGravity();
+            handleAttack();
 
-            //reset our parameters
-            controller.slopeLimit = tempSlopeLimit;
-            controller.stepOffset = tempStepOffset;
+            smoothGroundCheck();
+            groundCheck();
+
+            //If you land on the ground, don't accumulate negative velocity
+            //OR
+            //If you bump your head, lose upward velocity
+            if ((groundCheck() && velocity.y < 0)||((controller.collisionFlags & CollisionFlags.Above)!= 0))
+            {
+
+                //reset our parameters
+                controller.slopeLimit = tempSlopeLimit;
+                controller.stepOffset = tempStepOffset;
 
 
-            velocity.y = 0f;
+                velocity.y = 0f;
+            }
         }
-
-
     }
 
     private float airTimer;
@@ -100,14 +104,29 @@ public class playerMovement : MonoBehaviour
         impulse.y = Input.GetAxisRaw("Vertical");
         impulse.Normalize();
 
-
         Vector3 move = transform.right * impulse.x + transform.forward * impulse.y;
 
         controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
+
+        if(impulse.y > 0) anim.SetInteger("Condition", 1);
+        else if(impulse.y < 0) anim.SetInteger("Condition", 2);
+        else if(impulse.x > 0) anim.SetInteger("Condition", 3);
+        else if(impulse.x < 0) anim.SetInteger("Condition", 4);
+        else anim.SetInteger("Condition", 0);
     }
 
     void handleGravity() {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    void handleAttack()
+    {
+        if(isGrounded)
+        {
+
+
+        }
+    }
 }
+
