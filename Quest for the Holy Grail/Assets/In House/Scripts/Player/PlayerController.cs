@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void Start() {
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;
+        EventManager.PlayerDamaged += onDamaged;
     }
 
     void Update()
@@ -31,7 +32,6 @@ public class PlayerController : MonoBehaviour
         handleMove();
         handleJump();
         handleGravity();
-        handleDeath();
 
 
         smoothGroundCheck();
@@ -113,11 +113,10 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    void handleDeath() {
-        if (health.value <= 0f) {
-            gameObject.SetActive(false);
-        }
+    void onDamaged(float damage){
+        health.damage(damage);
     }
+
 
     //Experimental Code
     bool up() {

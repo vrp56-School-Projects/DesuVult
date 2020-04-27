@@ -46,6 +46,12 @@ public class EventManager
         PlayerDied?.Invoke();
     }
 
+    public delegate void Damaged(float damage);
+    public static event Damaged PlayerDamaged;
+    public static void CallPlayerDamaged(float damage) {
+        PlayerDamaged?.Invoke(damage);
+    }
+
     public static event Action Explore;
     public static void CallExplored() {
         Explore?.Invoke();
