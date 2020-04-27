@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController_Haruno : MonoBehaviour
+public class PlayerController_Sword : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private float speed = 5f;
@@ -15,11 +15,15 @@ public class PlayerController_Haruno : MonoBehaviour
     private float tempStepOffset;
     private Vector2 impulse;
 
+    public int sword = 0; // IMPLEMENT
 
     public bool isGrounded = false;
     public bool instantIsGrounded = false;
 
     public bool isAttacking = false;
+    public bool canMove = true;
+    public int attackLayer = 0;
+    public int attackIndex = 0;
 
 
     void Start() {
@@ -29,30 +33,31 @@ public class PlayerController_Haruno : MonoBehaviour
 
     void Update()
     {
-
-        if(!isAttacking)
+        if(canMove)
         {
             handleMove();
             handleJump();
-            handleGravity();
-            handleAttack();
+        }
 
-            smoothGroundCheck();
-            groundCheck();
+        handleAttack();
 
-            //If you land on the ground, don't accumulate negative velocity
-            //OR
-            //If you bump your head, lose upward velocity
-            if ((groundCheck() && velocity.y < 0)||((controller.collisionFlags & CollisionFlags.Above)!= 0))
-            {
+        handleGravity();
 
-                //reset our parameters
-                controller.slopeLimit = tempSlopeLimit;
-                controller.stepOffset = tempStepOffset;
+        smoothGroundCheck();
+        groundCheck();
+
+        //If you land on the ground, don't accumulate negative velocity
+        //OR
+        //If you bump your head, lose upward velocity
+        if ((groundCheck() && velocity.y < 0)||((controller.collisionFlags & CollisionFlags.Above)!= 0))
+        {
+
+            //reset our parameters
+            controller.slopeLimit = tempSlopeLimit;
+            controller.stepOffset = tempStepOffset;
 
 
-                velocity.y = 0f;
-            }
+            velocity.y = 0f;
         }
     }
 
@@ -108,11 +113,11 @@ public class PlayerController_Haruno : MonoBehaviour
 
         controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
 
-        if(impulse.y > 0) anim.SetInteger("Condition", 1);
-        else if(impulse.y < 0) anim.SetInteger("Condition", 2);
-        else if(impulse.x > 0) anim.SetInteger("Condition", 3);
-        else if(impulse.x < 0) anim.SetInteger("Condition", 4);
-        else anim.SetInteger("Condition", 0);
+        if(impulse.y > 0) anim.SetInteger("condition", 1);
+        else if(impulse.y < 0) anim.SetInteger("condition", 2);
+        else if(impulse.x > 0) anim.SetInteger("condition", 3);
+        else if(impulse.x < 0) anim.SetInteger("condition", 5);
+        else anim.SetInteger("condition", 0);
     }
 
     void handleGravity() {
@@ -122,10 +127,52 @@ public class PlayerController_Haruno : MonoBehaviour
 
     void handleAttack()
     {
-        if(isGrounded)
+        // if grounded
+        if(isGrounded && !isAttacking)
+        {
+            // if attack triggered, reserve attack
+            if(Input.GetKeyDown(KeyCode.Mouse0)) StartCoroutine(Attack(0));
+            
+            else if(Input.GetKeyDown(KeyCode.Mouse1)) StartCoroutine(Attack(1));
+        }
+    }
+
+    IEnumerator Attack(int type)
+    {
+        canMove = false;
+        isAttacking = true;
+
+        // update layer and index
+        attackLayer++;
+        attackIndex += type;
+
+        // trigger animation
+        anim.SetInteger("condition", 4);
+        anim.SetInteger("attackLayer", attackLayer);
+        anim.SetInteger("attackIndex", attackIndex);
+
+        // wait for animation
+        yield return new WaitForSeconds(AttackDetails.SatomiTimings[attackLayer-1, attackIndex]);
+
+        // release attack
+        isAttacking = false;
+
+        if(attackLayer != 3)
+            yield return new WaitForSeconds(.2f);
+
+        // reset if combo over
+        if(!isAttacking)
         {
 
+            attackLayer = 0;
+            attackIndex = 0;
 
+            anim.SetInteger("condition", -1);
+            anim.SetInteger("attackLayer", attackLayer);
+            anim.SetInteger("attackIndex", attackIndex);
+
+            yield return new WaitForSeconds(.3f);
+            canMove = true;
         }
     }
 }

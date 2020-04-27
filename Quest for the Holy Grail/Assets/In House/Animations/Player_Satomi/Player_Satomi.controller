@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 2_2 GS HM
+  m_Name: 2_2 OHS C2
   m_Speed: 0.8
   m_CycleOffset: 0
   m_Transitions:
@@ -22,7 +22,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 8b73d044b1ceb5c4883ce068fea7a0d1,
+  m_Motion: {fileID: -203655887218126122, guid: 9ee6e48c1e973be43bd1c6a46a2b8c4d,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -148,7 +148,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 2_3 GS FS
+  m_Name: 2_3 OHC C2
   m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
@@ -163,7 +163,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 603ec7fca6a70544a82ed2a5c4d87e0b,
+  m_Motion: {fileID: -203655887218126122, guid: 46b447b6f060c864e985553ad9be5b14,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -177,7 +177,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 3_2 GS FS
+  m_Name: 3_2 OHS C3
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -190,7 +190,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 603ec7fca6a70544a82ed2a5c4d87e0b,
+  m_Motion: {fileID: -203655887218126122, guid: 125580920207bb944951e37b9f6865c8,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -204,8 +204,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 1_1 THS C1
-  m_Speed: 1
+  m_Name: 1_1 OHS C1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7217814447794599780}
@@ -219,7 +219,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: d6ae20281319f0044867aac8f4507738,
+  m_Motion: {fileID: -203655887218126122, guid: 01f748921decb56438bd6055d2397aa7,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -233,7 +233,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 3_3 GS LS
+  m_Name: 3_3 SS OS
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -246,7 +246,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: ad1effd1edd5a8d47b7fb253311dc81d,
+  m_Motion: {fileID: -203655887218126122, guid: 903df598b4a416c4da79082710035c3f,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -260,8 +260,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 3_1 THS C3
-  m_Speed: 1
+  m_Name: 3_1 SAS S
+  m_Speed: 1.35
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -273,7 +273,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 352843ba54ffeb547ba7880db23cfdb5,
+  m_Motion: {fileID: -203655887218126122, guid: cf1341803c5dfd047b96d81f5bc23e01,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -375,8 +375,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 2_1 THS C2
-  m_Speed: 0.8
+  m_Name: 2_1 SS IS
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6723834939057263606}
@@ -390,7 +390,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: f244d4c638b1ad1428d6ea9df8698307,
+  m_Motion: {fileID: -203655887218126122, guid: c6e70d3d8d7246a43a3a4ce2f0120608,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -561,7 +561,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: d4ff3807e2376414abfff2ef7cf74062,
+  m_Motion: {fileID: -203655887218126122, guid: 1761ae10420ba324cae1236693a6f4f1,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -589,7 +589,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 0811a06982ae0a24bb59658a3741b7c7,
+  m_Motion: {fileID: -203655887218126122, guid: 5f9adf04dcc21a14b9af02c3ac843650,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -684,8 +684,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 3_4 GS C
-  m_Speed: 0.9
+  m_Name: 3_4 OHC C3
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -697,7 +697,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 02553c78de5eb094bb3088ae20a9e225,
+  m_Motion: {fileID: -203655887218126122, guid: ab9f6dc4b6ab60a41a576a3ee5f9cced,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -797,7 +797,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Haruno
+  m_Name: Player_Satomi
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: condition
@@ -805,19 +805,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: attackLayer
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: attackIndex
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -989,7 +989,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 3be1a35aa9f39ad4e90aba6d4031ecd4,
+  m_Motion: {fileID: -203655887218126122, guid: ae6f1d932b89f194e9ee4b550cbac01b,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1034,8 +1034,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 1_2 GS C2
-  m_Speed: 0.7
+  m_Name: 1_2 OHC C1
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7687143213739775140}
@@ -1049,7 +1049,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 3c348097bca6e124daf1e63832e85578,
+  m_Motion: {fileID: -203655887218126122, guid: b197d8b083341b349a8951460fdc6ca7,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1077,7 +1077,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 0811a06982ae0a24bb59658a3741b7c7,
+  m_Motion: {fileID: -203655887218126122, guid: 5f9adf04dcc21a14b9af02c3ac843650,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1252,7 +1252,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 7b29c879fc3c2a54f8ba32b11fab7fa5,
+  m_Motion: {fileID: -203655887218126122, guid: 91516e1d9bdbb3f4491e08ed4f5023d8,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

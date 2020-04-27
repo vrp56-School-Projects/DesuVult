@@ -24660,7 +24660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833163999}
   m_LocalRotation: {x: -0.00000008940696, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.29999, z: 14.3000145}
+  m_LocalPosition: {x: -0, y: 10.3, z: 19.9}
   m_LocalScale: {x: 100, y: 100.000015, z: 100}
   m_Children: []
   m_Father: {fileID: 7404179217262634684}
@@ -56247,27 +56247,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1885346190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534368672574648013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 124c65ced4edb07459fcf41f769bd7da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 2534368672574648050}
-  speed: 5
-  gravity: -25
-  jumpHeight: 2
-  anim: {fileID: 7404179217271804380}
-  isGrounded: 0
-  instantIsGrounded: 0
-  isAttacking: 0
-  airTimeThreshold: 0.5
 --- !u!4 &1885814529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 448988, guid: 72ee938e36712134b9a16980629526a3,
@@ -65100,7 +65079,7 @@ MonoBehaviour:
   pitchSpeed: 100
   playerBody: {fileID: 2534368672574648051}
   camFollow: {fileID: 833164000}
-  smoothSpeed: 2
+  smoothSpeed: 0.5
 --- !u!81 &2534368672052525439
 AudioListener:
   m_ObjectHideFlags: 0
@@ -65155,7 +65134,7 @@ GameObject:
   - component: {fileID: 1885346183}
   - component: {fileID: 1885346185}
   - component: {fileID: 1885346188}
-  - component: {fileID: 1885346190}
+  - component: {fileID: 2534368672574648014}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -65163,6 +65142,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2534368672574648014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534368672574648013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c71eb32671fb04fa0367d23d007c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 2534368672574648050}
+  speed: 5
+  gravity: -25
+  jumpHeight: 2
+  anim: {fileID: 7404179217271804380}
+  sword: 0
+  isGrounded: 0
+  instantIsGrounded: 0
+  isAttacking: 0
+  attackLayer: 0
+  attackIndex: 0
+  airTimeThreshold: 0.5
 --- !u!114 &2534368672574648048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67208,7 +67211,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7404179217262342352}
-  m_LocalRotation: {x: -0.5785476, y: 0.63248575, z: -0.35251346, w: -0.3754713}
+  m_LocalRotation: {x: -0.57854766, y: 0.63248575, z: -0.3525135, w: -0.3754713}
   m_LocalPosition: {x: -5.8011727, y: -4.1914477, z: -7.447154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -68255,7 +68258,7 @@ Animator:
   m_GameObject: {fileID: 7404179217262344818}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
-  m_Controller: {fileID: 9100000, guid: 6a7b7b844eb2c2d4f804824cf7edaf3b, type: 2}
+  m_Controller: {fileID: 9100000, guid: c528489da6ee36c4f8c8990a6a03178b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
