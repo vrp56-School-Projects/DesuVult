@@ -8,14 +8,17 @@ public class PlayerController_Sword : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private Animator anim;
+    [SerializeField] private GameObject playerNatsuki, playerSatomi, playerHaruno;
 
     private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
     private Vector2 impulse;
 
-    public int sword = 0; // IMPLEMENT
+    private Animator anim;
+
+    public int sword = 0;
+    float[,] delay = new float[3,4]; 
 
     public bool isGrounded = false;
     public bool instantIsGrounded = false;
@@ -29,6 +32,31 @@ public class PlayerController_Sword : MonoBehaviour
     void Start() {
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;
+
+        /*
+            get sword from PlayerInfo
+        */
+
+        switch(sword)
+        {
+            case 0: // Natsuki
+                delay = AttackDetails.NatsukiTimings;
+                playerNatsuki.SetActive(true);
+                anim = playerNatsuki.GetComponent<Animator>();
+                break;
+
+            case 1: // Satmoi
+                delay = AttackDetails.SatomiTimings;
+                playerSatomi.SetActive(true);
+                anim = playerSatomi.GetComponent<Animator>();
+                break;
+
+            case 2: // Haruno
+                delay = AttackDetails.HarunoTimings;
+                playerHaruno.SetActive(true);
+                anim = playerHaruno.GetComponent<Animator>();
+                break;
+        }
     }
 
     void Update()
@@ -152,7 +180,7 @@ public class PlayerController_Sword : MonoBehaviour
         anim.SetInteger("attackIndex", attackIndex);
 
         // wait for animation
-        yield return new WaitForSeconds(AttackDetails.SatomiTimings[attackLayer-1, attackIndex]);
+        yield return new WaitForSeconds(delay[attackLayer-1, attackIndex]);
 
         // release attack
         isAttacking = false;

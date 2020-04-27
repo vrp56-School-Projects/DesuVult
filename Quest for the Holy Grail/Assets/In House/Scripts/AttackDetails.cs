@@ -24,11 +24,4 @@ public class AttackDetails : MonoBehaviour
         {1f, 1.25f, 1.5f, /* NOT USED */0000f},
         {1f, 1.25f, 1.5f, 2f}
     };
-
-    public static float[,] MegumiTimings = new float[3,4]
-    {
-        {0f, 0f, /* NOT USED */0000f, 0000f},
-        {0f, 0f, 0f, /* NOT USED */0000f},
-        {0f, 0f, 0f, 0f}
-    };
 }
