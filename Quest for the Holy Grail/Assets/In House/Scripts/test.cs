@@ -19,6 +19,7 @@ public class test : MonoBehaviour
             EventManager.CallEnemySamuraiDied();
             EventManager.CallEnemyNinjaDied();
             EventManager.CallExplored();
+            EventManager.CallChallengeCompleted();
 
 
         }

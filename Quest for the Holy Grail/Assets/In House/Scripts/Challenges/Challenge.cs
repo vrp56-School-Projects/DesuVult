@@ -9,6 +9,7 @@ public class Challenge : MonoBehaviour
     [SerializeField] private string message = "Message Name";
     protected void Complete(string message) {
         Debug.Log(message);
+        EventManager.CallChallengeCompleted();
     }
     protected void IncreaseCount() {
         count++;

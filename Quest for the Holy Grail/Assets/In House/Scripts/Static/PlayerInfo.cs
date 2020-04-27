@@ -122,4 +122,17 @@ public class PlayerInfo : MonoBehaviour
         CurrentStamina = MaxStamina;
         CurrentMana = MaxMana;
     }
+
+
+
+    //Callbacks
+    static public void IncrementPoints() {
+        Points++;
+        Debug.Log("Quest points incremented to " + Points.ToString());
+    }
+    static public void IncrementKills() {
+        TotalEnemiesKilled++;
+        Debug.Log("Enemies Killed incremented to " + TotalEnemiesKilled.ToString());
+    }
+
 }
