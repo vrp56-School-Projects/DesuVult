@@ -9,6 +9,8 @@ public class PlayerController_Sword : MonoBehaviour
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private GameObject playerNatsuki, playerSatomi, playerHaruno;
+    [SerializeField] private Transform followNatsuki, followSatomi, followHaruno;
+
 
     private Vector3 velocity;
     private float tempSlopeLimit;
@@ -40,21 +42,24 @@ public class PlayerController_Sword : MonoBehaviour
         switch(sword)
         {
             case 0: // Natsuki
-                delay = AttackDetails.NatsukiTimings;
-                playerNatsuki.SetActive(true);
-                anim = playerNatsuki.GetComponent<Animator>();
+                delay = AttackDetails.NatsukiTimings; // get delay values for attack timing
+                playerNatsuki.SetActive(true); // set proper model active
+                anim = playerNatsuki.GetComponent<Animator>(); // get proper animator
+                Camera.main.GetComponent<mouselook>().camFollow = followNatsuki; // set proper object for camera to follow
                 break;
 
             case 1: // Satmoi
-                delay = AttackDetails.SatomiTimings;
-                playerSatomi.SetActive(true);
-                anim = playerSatomi.GetComponent<Animator>();
+                delay = AttackDetails.SatomiTimings; // get delay values for attack timing
+                playerSatomi.SetActive(true); // set proper model active
+                anim = playerSatomi.GetComponent<Animator>(); // get proper animator
+                Camera.main.GetComponent<mouselook>().camFollow = followSatomi; // set proper object for camera to follow
                 break;
 
             case 2: // Haruno
-                delay = AttackDetails.HarunoTimings;
-                playerHaruno.SetActive(true);
-                anim = playerHaruno.GetComponent<Animator>();
+                delay = AttackDetails.HarunoTimings; // get delay values for attack timing
+                playerHaruno.SetActive(true); // set proper model active
+                anim = playerHaruno.GetComponent<Animator>(); // get proper animator
+                Camera.main.GetComponent<mouselook>().camFollow = followHaruno; // set proper object for camera to follow
                 break;
         }
     }

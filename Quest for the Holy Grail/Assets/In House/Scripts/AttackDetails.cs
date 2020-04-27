@@ -6,9 +6,9 @@ public class AttackDetails : MonoBehaviour
 {
     public static float[,]  NatsukiTimings = new float[3,4]
     {
-        {0f, 0f, /* NOT USED */0000f, 0000f},
-        {0f, 0f, 0f, /* NOT USED */0000f},
-        {0f, 0f, 0f, 0f}
+        {.5f, .5f, /* NOT USED */0000f, 0000f},
+        {.5f, .625f, .75f, /* NOT USED */0000f},
+        {.5f, .625f, .75f, 1f}
     };
 
     public static float[,] SatomiTimings = new float[3,4]

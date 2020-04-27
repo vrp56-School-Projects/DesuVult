@@ -7,6 +7,7 @@ public class mouselook : MonoBehaviour
     public float yawSpeed = 300f;
     public float pitchSpeed = 600f;
     public Transform playerBody;
+
     public Transform camFollow;
 
     public float smoothSpeed = 0.125f;
