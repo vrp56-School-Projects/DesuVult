@@ -1236,6 +1236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fcc2b7389bb95428d36b064cb5526b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  natsukiClip: {fileID: 0}
+  satomiClip: {fileID: 8300000, guid: d45f2a0d1288a6140a3cfd4918997c55, type: 3}
+  harunoClip: {fileID: 0}
+  swordSound: {fileID: 1326930402}
   selectionText: {fileID: 455726983}
   FG: {fileID: 329249801}
 --- !u!4 &581752651
@@ -1277,7 +1281,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class SwordSelectController : MonoBehaviour
 {
+    [SerializeField] private AudioClip natsukiClip, satomiClip, harunoClip;
+    [SerializeField] AudioSource swordSound;
+
     public Text selectionText;
     public FadeObject FG;
 
@@ -55,6 +58,11 @@ public class SwordSelectController : MonoBehaviour
             if(selectedSword != "") GameObject.Find(selectedSword).GetComponent<OutlineObject>().HideOutline();
 
             selectedSword = highlightedSword;
+
+            if(selectedSword == "Natsuki") swordSound.GetComponent<AudioSource>().clip = null;
+            else if(selectedSword == "Satomi") swordSound.clip = satomiClip;
+            else if(selectedSword == "Haruno") swordSound.GetComponent<AudioSource>().clip = null;
+            swordSound.Play();
 
             selectionText.text =  selectedSword + " selected. Press 'space' to confirm your weapon.";
 
