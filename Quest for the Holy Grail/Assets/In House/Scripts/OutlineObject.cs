@@ -14,7 +14,6 @@ public class OutlineObject : MonoBehaviour, IOnLook
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.PlayerLooked += PlayerLooked;
         if (Renderer == null)
             Renderer = GetComponent<MeshRenderer>();
 
@@ -41,22 +40,6 @@ public class OutlineObject : MonoBehaviour, IOnLook
     {
         Renderer.material.SetFloat("_Outline", 0f);
         Renderer.material.SetColor("_OutlineColor", Color.black);
-    }
-
-    //PlayerLooked event callback
-    public void PlayerLooked(RaycastHit hit)
-    {
-        
-        if (hit.transform.gameObject == gameObject){
-            PlayerLooking = true;
-        }
-        else {
-            PlayerLooking = false;
-        }
-    }
-
-    void OnDisable() {
-        EventManager.PlayerLooked -= PlayerLooked;
     }
 
     public void OnLook(){
