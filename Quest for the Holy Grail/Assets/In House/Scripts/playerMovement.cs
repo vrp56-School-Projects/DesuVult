@@ -110,4 +110,25 @@ public class playerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    //Experimental Code
+    bool up() {
+        return Input.GetAxisRaw("Vertical") == 1;
+    }
+
+    bool down() {
+        return Input.GetAxisRaw("Vertical") == -1;
+    }
+
+    bool left() {
+        return Input.GetAxisRaw("Horizontal") == -1;
+    }
+
+    bool right() {
+        return Input.GetAxisRaw("Horizontal") == 1;
+    }
+
+    bool isMoving() {
+        return up() || down() || left() || right();
+    }
 }
