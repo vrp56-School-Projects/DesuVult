@@ -23972,7 +23972,7 @@ PrefabInstance:
     - target: {fileID: 3696452245642665440, guid: 72a1b961a60ff314eb59d33e2b0c2d53,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3696452245642665440, guid: 72a1b961a60ff314eb59d33e2b0c2d53,
         type: 3}
@@ -59348,7 +59348,7 @@ Transform:
   m_Children:
   - {fileID: 1448455065}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1805682350
 MonoBehaviour:
@@ -61881,24 +61881,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   count: 4
   distance: 1.2
---- !u!114 &1885346185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534368672574648013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0739c94dc8f1428455dfd7bc4ad2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackSpeed: 1
-  _attackText: {fileID: 161693376}
-  _spawnManager: {fileID: 1805682350}
-  playerStamina: {fileID: 1469443368}
-  playerHealth: {fileID: 8238753472816983475}
-  _attack: {fileID: 1885346189}
 --- !u!114 &1885346188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71441,7 +71423,6 @@ GameObject:
   - component: {fileID: 8238753472816983475}
   - component: {fileID: 1885346189}
   - component: {fileID: 1885346183}
-  - component: {fileID: 1885346185}
   - component: {fileID: 1885346188}
   - component: {fileID: 2534368672574648014}
   m_Layer: 9

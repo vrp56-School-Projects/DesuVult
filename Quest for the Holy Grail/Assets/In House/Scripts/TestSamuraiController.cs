@@ -16,6 +16,9 @@ public class TestSamuraiController : MonoBehaviour
     private bool _patroling = false;
 
     public bool isLookedAt;
+
+    [SerializeField]
+    private Health _samuraiHealth;
     
     Transform target;
     NavMeshAgent agent;
@@ -27,7 +30,7 @@ public class TestSamuraiController : MonoBehaviour
 
     // remove after changing stats code
     Health playerHealthScript;
-    public int health = 3;
+   
 
     public float _attackRate = 1.34f;
     private float _attackTime = 0f;
@@ -43,12 +46,15 @@ public class TestSamuraiController : MonoBehaviour
         attackSlotManager = target.GetComponentInParent<SamuraiAttackSlotManager>();
         waitSlotManager = target.GetComponentInParent<WaitSlotManager>();
         playerHealthScript = target.GetComponentInChildren<Health>();
-        _attackDistance = attackSlotManager.distance + 0.5f;
+        _attackDistance = attackSlotManager.distance + 0.2f;
 
         SetRandomLocation();
     }
 
-    
+    public void OnHit(float damage)
+    {
+        _samuraiHealth.damage(damage);
+    }
 
     private void CheckAttackSlot()
     {

@@ -65,16 +65,7 @@ public class PlayerController : MonoBehaviour
 
         // Enemies have health and need to hit mulitiple times 
         // THIS WHOLE THING IS MESSY AND I NEED TO CHANGE HOW THE STATS WORK TO CLEAN IT UP
-        
-        enemy.GetComponent<TestSamuraiController>().health -= 1;
-        
-
-        if (enemy.GetComponent<TestSamuraiController>().health == 0)
-        {
-            _spawnManager.EnemyKilled(enemy);
-            Destroy(enemy);
-            _attackText.text = "";
-        }
+       
 
 
         // One Hit KO

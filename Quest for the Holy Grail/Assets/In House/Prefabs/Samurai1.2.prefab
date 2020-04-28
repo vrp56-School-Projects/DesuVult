@@ -723,6 +723,7 @@ GameObject:
   - component: {fileID: 4597513304472913007}
   - component: {fileID: 4597513304480383800}
   - component: {fileID: 2551218505089295940}
+  - component: {fileID: 1366435154788712555}
   m_Layer: 0
   m_Name: Samurai1.2
   m_TagString: Untagged
@@ -807,8 +808,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLookedAt: 0
-  health: 3
+  _samuraiHealth: {fileID: 1366435154788712555}
   _attackRate: 1.5
+--- !u!114 &1366435154788712555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597513304480226149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb88efe6a5c668f41a32d3090210c20d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 100
+  min: 0
+  max: 100
+  regenerationRate: 0
+  limitRange: 1
 --- !u!1 &4597513304480226387
 GameObject:
   m_ObjectHideFlags: 0
@@ -4063,15 +4081,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d44f072607d893145b2f6d39c8229bef, type: 3}
---- !u!4 &6192145302444766570 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 416848, guid: d44f072607d893145b2f6d39c8229bef,
-    type: 3}
-  m_PrefabInstance: {fileID: 6192145302444878138}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6192145302444992176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 184202, guid: d44f072607d893145b2f6d39c8229bef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6192145302444878138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6192145302444766570 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 416848, guid: d44f072607d893145b2f6d39c8229bef,
     type: 3}
   m_PrefabInstance: {fileID: 6192145302444878138}
   m_PrefabAsset: {fileID: 0}
