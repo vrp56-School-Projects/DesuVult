@@ -54,9 +54,9 @@ public class EventManager
     }
 
     public static event enemyDamaged EnemyDamaged;
-    public static void CallEnemyDamaged(float damage, GameObject gameObject){
-        EnemyDamaged?.Invoke(damage, gameObject);
-    }
+    // public static void CallEnemyDamaged(float damage, GameObject gameObject){
+    //     EnemyDamaged?.Invoke(damage, gameObject);
+    // }
 
 
 
