@@ -114,7 +114,14 @@ public class PlayerController : MonoBehaviour
             else _attackText.text = "";
         }
 
-        if (playerHealth.value == 0)
+        //if (playerHealth.value == 0)
+        //{
+        //   PlayerManager.instance.KillPlayer();
+        //}
+
+        dv = GameObject.FindGameObjectWithTag("windArea").gameObject;
+        
+        if(Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.Q))
         {
             dv.gameObject.GetComponent<WindArea>().dvC.enabled = true;
         }
