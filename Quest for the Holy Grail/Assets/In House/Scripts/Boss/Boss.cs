@@ -13,6 +13,11 @@ public class Boss : MonoBehaviour
         EventManager.StaggerBoss += OnStaggered;
     }
 
+    void OnDisable() {
+        EventManager.EnemyDamaged -= OnDamage;
+        EventManager.StaggerBoss -= OnStaggered;
+    }
+
     // Update is called once per frame
     void Update()
     {

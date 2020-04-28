@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
         EventManager.PlayerDamaged += onDamaged;
     }
 
+    void OnDisable() {
+        EventManager.PlayerDamaged -= onDamaged;
+    }
+
     void Update()
     {
 
