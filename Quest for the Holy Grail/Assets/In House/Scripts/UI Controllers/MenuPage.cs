@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuPage : MonoBehaviour
 {
+    public FadeObject BlackScreen;
+
     void OnEnable()
     {
         // update options in scene
@@ -17,11 +20,22 @@ public class MenuPage : MonoBehaviour
 
     public void StartGame()
     {
-        // Load First Scene
+        BlackScreen.gameObject.SetActive(true);
+        BlackScreen.StartFade(0);
+        SceneManager.LoadScene("IntroCutscene");
     }
 
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public IEnumerator StartGameRoutine()
+    {
+        
+
+        yield return new WaitForSeconds(.5f);
+
+        
     }
 }
