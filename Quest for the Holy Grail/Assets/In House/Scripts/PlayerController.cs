@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private GameObject _currentEnemy = null;
     private float _attackCooldown = 0f;
     public float attackSpeed = 2f;
+    public GameObject dv;
+    public bool active;
 
     [SerializeField]
     private TextMeshProUGUI _attackText;
@@ -30,8 +32,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+       
+}
 
     public void AttackOption()
     {
@@ -114,8 +116,16 @@ public class PlayerController : MonoBehaviour
 
         if (playerHealth.value == 0)
         {
-            PlayerManager.instance.KillPlayer();
+            dv.gameObject.GetComponent<WindArea>().dvC.enabled = true;
         }
-       
+        else
+        {
+            dv.gameObject.GetComponent<WindArea>().dvC.enabled = false;
+        }
+
+    }
+    public IEnumerator MyMethod()
+    {
+        yield return new WaitForSeconds(1);
     }
 }

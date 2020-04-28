@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class TestSamuraiController : MonoBehaviour
 {
     private float aggroRadius = 15.0f;
@@ -9,10 +10,10 @@ public class TestSamuraiController : MonoBehaviour
     private float _patrolTimer = 0f;
     private float _patrolDelay = 3.0f;
     private float _patrolSpeed = 1.5f;
-    private int _attackSlot = -1;
-    private int _waitSlot = -1;
-    private bool _attacking = false;
-    private bool _waiting = false;
+    public int _attackSlot = -1;
+    public int _waitSlot = -1;
+    public bool _attacking = false;
+    public bool _waiting = false;
     private bool _patroling = false;
 
     public bool isLookedAt;
@@ -26,7 +27,7 @@ public class TestSamuraiController : MonoBehaviour
     WeaponController sword;
 
     // remove after changing stats code
-    Health playerHealthScript;
+    public Health playerHealthScript;
     public int health = 3;
 
     public float _attackRate = 1.34f;
@@ -102,7 +103,7 @@ public class TestSamuraiController : MonoBehaviour
         
     }
 
-    IEnumerator DoDamage(Health playerHealth, float delay)
+    public IEnumerator DoDamage(Health playerHealth, float delay)
     {
         _attackTime = 0;
         anim.SetTrigger("Attack");
@@ -200,6 +201,8 @@ public class TestSamuraiController : MonoBehaviour
             anim.SetBool("Run", false);
             _patrolTimer += Time.deltaTime;
         }
+
+ 
 
     }
 
