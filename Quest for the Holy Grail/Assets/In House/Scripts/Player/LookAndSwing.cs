@@ -8,14 +8,23 @@ public class LookAndSwing : MonoBehaviour
     [SerializeField] private Stamina stamina;
     [SerializeField] private Camera camera;
     [Header("Attacking")]
-    [SerializeField] private float swingCost = 10;
-    [SerializeField] private float swingSpeed = .2f;
-    [SerializeField] private float swordDamage = 10f;
-    [SerializeField] private float raycastDistance = 3f;
+    private float swingCost = 10;
+    private float swingSpeed = .2f;
+    private float swordDamage = 10f;
+    private float raycastDistance = 3f;
+
+    [SerializeField] private Sword sword;
 
     private bool swingingSword = false;
 
     // Update is called once per frame
+    void Start() {
+      swingCost = sword.staminaDrain;
+      swingSpeed = sword.swingSpeed;
+      swordDamage = sword.damage;
+      raycastDistance = sword.reach;
+    }
+
     void Update()
     {
         //Look at and swing at
