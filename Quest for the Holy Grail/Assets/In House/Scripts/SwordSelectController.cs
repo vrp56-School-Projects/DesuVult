@@ -18,7 +18,6 @@ public class SwordSelectController : MonoBehaviour
 
     void Start()
     {
-
         // hide sword outlines
         OutlineObject[] Swords = GameObject.FindObjectsOfType<OutlineObject>();
 
@@ -70,8 +69,7 @@ public class SwordSelectController : MonoBehaviour
         {
             if(selectedSword == "Natsuki") PlayerInfo.SetSwordIndex(0);
             else if(selectedSword == "Satomi") PlayerInfo.SetSwordIndex(1);
-            else if(selectedSword == "Megumi") PlayerInfo.SetSwordIndex(2);
-            else if(selectedSword == "Haruno") PlayerInfo.SetSwordIndex(3);
+            else if(selectedSword == "Haruno") PlayerInfo.SetSwordIndex(2);
 
             print(PlayerInfo.GetSwordIndex());
             FG.StartFade(0);
