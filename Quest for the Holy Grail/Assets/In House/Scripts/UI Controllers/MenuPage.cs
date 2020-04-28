@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuPage : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MenuPage : MonoBehaviour
         {
             sources[i].volume = Options.GetVolume();
         }
+        StartCoroutine(StartMenuRoutine());
     }
 
     public void StartGame()
@@ -30,12 +32,14 @@ public class MenuPage : MonoBehaviour
         Application.Quit();
     }
 
-    public IEnumerator StartGameRoutine()
+    public IEnumerator StartMenuRoutine()
     {
-        
+        yield return new WaitForSeconds(4f);
+        Button[] buttons = GetComponentsInChildren<Button>();
 
-        yield return new WaitForSeconds(.5f);
-
-        
+        foreach(Button b in buttons)
+        {
+            b.interactable = true;
+        }
     }
 }

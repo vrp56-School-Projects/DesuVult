@@ -16196,6 +16196,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 578012909}
     m_Modifications:
+    - target: {fileID: 563743071238129324, guid: de167e0a660afd44cb629ebe689a2621,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563743071238129324, guid: de167e0a660afd44cb629ebe689a2621,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563743071272079956, guid: de167e0a660afd44cb629ebe689a2621,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563743071272079956, guid: de167e0a660afd44cb629ebe689a2621,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563743071462507816, guid: de167e0a660afd44cb629ebe689a2621,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563743071462507816, guid: de167e0a660afd44cb629ebe689a2621,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 563743071668317427, guid: de167e0a660afd44cb629ebe689a2621,
         type: 3}
       propertyPath: m_Name
@@ -16305,6 +16335,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 563743072004656200, guid: de167e0a660afd44cb629ebe689a2621,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563743072004656200, guid: de167e0a660afd44cb629ebe689a2621,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de167e0a660afd44cb629ebe689a2621, type: 3}
