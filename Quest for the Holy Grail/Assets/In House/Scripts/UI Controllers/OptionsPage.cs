@@ -19,11 +19,7 @@ public class OptionsPage : MonoBehaviour
 
     void OnEnable()
     {
-        initialVolume = Options.GetVolume();
-        initialSensitivity = Options.GetSensitivity();
-        initialFOV = Options.GetFOV();
-
-        ResetOptions();
+        Initialize();
     }
 
     public void UpdateOptions()
@@ -48,5 +44,14 @@ public class OptionsPage : MonoBehaviour
         VolumeSlider.value = initialVolume;
         SensitivitySlider.value = initialSensitivity;
         FOVSlider.value = initialFOV;
+    }
+
+    public void Initialize()
+    {
+        initialVolume = Options.GetVolume();
+        initialSensitivity = Options.GetSensitivity();
+        initialFOV = Options.GetFOV();
+
+        ResetOptions();
     }
 }

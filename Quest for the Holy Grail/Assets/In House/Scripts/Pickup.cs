@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void onCollision(float value);
+
+
+
 public class Pickup : MonoBehaviour
 {
+    private enum statType {
+        Health,
+        Stamina,
+        DeusVult
+    }   
+
     public Collider player;
-    public Stat playerStat;
+    [SerializeField] private statType stat;
     public float value = 10f;
     // Start is called before the first frame update
     void Start()
@@ -20,9 +30,21 @@ public class Pickup : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other == player) {
-            playerStat.add(value);
+        if (other.tag == "Player"){
+            switch(stat){
+                case statType.Health:
+                EventManager.CallHealthPickup(value);
+                break;
+                case statType.Stamina:
+                EventManager.CallStaminaPickup(value);
+                break;
+                case statType.DeusVult:
+                EventManager.CallDeusVultPickup(value);
+                break;
+            }
+            EventManager.CallPickup(value);
             Destroy(gameObject);
         }
+    
     }
 }
