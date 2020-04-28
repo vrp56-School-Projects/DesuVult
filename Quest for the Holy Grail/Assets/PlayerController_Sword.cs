@@ -196,6 +196,7 @@ public class PlayerController_Sword : MonoBehaviour
         // reset if combo over
         if(!isAttacking)
         {
+            isAttacking = true;
 
             attackLayer = 0;
             attackIndex = 0;
@@ -206,6 +207,7 @@ public class PlayerController_Sword : MonoBehaviour
 
             yield return new WaitForSeconds(.3f);
             canMove = true;
+            isAttacking = false;
         }
     }
 }
