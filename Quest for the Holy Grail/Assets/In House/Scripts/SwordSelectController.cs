@@ -61,6 +61,7 @@ public class SwordSelectController : MonoBehaviour
             Vector3 pos = GameObject.Find(selectedSword).transform.position;
 
             Camera.main.transform.LookAt(new Vector3(pos.x, 6.5f, pos.z));
+            GetComponent<Sound>().DoSound();
             confirm = true;
             
         }
