@@ -64,6 +64,10 @@ public class EventManager
     public static void CallExplored() {
         Explore?.Invoke();
     }
+    public static event Action StaggerBoss;
+    public static void CallStaggerBoss() {
+        StaggerBoss?.Invoke();
+    }
 
     public static event Action ChallengeCompleted;
     public static void CallChallengeCompleted() {

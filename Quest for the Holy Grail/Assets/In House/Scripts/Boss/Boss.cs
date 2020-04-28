@@ -5,11 +5,12 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     // Start is called before the first frame update
-    private BossState state = BossState.Staggered;
+    private BossState state = BossState.Invulnerable;
     [SerializeField] private Health health;
     void Start()
     {
-        EventManager.EnemyDamaged += onDamage;
+        EventManager.EnemyDamaged += OnDamage;
+        EventManager.StaggerBoss += OnStaggered;
     }
 
     // Update is called once per frame
@@ -24,10 +25,14 @@ public class Boss : MonoBehaviour
 
     }
 
-    void onDamage(float damage, GameObject GO) {
+    void OnDamage(float damage, GameObject GO) {
         if (state == BossState.Staggered && GO == gameObject) {
             health.damage(damage);
             print("Damaged Boss");
         }
+    }
+
+    void OnStaggered(){
+        state = BossState.Staggered;
     }
 }

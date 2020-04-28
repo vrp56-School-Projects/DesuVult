@@ -47,4 +47,8 @@ public class OutlineObject : MonoBehaviour
             HideOutline();
         }
     }
+
+    void OnDisable() {
+        EventManager.PlayerLooked -= PlayerLooked;
+    }
 }
