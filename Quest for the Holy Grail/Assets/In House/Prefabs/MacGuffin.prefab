@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Renderer: {fileID: 3869716195164019729}
+  PlayerLooking: 0
   MaxOutlineWidth: 1
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &3869716195166363435

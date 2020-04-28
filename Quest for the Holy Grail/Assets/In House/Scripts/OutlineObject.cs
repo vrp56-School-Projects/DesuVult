@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutlineObject : MonoBehaviour
+public class OutlineObject : MonoBehaviour, IOnLook
 {
 
     [SerializeField] private MeshRenderer Renderer;
@@ -57,5 +57,9 @@ public class OutlineObject : MonoBehaviour
 
     void OnDisable() {
         EventManager.PlayerLooked -= PlayerLooked;
+    }
+
+    public void OnLook(){
+        PlayerLooking = true;
     }
 }

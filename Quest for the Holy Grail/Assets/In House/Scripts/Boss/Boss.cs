@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour, IOnHit
 {
     // Start is called before the first frame update
     private BossState state = BossState.Invulnerable;
     [SerializeField] private Health health;
     void Start()
     {
-        EventManager.EnemyDamaged += OnDamage;
         EventManager.StaggerBoss += OnStaggered;
     }
 
     void OnDisable() {
-        EventManager.EnemyDamaged -= OnDamage;
         EventManager.StaggerBoss -= OnStaggered;
     }
 
@@ -30,10 +28,13 @@ public class Boss : MonoBehaviour
 
     }
 
-    void OnDamage(float damage, GameObject GO) {
-        if (state == BossState.Staggered && GO == gameObject) {
+    public void OnHit(float damage) {
+        if(state == BossState.Staggered){
             health.damage(damage);
             print("Damaged Boss");
+        }
+        else {
+            print("Boss Not Staggered");
         }
     }
 

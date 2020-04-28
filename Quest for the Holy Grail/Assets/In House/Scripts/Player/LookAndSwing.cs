@@ -10,6 +10,7 @@ public class LookAndSwing : MonoBehaviour
     [Header("Attacking")]
     [SerializeField] private float swingCost = 10;
     [SerializeField] private float swingSpeed = .2f;
+    [SerializeField] private float swordDamage = 10f;
     [SerializeField] private float raycastDistance = 3f;
 
     private bool swingingSword = false;
@@ -35,6 +36,7 @@ public class LookAndSwing : MonoBehaviour
         if (Physics.Raycast(ray, out hit, raycastDistance))
         {
           EventManager.CallPlayerLooked(hit);
+          hit.transform.gameObject.GetComponent<IOnLook>()?.OnLook();
           return hit;
         }
         return new RaycastHit();
@@ -49,7 +51,8 @@ public class LookAndSwing : MonoBehaviour
       hit = LookingAt();
       //Make sure we have an actual RaycastHit object and not a dummy
       if (hit.transform? true : false){
-        EventManager.CallEnemyDamaged(10f, hit.transform.gameObject);
+        // EventManager.CallEnemyDamaged(10f, hit.transform.gameObject);
+        hit.transform.gameObject.GetComponent<IOnHit>()?.OnHit(swordDamage);
       }
 
     }

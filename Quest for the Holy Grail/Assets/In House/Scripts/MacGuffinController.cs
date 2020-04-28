@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MacGuffinController : MonoBehaviour
+public class MacGuffinController : MonoBehaviour, IOnHit
 {
     [SerializeField] private float rotateSpeed = 10f;
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.EnemyDamaged += OnDamaged;
     }
 
     // Update is called once per frame
@@ -17,13 +16,8 @@ public class MacGuffinController : MonoBehaviour
         transform.Rotate(new Vector3(0f,rotateSpeed * Time.deltaTime,0f));
     }
 
-    void OnDamaged(float dummy, GameObject GO){
-        if (GO == gameObject)
-        {
-            EventManager.CallStaggerBoss();
-            EventManager.EnemyDamaged -= OnDamaged;
-            Destroy(gameObject);
-
-        }
+    public void OnHit(float damage) {
+        EventManager.CallStaggerBoss();
+        Destroy(gameObject);
     }
 }
