@@ -202,16 +202,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2534368672774506929}
+  camera: {fileID: 2534368672256581183}
   speed: 5
   gravity: -25
   jumpHeight: 2
-  health: {fileID: 9122828901881633381}
-  camera: {fileID: 2534368672256581183}
-  raycastDistance: 3
-  swingSpeed: 0.2
+  airTimeThreshold: 0.1
   isGrounded: 0
   instantIsGrounded: 1
-  airTimeThreshold: 0.1
+  health: {fileID: 9122828901881633381}
+  stamina: {fileID: 2818594792466309086}
+  swingSpeed: 0.2
+  swingCost: 10
+  raycastDistance: 3
 --- !u!114 &8885564326977495052
 MonoBehaviour:
   m_ObjectHideFlags: 0
