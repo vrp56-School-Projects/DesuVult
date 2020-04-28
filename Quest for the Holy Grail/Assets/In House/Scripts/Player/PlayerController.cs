@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private CharacterController controller;
-    [SerializeField] private Camera camera;
+
     [Header ("Kinematics")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
@@ -22,14 +22,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private Health health;
-    [SerializeField] private Stamina stamina;
-
-    [Header("Attacking")]
-    [SerializeField] private float swingSpeed = .2f;
-    [SerializeField] private float swingCost = 10f;
-    [SerializeField] private float raycastDistance = 3f;
-    private bool swingingSword = false;
-    
 
 
 
@@ -68,17 +60,6 @@ public class PlayerController : MonoBehaviour
 
             velocity.y = 0f;
         }
-
-        //Look at and swing at
-        LookingAt();
-        if(Input.GetButtonDown("Fire1") && !swingingSword && stamina.value >= swingCost){
-            print("swinging");
-            swingingSword = true;
-            StartCoroutine("swingSword");
-            stamina.subtract(swingCost);
-        }
-
-
     }
 
 
@@ -141,32 +122,5 @@ public class PlayerController : MonoBehaviour
 
     void onDamaged(float damage){
         health.damage(damage);
-    }
-
- //Raises PlayerLooked event and returns whatever object has been looked at
-    RaycastHit LookingAt()
-    {
-      Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, raycastDistance))
-        {
-          EventManager.CallPlayerLooked(hit);
-          return hit;
-        }
-        return new RaycastHit();
-    }
-
-    //Coroutine for timing sword swing after click
-    IEnumerator swingSword() {
-      RaycastHit hit;
-      yield return new WaitForSeconds(swingSpeed);
-      print("swung");
-      swingingSword = false;
-      hit = LookingAt();
-      //Make sure we have an actual RaycastHit object and not a dummy
-      if (hit.transform? true : false){
-        EventManager.CallEnemyDamaged(10f, hit.transform.gameObject);
-      }
-
     }
 }

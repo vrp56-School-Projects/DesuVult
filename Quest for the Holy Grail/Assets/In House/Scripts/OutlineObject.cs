@@ -6,6 +6,7 @@ public class OutlineObject : MonoBehaviour
 {
 
     [SerializeField] private MeshRenderer Renderer;
+    [SerializeField] private bool PlayerLooking = false;
 
     public float MaxOutlineWidth = 1f;
     public Color color = Color.red;
@@ -21,7 +22,13 @@ public class OutlineObject : MonoBehaviour
     }
 
     void Update() {
-        HideOutline();
+        if (PlayerLooking) {
+            ShowOutline();
+        }
+        else {
+            HideOutline();
+        }
+        PlayerLooking = false;
     }
 
     public void ShowOutline()
@@ -41,10 +48,10 @@ public class OutlineObject : MonoBehaviour
     {
         
         if (hit.transform.gameObject == gameObject){
-            ShowOutline();
+            PlayerLooking = true;
         }
         else {
-            HideOutline();
+            PlayerLooking = false;
         }
     }
 
