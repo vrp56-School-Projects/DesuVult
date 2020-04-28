@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private CharacterController controller;
+    [SerializeField] private Camera camera;
+    [Header ("Kinematics")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private Health health;
-
-
+    private float airTimer;
+    [SerializeField] private float airTimeThreshold = .5f;
     private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
     private Vector2 impulse;
-
     public bool isGrounded = false;
     public bool instantIsGrounded = false;
+
+    [Header("Stats")]
+    [SerializeField] private Health health;
+    [SerializeField] private Stamina stamina;
+
+    [Header("Attacking")]
+    [SerializeField] private float swingSpeed = .2f;
+    [SerializeField] private float swingCost = 10f;
+    [SerializeField] private float raycastDistance = 3f;
+    private bool swingingSword = false;
+    
+
+
 
 
     void Start() {
@@ -51,11 +65,19 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0f;
         }
 
+        //Look at and swing at
+        LookingAt();
+        if(Input.GetButtonDown("Fire1") && !swingingSword && stamina.value >= swingCost){
+            print("swinging");
+            swingingSword = true;
+            StartCoroutine("swingSword");
+            stamina.subtract(swingCost);
+        }
+
 
     }
 
-    private float airTimer;
-    [SerializeField] private float airTimeThreshold = .5f;
+
     bool smoothGroundCheck() {
         if (!groundCheck()) {
             airTimer += Time.deltaTime;
@@ -117,25 +139,30 @@ public class PlayerController : MonoBehaviour
         health.damage(damage);
     }
 
-
-    //Experimental Code
-    bool up() {
-        return Input.GetAxisRaw("Vertical") == 1;
+ //Raises PlayerLooked event and returns whatever object has been looked at
+    RaycastHit LookingAt()
+    {
+      Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, raycastDistance))
+        {
+          EventManager.CallPlayerLooked(hit);
+          return hit;
+        }
+        return new RaycastHit();
     }
 
-    bool down() {
-        return Input.GetAxisRaw("Vertical") == -1;
-    }
+    //Coroutine for timing sword swing after click
+    IEnumerator swingSword() {
+      RaycastHit hit;
+      yield return new WaitForSeconds(swingSpeed);
+      print("swung");
+      swingingSword = false;
+      hit = LookingAt();
+      //Make sure we have an actual RaycastHit object and not a dummy
+      if (hit.transform? true : false){
+        EventManager.CallEnemyDamaged(10f, hit.transform.gameObject);
+      }
 
-    bool left() {
-        return Input.GetAxisRaw("Horizontal") == -1;
-    }
-
-    bool right() {
-        return Input.GetAxisRaw("Horizontal") == 1;
-    }
-
-    bool isMoving() {
-        return up() || down() || left() || right();
     }
 }

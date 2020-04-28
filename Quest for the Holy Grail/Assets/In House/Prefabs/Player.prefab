@@ -206,6 +206,9 @@ MonoBehaviour:
   gravity: -25
   jumpHeight: 2
   health: {fileID: 9122828901881633381}
+  camera: {fileID: 2534368672256581183}
+  raycastDistance: 3
+  swingSpeed: 0.2
   isGrounded: 0
   instantIsGrounded: 1
   airTimeThreshold: 0.1
@@ -221,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8da7d3de22bf741be97f7ab5826a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   min: 0
   max: 100
   regenerationRate: 0.5
@@ -238,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f564c77e3995434faf1bb9889650b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   min: 0
   max: 100
   regenerationRate: 2

@@ -5,7 +5,7 @@ using UnityEngine;
 public class OutlineObject : MonoBehaviour
 {
 
-    MeshRenderer Renderer;
+    [SerializeField] private MeshRenderer Renderer;
 
     public float MaxOutlineWidth = 1f;
     public Color color = Color.red;
@@ -14,12 +14,14 @@ public class OutlineObject : MonoBehaviour
     void Start()
     {
         EventManager.PlayerLooked += PlayerLooked;
-        Renderer = GetComponent<MeshRenderer>();
+        if (Renderer == null)
+            Renderer = GetComponent<MeshRenderer>();
+
 
     }
 
     void Update() {
-        // HideOutline();
+        HideOutline();
     }
 
     public void ShowOutline()
