@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CamController : MonoBehaviour
 {
+    enum type{
+        intro,
+        outro
+    };
+    [SerializeField]
+    type thisType;
+    bool triggerNext = false;
 
     [System.Serializable]
     public class action
@@ -90,6 +97,9 @@ public class CamController : MonoBehaviour
             var a_list = new List<action>(a);
             a_list.RemoveAt(0);
 
+            while(thisType == type.outro && !triggerNext) yield return new WaitForEndOfFrame();
+            triggerNext = false;
+
             // restart
             StartCoroutine(Transform(a_list.ToArray()));
             StartCoroutine(Rotate(a_list.ToArray()));
@@ -141,4 +151,8 @@ public class CamController : MonoBehaviour
         }
     }
 
+    public void Trigger()
+    {
+        triggerNext = true;
+    }
 }

@@ -6,10 +6,11 @@ public class FadeObject : MonoBehaviour
 {
     public enum FadeType
     {
-        FadeIn,
-        FadeOut,
-        InAndOut,
-        OnCommand
+        FadeIn,         // 0
+        FadeOut,        // 1
+        InAndOut,       // 2
+        OnCommand,      // 3
+        Continuous      // 4
     }
 
     public float FadeDuration, StayDuration, Delay;
@@ -50,7 +51,7 @@ public class FadeObject : MonoBehaviour
         }
 
         // if in and out, do out
-        if(type == FadeType.InAndOut)
+        if(type == FadeType.InAndOut || type == FadeType.Continuous)
         {
 
             yield return new WaitForSeconds(StayDuration);
@@ -70,8 +71,20 @@ public class FadeObject : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        if(type == FadeType.Continuous)
+        {
+            StartCoroutine(FadeRoutine());
+        }
     }
 
+    /*
+        FadeIn,         0
+        FadeOut,        1
+        InAndOut,       2
+        OnCommand,      3
+        Continuous      4
+    */
     public void StartFade(int _type)
     {
         gameObject.SetActive(true);
