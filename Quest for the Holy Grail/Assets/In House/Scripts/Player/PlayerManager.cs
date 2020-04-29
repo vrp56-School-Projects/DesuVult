@@ -18,6 +18,11 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject player;
 
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     public void KillPlayer()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -1324,6 +1324,7 @@ GameObject:
   - component: {fileID: 4833247501503007280}
   - component: {fileID: 8816930121656452452}
   - component: {fileID: -4020398367300488845}
+  - component: {fileID: 2611853022228089015}
   m_Layer: 0
   m_Name: Ninja1
   m_TagString: Untagged
@@ -1411,6 +1412,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 2
+--- !u!114 &2611853022228089015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833247501495697434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4200dc51ac1e8c24082ce49c5209f034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4833247501495697948
 GameObject:
   m_ObjectHideFlags: 0
