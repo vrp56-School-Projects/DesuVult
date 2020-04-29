@@ -57437,6 +57437,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWithSword
       objectReference: {fileID: 0}
+    - target: {fileID: 8608575905075256170, guid: a9d3402c086ff9144b1c8af47555f166,
+        type: 3}
+      propertyPath: sword
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d3402c086ff9144b1c8af47555f166, type: 3}
 --- !u!1 &2076981111 stripped
