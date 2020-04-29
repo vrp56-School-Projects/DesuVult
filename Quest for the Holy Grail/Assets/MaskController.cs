@@ -9,6 +9,5 @@ public class MaskController : MonoBehaviour
     void Update()
     {
         gameObject.transform.LookAt(Camera.main.transform);
-        
     }
 }

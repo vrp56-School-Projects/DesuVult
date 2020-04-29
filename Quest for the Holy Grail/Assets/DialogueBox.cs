@@ -229,8 +229,7 @@ public class DialogueBox : MonoBehaviour
             // SceneManager.LoadScene();
             Debug.Log("NextScene");
         } else {
-            // SceneManager.LoadScene();
-            Debug.Log("Credits");
+            SceneManager.LoadScene("Credits");
         }
     }
 }
