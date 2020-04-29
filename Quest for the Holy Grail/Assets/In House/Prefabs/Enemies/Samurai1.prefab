@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLookedAt: 0
-  _samuraiHealth: {fileID: 0}
+  _samuraiHealth: {fileID: 1366435154788712555}
   _attackRate: 1.34
 --- !u!114 &1366435154788712555
 MonoBehaviour:
