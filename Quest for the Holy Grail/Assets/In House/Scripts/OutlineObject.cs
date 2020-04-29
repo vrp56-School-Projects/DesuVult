@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutlineObject : MonoBehaviour
+public class OutlineObject : MonoBehaviour, IOnLook
 {
 
-    MeshRenderer Renderer;
+    [SerializeField] private MeshRenderer Renderer;
+    [SerializeField] private bool PlayerLooking = false;
 
     public float MaxOutlineWidth = 1f;
     public Color color = Color.red;
@@ -13,13 +14,20 @@ public class OutlineObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.PlayerLooked += PlayerLooked;
-        Renderer = GetComponent<MeshRenderer>();
+        if (Renderer == null)
+            Renderer = GetComponent<MeshRenderer>();
+
 
     }
 
     void Update() {
-        // HideOutline();
+        if (PlayerLooking) {
+            ShowOutline();
+        }
+        else {
+            HideOutline();
+        }
+        PlayerLooking = false;
     }
 
     public void ShowOutline()
@@ -34,15 +42,7 @@ public class OutlineObject : MonoBehaviour
         Renderer.material.SetColor("_OutlineColor", Color.black);
     }
 
-    //PlayerLooked event callback
-    public void PlayerLooked(RaycastHit hit)
-    {
-        
-        if (hit.transform.gameObject == gameObject){
-            ShowOutline();
-        }
-        else {
-            HideOutline();
-        }
+    public void OnLook(){
+        PlayerLooking = true;
     }
 }

@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 2534368672774506928}
   - component: {fileID: 2534368672774506929}
   - component: {fileID: 2534368672774506931}
+  - component: {fileID: 5108012712767118336}
   - component: {fileID: 8885564326977495052}
   - component: {fileID: 2818594792466309086}
   - component: {fileID: 9122828901881633381}
@@ -202,13 +203,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2534368672774506929}
+  camera: {fileID: 2534368672256581183}
   speed: 5
   gravity: -25
   jumpHeight: 2
-  health: {fileID: 9122828901881633381}
+  airTimeThreshold: 0.1
   isGrounded: 0
   instantIsGrounded: 1
-  airTimeThreshold: 0.1
+  health: {fileID: 9122828901881633381}
+  stamina: {fileID: 2818594792466309086}
+  swingSpeed: 0.2
+  swingCost: 10
+  raycastDistance: 3
+--- !u!114 &5108012712767118336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534368672774506894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c53db873d78ce4797c915359a23c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stamina: {fileID: 2818594792466309086}
+  camera: {fileID: 2534368672256581183}
+  swingCost: 10
+  swingSpeed: 0.2
+  raycastDistance: 3
 --- !u!114 &8885564326977495052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8da7d3de22bf741be97f7ab5826a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   min: 0
   max: 100
   regenerationRate: 0.5
@@ -238,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f564c77e3995434faf1bb9889650b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 100
   min: 0
   max: 100
   regenerationRate: 2
@@ -461,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -490,7 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 3683151499335232056}
   damageMaxThreshold: 25
-  fadeSpeed: 5
+  fadeSpeed: 12
 --- !u!1 &8241732669663016620
 GameObject:
   m_ObjectHideFlags: 0

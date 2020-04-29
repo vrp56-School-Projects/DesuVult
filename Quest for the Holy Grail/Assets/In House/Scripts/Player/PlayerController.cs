@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private CharacterController controller;
+
+    [Header ("Kinematics")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private Health health;
-
-
+    private float airTimer;
+    [SerializeField] private float airTimeThreshold = .5f;
     private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
     private Vector2 impulse;
-
     public bool isGrounded = false;
     public bool instantIsGrounded = false;
+
+    [Header("Stats")]
+    [SerializeField] private Health health;
+
+
 
 
     void Start() {
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;
         EventManager.PlayerDamaged += onDamaged;
+    }
+
+    void OnDisable() {
+        EventManager.PlayerDamaged -= onDamaged;
     }
 
     void Update()
@@ -50,12 +60,9 @@ public class PlayerController : MonoBehaviour
 
             velocity.y = 0f;
         }
-
-
     }
 
-    private float airTimer;
-    [SerializeField] private float airTimeThreshold = .5f;
+
     bool smoothGroundCheck() {
         if (!groundCheck()) {
             airTimer += Time.deltaTime;
@@ -115,27 +122,5 @@ public class PlayerController : MonoBehaviour
 
     void onDamaged(float damage){
         health.damage(damage);
-    }
-
-
-    //Experimental Code
-    bool up() {
-        return Input.GetAxisRaw("Vertical") == 1;
-    }
-
-    bool down() {
-        return Input.GetAxisRaw("Vertical") == -1;
-    }
-
-    bool left() {
-        return Input.GetAxisRaw("Horizontal") == -1;
-    }
-
-    bool right() {
-        return Input.GetAxisRaw("Horizontal") == 1;
-    }
-
-    bool isMoving() {
-        return up() || down() || left() || right();
     }
 }

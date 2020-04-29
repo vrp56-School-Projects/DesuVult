@@ -16,6 +16,10 @@ public class VignetteFade : MonoBehaviour
         EventManager.PlayerDamaged += onDamaged;
     }
 
+    void OnDisable() {
+        EventManager.PlayerDamaged -= onDamaged;
+    }
+
     void Update() {
         setAlpha(damageRatio());
         damageTotal -= fadeSpeed * Time.deltaTime;
