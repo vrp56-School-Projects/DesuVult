@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
 
-    Health health;
-    Stamina stamina;
-    Mana mana;
+    [SerializeField] private Health health;
+    [SerializeField] private Stamina stamina;
+    [SerializeField] private Mana mana;
 
     public Slider HealthBar, StaminaBar, ManaBar;
 
     void OnEnable()
     {
-        health = FindObjectOfType<Health>();
-        mana = FindObjectOfType<Mana>();
-        stamina = FindObjectOfType<Stamina>();
+        // health = FindObjectOfType<Health>();
+        // mana = FindObjectOfType<Mana>();
+        // stamina = FindObjectOfType<Stamina>();
     }
 
     // Update is called once per frame
