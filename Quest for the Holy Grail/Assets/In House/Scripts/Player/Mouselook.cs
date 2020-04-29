@@ -13,6 +13,8 @@ public class MouseLook : MonoBehaviour
 
     public float smoothSpeed = 0.125f;
 
+    float xRotation = 0f;
+
     void OnTriggerStay(Collider col)
     {
         Cursor.lockState = CursorLockMode.Locked;
