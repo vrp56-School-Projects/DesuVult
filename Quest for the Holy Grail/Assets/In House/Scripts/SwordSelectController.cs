@@ -59,7 +59,7 @@ public class SwordSelectController : MonoBehaviour
 
             selectedSword = highlightedSword;
 
-            if(selectedSword == "Natsuki") swordSound.clip = satomiClip;
+            if(selectedSword == "Natsuki") swordSound.clip = natsukiClip;
             else if(selectedSword == "Satomi") swordSound.clip = satomiClip;
             else if(selectedSword == "Haruno") swordSound.clip = harunoClip;
             swordSound.Play();

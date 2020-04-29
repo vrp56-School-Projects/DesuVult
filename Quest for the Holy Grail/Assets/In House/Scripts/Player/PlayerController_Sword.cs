@@ -34,6 +34,7 @@ public class PlayerController_Sword : MonoBehaviour
 
     void Start()
     {
+        sword = PlayerInfo.GetSwordIndex();
         stamina = GetComponent<Stamina>();
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;

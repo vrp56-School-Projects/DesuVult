@@ -23,7 +23,7 @@ public class PlayerInfo : MonoBehaviour
         1: SATOMI
         2: HARUNO
     */
-    static int SelectedSword;
+    static int SelectedSword = 2;
 
     /*
         UPDATE THESE DURING EACH DUNGEON LEVEL

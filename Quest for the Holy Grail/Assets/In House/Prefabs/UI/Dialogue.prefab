@@ -497,7 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeDuration: 1
   StayDuration: 0
-  doBlink: 1
+  doBlink: 0
 --- !u!1 &6341425592785537444
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,15 +634,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9af5588368b7485479aabe401053ad0d, type: 3}
   - {fileID: 8300000, guid: 42a3b50b0419c4340bfa6246364aa257, type: 3}
   natsukilines:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 8789128f2942bfa4fb2ced153884ea7d, type: 3}
+  - {fileID: 8300000, guid: a7387825178ed6346b1fd4b7028da808, type: 3}
+  - {fileID: 8300000, guid: a4a6dfde5bfb7d64baef35a97f7a5218, type: 3}
+  - {fileID: 8300000, guid: 5e9a1b97b65baef4cae1c7703c6a997d, type: 3}
   satomilines:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 457f7813d81fbcf4c94db6db6e87a5ef, type: 3}
+  - {fileID: 8300000, guid: b4d0df301b79f114b8bb63500fd8c8cc, type: 3}
+  - {fileID: 8300000, guid: 2621e0eb8a87da34596c9fe3b1372f69, type: 3}
+  - {fileID: 8300000, guid: 59d61f8a038e487448c50579dd70e764, type: 3}
   harunolines:
   - {fileID: 8300000, guid: b0dbcd7ad60ce05478e4b9a7e76b3600, type: 3}
   - {fileID: 8300000, guid: 6c66c22f9bfbeda42a3a11396ed45cd2, type: 3}

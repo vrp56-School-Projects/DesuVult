@@ -156,7 +156,7 @@ public class DialogueBox : MonoBehaviour
                 "I shall call you 'weaboo'.",
                 "The entire western world will know of your antics.",
                 "And they will cringe.",
-                "Now, perish from this world, weeb."
+                "Now, perish from this earth, weeb."
             };
             positions = cam_positions2;
             clips = lines2;

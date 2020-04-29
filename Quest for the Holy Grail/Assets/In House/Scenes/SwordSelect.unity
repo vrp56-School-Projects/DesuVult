@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fcc2b7389bb95428d36b064cb5526b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  natsukiClip: {fileID: 0}
+  natsukiClip: {fileID: 8300000, guid: f4682cdfa79b16d40a84eab025bbe534, type: 3}
   satomiClip: {fileID: 8300000, guid: d45f2a0d1288a6140a3cfd4918997c55, type: 3}
   harunoClip: {fileID: 8300000, guid: 05a41828bd589a749b690a6962804d85, type: 3}
   swordSound: {fileID: 1326930402}
