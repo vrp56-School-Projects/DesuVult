@@ -738,7 +738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Renderer: {fileID: 0}
   PlayerLooking: 0
-  MaxOutlineWidth: 0.3
+  MaxOutlineWidth: 0.03
   color: {r: 0, g: 1, b: 0, a: 1}
 --- !u!23 &338381978
 MeshRenderer:
@@ -1983,7 +1983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Renderer: {fileID: 0}
   PlayerLooking: 0
-  MaxOutlineWidth: 0.3
+  MaxOutlineWidth: 0.03
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &899501655
 PrefabInstance:
@@ -2429,7 +2429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Renderer: {fileID: 0}
   PlayerLooking: 0
-  MaxOutlineWidth: 0.3
+  MaxOutlineWidth: 0.03
   color: {r: 1, g: 0.8235326, b: 0, a: 1}
 --- !u!1 &1326930400
 GameObject:

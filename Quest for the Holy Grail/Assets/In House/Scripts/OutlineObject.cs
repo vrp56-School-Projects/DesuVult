@@ -16,21 +16,7 @@ public class OutlineObject : MonoBehaviour, IOnLook
     {
         if (Renderer == null)
             Renderer = GetComponent<MeshRenderer>();
-
-
-    }
-
-    void Update()
-    {
-        if (PlayerLooking)
-        {
-            ShowOutline();
-        }
-        else
-        {
-            HideOutline();
-        }
-        PlayerLooking = false;
+        HideOutline();
     }
 
     public void ShowOutline()
