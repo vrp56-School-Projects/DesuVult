@@ -25,12 +25,12 @@ public class OptionsPage : MonoBehaviour
     public void UpdateOptions()
     {
         // update options in static class
-        Options.SetOptions(VolumeSlider.value, (int) SensitivitySlider.value, (int) FOVSlider.value);
+        Options.SetOptions(VolumeSlider.value, (int)SensitivitySlider.value, (int)FOVSlider.value);
 
         // update options in scene
         // FOV
         MainCamera.GetComponent<Camera>().fieldOfView = Options.GetFOV();
-        
+
         // Volume
         AudioSource[] sources = FindObjectsOfType<AudioSource>();
         for (int i = 0; i < sources.Length; i++)

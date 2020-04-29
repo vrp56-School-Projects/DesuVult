@@ -76,19 +76,19 @@ public class PlayerInfo : MonoBehaviour
     // setters
     public static void UpgradeHealth()
     {
-        if(CurrentHealth == MaxHealth) CurrentHealth += 10;
+        if (CurrentHealth == MaxHealth) CurrentHealth += 10;
         MaxHealth += 10;
     }
 
     public static void UpgradeStamina()
     {
-        if(CurrentStamina == MaxStamina) CurrentStamina += 10;
+        if (CurrentStamina == MaxStamina) CurrentStamina += 10;
         MaxStamina += 10;
     }
 
     public static void UpgradeMana()
     {
-        if(CurrentMana == MaxMana) CurrentMana += 10;
+        if (CurrentMana == MaxMana) CurrentMana += 10;
         MaxMana += 10;
     }
 
@@ -125,13 +125,14 @@ public class PlayerInfo : MonoBehaviour
 
 
     //Callbacks
-    static public void IncrementPoints() {
+    static public void IncrementPoints()
+    {
         Points++;
         Debug.Log("Quest points incremented to " + Points.ToString());
     }
-    static public void IncrementKills() {
+    static public void IncrementKills()
+    {
         TotalEnemiesKilled++;
         Debug.Log("Enemies Killed incremented to " + TotalEnemiesKilled.ToString());
     }
-
 }

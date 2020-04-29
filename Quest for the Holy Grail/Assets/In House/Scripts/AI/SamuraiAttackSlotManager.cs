@@ -9,7 +9,7 @@ public class SamuraiAttackSlotManager : MonoBehaviour
     private int count = 4;
     [SerializeField]
     public float distance = 1.2f;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +52,7 @@ public class SamuraiAttackSlotManager : MonoBehaviour
         return bestSlot;
     }
 
-	public void Release(int slot)
+    public void Release(int slot)
     {
         _slots[slot] = null;
     }
@@ -72,6 +72,6 @@ public class SamuraiAttackSlotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

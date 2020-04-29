@@ -1,8 +1,9 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TestSamuraiController : MonoBehaviour
+public class SamuraiController : MonoBehaviour
 {
     private float aggroRadius = 15.0f;
     private float _attackDistance = 0f;
@@ -19,18 +20,17 @@ public class TestSamuraiController : MonoBehaviour
 
     [SerializeField]
     private Health _samuraiHealth;
-    
+
     Transform target;
     NavMeshAgent agent;
-    PlayerController playerControllerScript;
+    PlayerController_Sword playerControllerScript;
     SamuraiAttackSlotManager attackSlotManager;
     WaitSlotManager waitSlotManager;
     Animator anim;
-    WeaponController sword;
 
     // remove after changing stats code
     Health playerHealthScript;
-   
+
 
     public float _attackRate = 1.34f;
     private float _attackTime = 0f;
@@ -39,10 +39,9 @@ public class TestSamuraiController : MonoBehaviour
     private void Start()
     {
         target = PlayerManager.instance.player.transform;
-        playerControllerScript = target.GetComponentInParent<PlayerController>();
+        playerControllerScript = target.GetComponentInParent<PlayerController_Sword>();
         agent = GetComponent<NavMeshAgent>();
         anim = this.GetComponentInParent<Animator>();
-        sword = this.GetComponentInChildren<WeaponController>();
         attackSlotManager = target.GetComponentInParent<SamuraiAttackSlotManager>();
         waitSlotManager = target.GetComponentInParent<WaitSlotManager>();
         playerHealthScript = target.GetComponentInChildren<Health>();
@@ -105,7 +104,7 @@ public class TestSamuraiController : MonoBehaviour
     {
         StartCoroutine(DoDamage(playerHealthScript, _attackDelay));
         Debug.Log(gameObject.name + " Attacked Player");
-        
+
     }
 
     IEnumerator DoDamage(Health playerHealth, float delay)
@@ -113,9 +112,8 @@ public class TestSamuraiController : MonoBehaviour
         _attackTime = 0;
         anim.SetTrigger("Attack");
         yield return new WaitForSeconds(delay);
-        
 
-        sword.playSound();
+
         playerHealth.damage(5f);
     }
 
@@ -126,7 +124,7 @@ public class TestSamuraiController : MonoBehaviour
 
         float xPos = Random.Range(-aggroRadius, aggroRadius) + currentX;
         float zPos = Random.Range(-aggroRadius, aggroRadius) + currentZ;
-        
+
         Vector3 randomLocation = new Vector3(xPos, gameObject.transform.position.y, zPos);
 
         agent.SetDestination(randomLocation);
@@ -144,7 +142,7 @@ public class TestSamuraiController : MonoBehaviour
         {
             CheckAttackSlot();
 
-            if (target.GetComponentInParent<playerMovement>().isGrounded)
+            if (playerControllerScript.isGrounded)
             {
                 // face the player
                 transform.LookAt(target.position);
@@ -161,7 +159,7 @@ public class TestSamuraiController : MonoBehaviour
                 }
 
                 // call function in playercontroller to see if looking at samurai
-                isLookedAt = playerControllerScript.IsLooking(transform);
+                //isLookedAt = playerControllerScript.IsLooking(transform);
             }
             else isLookedAt = false;
 
@@ -188,12 +186,12 @@ public class TestSamuraiController : MonoBehaviour
                 _attacking = false;
                 _attackSlot = -1;
             }
-            
+
             if (_patrolTimer >= _patrolDelay)
             {
                 SetRandomLocation();
             }
-            
+
         }
 
         // Start run animation when moving
@@ -209,7 +207,7 @@ public class TestSamuraiController : MonoBehaviour
 
     }
 
-   
+
 
     private void OnDrawGizmosSelected()
     {

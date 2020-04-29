@@ -12,7 +12,7 @@ public class PausePage : OptionsPage
         // ActiveQuestsText.text = Get the active quests
         // CompletedQuestsText.text = Get the number of completed quests
         Time.timeScale = 0;
-        
+
         Initialize();
     }
 

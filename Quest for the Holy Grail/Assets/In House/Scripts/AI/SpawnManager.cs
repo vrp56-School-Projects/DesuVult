@@ -11,8 +11,8 @@ public class SpawnManager : MonoBehaviour
     private GameObject[] _spawns;
 
     private float _spawnRate = 2.0f;
-    
-    
+
+
 
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
     private int _spawnPoint = 0;
@@ -21,13 +21,13 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void EnemyKilled(GameObject enemy)
     {
         _spawnedEnemies.Remove(enemy);
-        
+
     }
 
     IEnumerator SpawnDelay()
@@ -58,7 +58,7 @@ public class SpawnManager : MonoBehaviour
             Vector3 location = new Vector3(_spawns[_spawnPoint].transform.position.x, _spawns[_spawnPoint].transform.position.y, _spawns[_spawnPoint].transform.position.z);
 
             SpawnNewEnemy(location, _spawns[_spawnPoint].transform.rotation, _enemies[_enemyIndex]);
-            
+
         }
     }
 }

@@ -37,7 +37,7 @@ public class MenuPage : MonoBehaviour
         yield return new WaitForSeconds(4f);
         Button[] buttons = GetComponentsInChildren<Button>();
 
-        foreach(Button b in buttons)
+        foreach (Button b in buttons)
         {
             b.interactable = true;
         }

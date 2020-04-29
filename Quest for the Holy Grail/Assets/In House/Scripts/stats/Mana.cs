@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Mana : Stat
 {
-    void Start() {
+    void Start()
+    {
         EventManager.DeusVultPickup += add;
     }
 
-    void onDisable() {
+    void onDisable()
+    {
         EventManager.DeusVultPickup -= add;
     }
-
 }

@@ -20,11 +20,14 @@ public class OutlineObject : MonoBehaviour, IOnLook
 
     }
 
-    void Update() {
-        if (PlayerLooking) {
+    void Update()
+    {
+        if (PlayerLooking)
+        {
             ShowOutline();
         }
-        else {
+        else
+        {
             HideOutline();
         }
         PlayerLooking = false;
@@ -42,7 +45,8 @@ public class OutlineObject : MonoBehaviour, IOnLook
         Renderer.material.SetColor("_OutlineColor", Color.black);
     }
 
-    public void OnLook(){
+    public void OnLook()
+    {
         PlayerLooking = true;
     }
 }

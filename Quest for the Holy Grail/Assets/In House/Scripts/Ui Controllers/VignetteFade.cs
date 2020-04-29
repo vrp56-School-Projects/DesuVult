@@ -16,11 +16,13 @@ public class VignetteFade : MonoBehaviour
         EventManager.PlayerDamaged += onDamaged;
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
         EventManager.PlayerDamaged -= onDamaged;
     }
 
-    void Update() {
+    void Update()
+    {
         setAlpha(damageRatio());
         damageTotal -= fadeSpeed * Time.deltaTime;
         damageTotal = Mathf.Clamp(damageTotal, 0, damageMaxThreshold);
@@ -28,24 +30,27 @@ public class VignetteFade : MonoBehaviour
 
 
     void onDamaged(float damage)
-    {   
+    {
         damageTotal += damage;
     }
 
-    void setAlpha(float alpha) {
+    void setAlpha(float alpha)
+    {
         Color c = image.color;
         c.a = alpha;
         image.color = c;
     }
 
-    float getAlpha() {
+    float getAlpha()
+    {
         return image.color.a;
     }
 
     //gives a ratio between accumulated damage and the threshold
     //clamped between 0 and 1
-    float damageRatio() {
-        return Mathf.Clamp(damageTotal/damageMaxThreshold,0,1f);
+    float damageRatio()
+    {
+        return Mathf.Clamp(damageTotal / damageMaxThreshold, 0, 1f);
     }
 
 }

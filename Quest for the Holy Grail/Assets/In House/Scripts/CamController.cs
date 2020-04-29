@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CamController : MonoBehaviour
 {
-    enum type{
+    enum type
+    {
         intro,
         outro
     };
@@ -22,11 +23,11 @@ public class CamController : MonoBehaviour
         public float[] startRot = new float[3];
         public float[] endRot = new float[3];
         public float rotDelay, rotDuration;
-        
+
     }
 
     public action[] actions;
-    
+
     IntroManager manager;
     int ind = 0;
 
@@ -43,7 +44,7 @@ public class CamController : MonoBehaviour
     // transform and repeat control
     IEnumerator Transform(action[] a)
     {
-        if(thisType == type.intro) manager.PlayClip(0);
+        if (thisType == type.intro) manager.PlayClip(0);
 
         // initialize
         float newX = a[pos].startLoc[0];
@@ -57,14 +58,14 @@ public class CamController : MonoBehaviour
 
         // do action
         float start = Time.time;
-        if(thisType == type.intro) manager.PlayClip(1);
+        if (thisType == type.intro) manager.PlayClip(1);
 
-        while(!triggerNext && a[pos].movDuration != 0)
+        while (!triggerNext && a[pos].movDuration != 0)
         {
-            float percent = (Time.time - start)/a[pos].movDuration;
+            float percent = (Time.time - start) / a[pos].movDuration;
 
             // if 100%, end transform
-            if(percent >= 1)
+            if (percent >= 1)
             {
                 newX = a[pos].endLoc[0];
                 newY = a[pos].endLoc[1];
@@ -91,7 +92,7 @@ public class CamController : MonoBehaviour
         yield return new WaitForSeconds((a[pos].rotDelay + a[pos].rotDuration) - (a[pos].movDelay + a[pos].movDuration));
 
         // execute again if list isn't empty and intro type
-        if(a.Length-1 > 0 && thisType == type.intro)
+        if (a.Length - 1 > 0 && thisType == type.intro)
         {
             // remove action
             var a_list = new List<action>(a);
@@ -103,9 +104,9 @@ public class CamController : MonoBehaviour
         }
 
         // execute on next position
-        if(thisType == type.outro)
+        if (thisType == type.outro)
         {
-            while(!triggerNext) yield return new WaitForEndOfFrame();
+            while (!triggerNext) yield return new WaitForEndOfFrame();
             triggerNext = false;
             StartCoroutine(Transform(actions));
             StartCoroutine(Rotate(actions));
@@ -128,12 +129,12 @@ public class CamController : MonoBehaviour
         // do action
         float start = Time.time;
 
-        while(!triggerNext && a[pos].rotDuration != 0)
+        while (!triggerNext && a[pos].rotDuration != 0)
         {
-            float percent = (Time.time - start)/a[pos].rotDuration;
+            float percent = (Time.time - start) / a[pos].rotDuration;
 
             // if 100%, end transform
-            if(percent >= 1)
+            if (percent >= 1)
             {
                 newX = a[pos].endRot[0];
                 newY = a[pos].endRot[1];

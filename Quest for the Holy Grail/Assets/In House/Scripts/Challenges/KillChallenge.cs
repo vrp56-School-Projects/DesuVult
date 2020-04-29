@@ -8,5 +8,4 @@ public class KillChallenge : Challenge
     {
         EventManager.EnemyDied += IncreaseCount;
     }
-
 }

@@ -12,8 +12,8 @@ public class CollectChallenge : Challenge
     }
 
     //overload base so that it matches our delegate
-    void IncreaseCount(float value){
+    void IncreaseCount(float value)
+    {
         base.IncreaseCount();
     }
-
 }

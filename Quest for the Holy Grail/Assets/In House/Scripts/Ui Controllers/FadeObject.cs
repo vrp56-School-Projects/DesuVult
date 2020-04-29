@@ -17,7 +17,7 @@ public class FadeObject : MonoBehaviour
 
     void Start()
     {
-        if(type != FadeType.OnCommand) StartCoroutine(FadeRoutine());
+        if (type != FadeType.OnCommand) StartCoroutine(FadeRoutine());
     }
 
     // Fade in or out
@@ -28,42 +28,42 @@ public class FadeObject : MonoBehaviour
 
         // perform first fade
         float start = Time.time;
-        while(true)
+        while (true)
         {
-            float percent = (Time.time - start)/FadeDuration;
+            float percent = (Time.time - start) / FadeDuration;
 
-            if(type == FadeType.FadeOut) GetComponent<CanvasGroup>().alpha = 1-percent;
+            if (type == FadeType.FadeOut) GetComponent<CanvasGroup>().alpha = 1 - percent;
             else GetComponent<CanvasGroup>().alpha = percent;
 
-            if(percent >= 1)
-            {    
+            if (percent >= 1)
+            {
                 break;
             }
             yield return new WaitForEndOfFrame();
         }
 
         // if fade out, set object inactive and end coroutine
-        if(type == FadeType.FadeOut)
+        if (type == FadeType.FadeOut)
         {
             gameObject.SetActive(false);
             yield break;
         }
 
         // if in and out, do out
-        if(type == FadeType.InAndOut)
+        if (type == FadeType.InAndOut)
         {
 
             yield return new WaitForSeconds(StayDuration);
 
             start = Time.time;
-            while(true)
+            while (true)
             {
-                float percent = (Time.time - start)/FadeDuration;
+                float percent = (Time.time - start) / FadeDuration;
 
-                GetComponent<CanvasGroup>().alpha = 1-percent;
+                GetComponent<CanvasGroup>().alpha = 1 - percent;
 
-                if(percent >= 1)
-                {    
+                if (percent >= 1)
+                {
                     gameObject.SetActive(false);
                     yield break;
                 }
@@ -81,7 +81,7 @@ public class FadeObject : MonoBehaviour
     public void StartFade(int _type)
     {
         gameObject.SetActive(true);
-        type = (FadeType) _type;
+        type = (FadeType)_type;
         StartCoroutine(FadeRoutine());
     }
 }

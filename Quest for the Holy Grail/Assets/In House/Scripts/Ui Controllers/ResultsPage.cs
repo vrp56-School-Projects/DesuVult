@@ -12,7 +12,7 @@ public class ResultsPage : MonoBehaviour
     public Text HealthText, StaminaText, ManaText, PointsText,
         KillsText, QuestsText, AbilitiesText;
 
-    float ResetMaxHealth, ResetMaxStamina, ResetMaxMana, 
+    float ResetMaxHealth, ResetMaxStamina, ResetMaxMana,
         ResetCurrentHealth, ResetCurrentStamina, ResetCurrentMana;
 
     int ResetPoints;
@@ -32,16 +32,16 @@ public class ResultsPage : MonoBehaviour
         UpdateStamina();
         UpdateMana();
         UpdatePoints();
-        
+
         UpdatePane2();
     }
 
     // upgrade health is points != 0
     public void UpgradeHealth()
     {
-        if(PlayerInfo.GetPoints() > 0)
+        if (PlayerInfo.GetPoints() > 0)
         {
-            PlayerInfo.SetPoints(PlayerInfo.GetPoints()-1);
+            PlayerInfo.SetPoints(PlayerInfo.GetPoints() - 1);
             UpdatePoints();
 
             PlayerInfo.UpgradeHealth();
@@ -52,11 +52,11 @@ public class ResultsPage : MonoBehaviour
     // upgrade stamina is points != 0
     public void UpgradeStamina()
     {
-        if(PlayerInfo.GetPoints() > 0)
+        if (PlayerInfo.GetPoints() > 0)
         {
-            PlayerInfo.SetPoints(PlayerInfo.GetPoints()-1);
+            PlayerInfo.SetPoints(PlayerInfo.GetPoints() - 1);
             UpdatePoints();
-            
+
             PlayerInfo.UpgradeStamina();
             UpdateStamina();
         }
@@ -65,9 +65,9 @@ public class ResultsPage : MonoBehaviour
     // upgrade mana is points != 0
     public void UpgradeMana()
     {
-        if(PlayerInfo.GetPoints() > 0)
+        if (PlayerInfo.GetPoints() > 0)
         {
-            PlayerInfo.SetPoints(PlayerInfo.GetPoints()-1);
+            PlayerInfo.SetPoints(PlayerInfo.GetPoints() - 1);
             UpdatePoints();
 
             PlayerInfo.UpgradeMana();
@@ -78,25 +78,26 @@ public class ResultsPage : MonoBehaviour
     // upgrade health is points != 0 and stats aren't maxed out
     public void Heal()
     {
-        if(PlayerInfo.GetPoints() > 0 && (
+        if (PlayerInfo.GetPoints() > 0 && (
             PlayerInfo.GetMaxHealth() != PlayerInfo.GetCurrentHealth() ||
             PlayerInfo.GetMaxStamina() != PlayerInfo.GetCurrentStamina() ||
             PlayerInfo.GetMaxMana() != PlayerInfo.GetCurrentMana()
-        )){
-            PlayerInfo.SetPoints(PlayerInfo.GetPoints()-1);
+        ))
+        {
+            PlayerInfo.SetPoints(PlayerInfo.GetPoints() - 1);
             PlayerInfo.Heal();
 
             UpdateHealth();
             UpdateStamina();
             UpdateMana();
-            UpdatePoints();     
+            UpdatePoints();
         }
     }
 
     // reset initial allocations
     public void Reset()
     {
-        PlayerInfo.SetInfo(ResetMaxHealth, ResetMaxStamina, ResetMaxMana, 
+        PlayerInfo.SetInfo(ResetMaxHealth, ResetMaxStamina, ResetMaxMana,
             ResetCurrentHealth, ResetCurrentStamina, ResetCurrentMana, ResetPoints);
 
         UpdateHealth();

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Health : Stat
 {
-    void Start() {
+    void Start()
+    {
         EventManager.HealthPickup += add;
     }
 
-    void onDisable() {
+    void onDisable()
+    {
         EventManager.HealthPickup -= add;
     }
 }

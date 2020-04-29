@@ -20,7 +20,7 @@ public class PlayerController_Sword : MonoBehaviour
     private Animator anim;
 
     public int sword = 0;
-    float[,] delay = new float[3,4]; 
+    float[,] delay = new float[3, 4];
 
     public bool isGrounded = false;
     public bool instantIsGrounded = false;
@@ -31,7 +31,8 @@ public class PlayerController_Sword : MonoBehaviour
     public int attackIndex = 0;
 
 
-    void Start() {
+    void Start()
+    {
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;
 
@@ -39,34 +40,34 @@ public class PlayerController_Sword : MonoBehaviour
             get sword from PlayerInfo
         */
 
-        switch(sword)
+        switch (sword)
         {
             case 0: // Natsuki
                 delay = AttackDetails.NatsukiTimings; // get delay values for attack timing
                 playerNatsuki.SetActive(true); // set proper model active
                 anim = playerNatsuki.GetComponent<Animator>(); // get proper animator
-                Camera.main.GetComponent<mouselook>().camFollow = followNatsuki; // set proper object for camera to follow
+                //Camera.main.GetComponent<mouselook>().camFollow = followNatsuki; // set proper object for camera to follow
                 break;
 
             case 1: // Satmoi
                 delay = AttackDetails.SatomiTimings; // get delay values for attack timing
                 playerSatomi.SetActive(true); // set proper model active
                 anim = playerSatomi.GetComponent<Animator>(); // get proper animator
-                Camera.main.GetComponent<mouselook>().camFollow = followSatomi; // set proper object for camera to follow
+                //Camera.main.GetComponent<mouselook>().camFollow = followSatomi; // set proper object for camera to follow
                 break;
 
             case 2: // Haruno
                 delay = AttackDetails.HarunoTimings; // get delay values for attack timing
                 playerHaruno.SetActive(true); // set proper model active
                 anim = playerHaruno.GetComponent<Animator>(); // get proper animator
-                Camera.main.GetComponent<mouselook>().camFollow = followHaruno; // set proper object for camera to follow
+                //Camera.main.GetComponent<mouselook>().camFollow = followHaruno; // set proper object for camera to follow
                 break;
         }
     }
 
     void Update()
     {
-        if(canMove)
+        if (canMove)
         {
             handleMove();
             handleJump();
@@ -82,7 +83,7 @@ public class PlayerController_Sword : MonoBehaviour
         //If you land on the ground, don't accumulate negative velocity
         //OR
         //If you bump your head, lose upward velocity
-        if ((groundCheck() && velocity.y < 0)||((controller.collisionFlags & CollisionFlags.Above)!= 0))
+        if ((groundCheck() && velocity.y < 0) || ((controller.collisionFlags & CollisionFlags.Above) != 0))
         {
 
             //reset our parameters
@@ -96,14 +97,18 @@ public class PlayerController_Sword : MonoBehaviour
 
     private float airTimer;
     [SerializeField] private float airTimeThreshold = .5f;
-    bool smoothGroundCheck() {
-        if (!groundCheck()) {
+    bool smoothGroundCheck()
+    {
+        if (!groundCheck())
+        {
             airTimer += Time.deltaTime;
         }
-        else {
+        else
+        {
             airTimer = 0f;
         }
-        if (airTimer > airTimeThreshold) {
+        if (airTimer > airTimeThreshold)
+        {
             isGrounded = false;
             return false;
         }
@@ -111,8 +116,10 @@ public class PlayerController_Sword : MonoBehaviour
         return true;
     }
 
-    bool groundCheck() {
-        if ((controller.collisionFlags & CollisionFlags.Below) != 0) {
+    bool groundCheck()
+    {
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0)
+        {
             instantIsGrounded = true;
             return true;
         }
@@ -120,7 +127,8 @@ public class PlayerController_Sword : MonoBehaviour
         return false;
     }
 
-    void handleJump() {
+    void handleJump()
+    {
         if (Input.GetButtonDown("Jump") && smoothGroundCheck())
         {
 
@@ -133,11 +141,12 @@ public class PlayerController_Sword : MonoBehaviour
 
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             // smoothedIsGrounded = false;
-            airTimer = airTimeThreshold*2;
+            airTimer = airTimeThreshold * 2;
         }
     }
 
-    void handleMove() {
+    void handleMove()
+    {
         impulse.x = Input.GetAxisRaw("Horizontal");
         impulse.y = Input.GetAxisRaw("Vertical");
         impulse.Normalize();
@@ -146,14 +155,15 @@ public class PlayerController_Sword : MonoBehaviour
 
         controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
 
-        if(impulse.y > 0) anim.SetInteger("condition", 1);
-        else if(impulse.y < 0) anim.SetInteger("condition", 2);
-        else if(impulse.x > 0) anim.SetInteger("condition", 3);
-        else if(impulse.x < 0) anim.SetInteger("condition", 5);
+        if (impulse.y > 0) anim.SetInteger("condition", 1);
+        else if (impulse.y < 0) anim.SetInteger("condition", 2);
+        else if (impulse.x > 0) anim.SetInteger("condition", 3);
+        else if (impulse.x < 0) anim.SetInteger("condition", 5);
         else anim.SetInteger("condition", 0);
     }
 
-    void handleGravity() {
+    void handleGravity()
+    {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
@@ -161,12 +171,12 @@ public class PlayerController_Sword : MonoBehaviour
     void handleAttack()
     {
         // if grounded
-        if(isGrounded && !isAttacking)
+        if (isGrounded && !isAttacking)
         {
             // if attack triggered, reserve attack
-            if(Input.GetKeyDown(KeyCode.Mouse0)) StartCoroutine(Attack(0));
-            
-            else if(Input.GetKeyDown(KeyCode.Mouse1)) StartCoroutine(Attack(1));
+            if (Input.GetKeyDown(KeyCode.Mouse0)) StartCoroutine(Attack(0));
+
+            else if (Input.GetKeyDown(KeyCode.Mouse1)) StartCoroutine(Attack(1));
         }
     }
 
@@ -185,16 +195,16 @@ public class PlayerController_Sword : MonoBehaviour
         anim.SetInteger("attackIndex", attackIndex);
 
         // wait for animation
-        yield return new WaitForSeconds(delay[attackLayer-1, attackIndex]);
+        yield return new WaitForSeconds(delay[attackLayer - 1, attackIndex]);
 
         // release attack
         isAttacking = false;
 
-        if(attackLayer != 3)
+        if (attackLayer != 3)
             yield return new WaitForSeconds(.2f);
 
         // reset if combo over
-        if(!isAttacking)
+        if (!isAttacking)
         {
             isAttacking = true;
 

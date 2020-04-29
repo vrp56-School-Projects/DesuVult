@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mouselook : MonoBehaviour
+public class MouseLook : MonoBehaviour
 {
     public float yawSpeed = 300f;
     public float pitchSpeed = 600f;
@@ -13,7 +13,7 @@ public class Mouselook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -26,11 +26,7 @@ public class Mouselook : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -85f, 85f);
 
         playerBody.Rotate(Vector3.up * mouseX);
-        transform.localRotation = Quaternion.Euler(xRotation,0f,0f);
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
     }
-
-   
-  
-    
 }

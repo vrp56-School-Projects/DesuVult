@@ -21,9 +21,9 @@ public class DialogueBox : MonoBehaviour
     [SerializeField] private CamController cam;
     [SerializeField] private FadeObject BG;
 
-    int i =  0;
+    int i = 0;
 
-    private string[,] scene_swords = new string [3, 4]{
+    private string[,] scene_swords = new string[3, 4]{
         {
             "Natsuki: You jerk! Give us the cup!",
             "Natsuki: Give us the chalice, baka!",
@@ -88,12 +88,12 @@ public class DialogueBox : MonoBehaviour
 
     void Start()
     {
-        string[] scene = {};
-        int[] positions = {};
+        string[] scene = { };
+        int[] positions = { };
 
-        if((int) currentScene == 0)
+        if ((int)currentScene == 0)
         {
-            scene = new string[] 
+            scene = new string[]
             {
                 "Knight: Villain! Return to me the holy chalice which you have stolen.",
                 "Ninja King: Verily, I know not of what you speak...",
@@ -111,7 +111,7 @@ public class DialogueBox : MonoBehaviour
         }
         else
         {
-            scene = new string[] 
+            scene = new string[]
             {
                 "Ninja King: NOOOOOO!!!",
                 "Knight: Misguided fiend... This was the inevitable planning of god.",
@@ -147,7 +147,7 @@ public class DialogueBox : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape)) NextScene();
+        if (Input.GetKey(KeyCode.Escape)) NextScene();
     }
 
     IEnumerator Cutscene(string[] cutscene, int[] cam_positions)
@@ -155,31 +155,33 @@ public class DialogueBox : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        foreach(string s in cutscene)
+        foreach (string s in cutscene)
         {
             // clear box
             dialogueText.text = "";
             spaceToContinue.StopBlinking();
 
             // move camera
-            if(i > 0)
+            if (i > 0)
             {
-                if(cam_positions[i] != cam_positions[i-1])
+                if (cam_positions[i] != cam_positions[i - 1])
                     cam.Trigger(cam_positions[i]);
-            } else {
+            }
+            else
+            {
                 cam.Trigger(cam_positions[i]);
             }
             i++;
 
-            foreach(char c in s)
+            foreach (char c in s)
             {
                 dialogueText.text += c;
-                yield return new WaitForSeconds(1/textSpeed);
+                yield return new WaitForSeconds(1 / textSpeed);
             }
 
             spaceToContinue.StartBlinking();
 
-            while(!Input.GetKey(KeyCode.Space)) yield return new WaitForEndOfFrame();
+            while (!Input.GetKey(KeyCode.Space)) yield return new WaitForEndOfFrame();
         }
 
         BG.StartFade(0);
@@ -191,10 +193,13 @@ public class DialogueBox : MonoBehaviour
 
     void NextScene()
     {
-        if(currentScene == Scene.beforeBossBattle){
+        if (currentScene == Scene.beforeBossBattle)
+        {
             // SceneManager.LoadScene();
             Debug.Log("NextScene");
-        } else {
+        }
+        else
+        {
             // SceneManager.LoadScene();
             Debug.Log("Credits");
         }

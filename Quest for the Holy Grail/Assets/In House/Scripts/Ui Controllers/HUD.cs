@@ -23,8 +23,8 @@ public class HUD : MonoBehaviour
     void Update()
     {
         // Update Health, Stamina and Mana bars
-        HealthBar.value = health.value/health.max;
-        StaminaBar.value = stamina.value/stamina.max;
-        ManaBar.value = mana.value/mana.max;
+        HealthBar.value = health.value / health.max;
+        StaminaBar.value = stamina.value / stamina.max;
+        ManaBar.value = mana.value / mana.max;
     }
 }

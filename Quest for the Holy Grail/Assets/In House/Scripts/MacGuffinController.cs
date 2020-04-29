@@ -13,10 +13,11 @@ public class MacGuffinController : MonoBehaviour, IOnHit
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0f,rotateSpeed * Time.deltaTime,0f));
+        transform.Rotate(new Vector3(0f, rotateSpeed * Time.deltaTime, 0f));
     }
 
-    public void OnHit(float damage) {
+    public void OnHit(float damage)
+    {
         EventManager.CallStaggerBoss();
         Destroy(gameObject);
     }

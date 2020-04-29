@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class BlinkFade : MonoBehaviour
 {
-
     public float FadeDuration, StayDuration;
 
     [SerializeField] bool doBlink = false;
 
     void Start()
     {
-        if(doBlink) StartBlinking();
+        if (doBlink) StartBlinking();
     }
 
     public void StartBlinking()
@@ -28,18 +27,18 @@ public class BlinkFade : MonoBehaviour
     IEnumerator Blink()
     {
 
-        while(doBlink)
+        while (doBlink)
         {
             // fade in
             float start = Time.time;
-            while(true)
+            while (true)
             {
-                float percent = (Time.time - start)/FadeDuration;
+                float percent = (Time.time - start) / FadeDuration;
 
                 GetComponent<CanvasGroup>().alpha = percent;
 
-                if(percent >= 1 || doBlink == false)
-                {    
+                if (percent >= 1 || doBlink == false)
+                {
                     break;
                 }
                 yield return new WaitForEndOfFrame();
@@ -49,14 +48,14 @@ public class BlinkFade : MonoBehaviour
 
             // fade out
             start = Time.time;
-            while(true)
+            while (true)
             {
-                float percent = (Time.time - start)/FadeDuration;
+                float percent = (Time.time - start) / FadeDuration;
 
-                GetComponent<CanvasGroup>().alpha = 1-percent;
+                GetComponent<CanvasGroup>().alpha = 1 - percent;
 
-                if(percent >= 1 || doBlink == false)
-                {    
+                if (percent >= 1 || doBlink == false)
+                {
                     yield return new WaitForSeconds(StayDuration);
                     break;
                 }

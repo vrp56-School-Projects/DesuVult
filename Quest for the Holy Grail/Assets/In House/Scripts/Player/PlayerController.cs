@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Components")]
     [SerializeField] private CharacterController controller;
 
-    [Header ("Kinematics")]
+    [Header("Kinematics")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
@@ -26,13 +26,15 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void Start() {
+    void Start()
+    {
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;
         EventManager.PlayerDamaged += onDamaged;
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
         EventManager.PlayerDamaged -= onDamaged;
     }
 
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         //If you land on the ground, don't accumulate negative velocity
         //OR
         //If you bump your head, lose upward velocity
-        if ((groundCheck() && velocity.y < 0)||((controller.collisionFlags & CollisionFlags.Above)!= 0))
+        if ((groundCheck() && velocity.y < 0) || ((controller.collisionFlags & CollisionFlags.Above) != 0))
         {
 
             //reset our parameters
@@ -63,14 +65,18 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    bool smoothGroundCheck() {
-        if (!groundCheck()) {
+    bool smoothGroundCheck()
+    {
+        if (!groundCheck())
+        {
             airTimer += Time.deltaTime;
         }
-        else {
+        else
+        {
             airTimer = 0f;
         }
-        if (airTimer > airTimeThreshold) {
+        if (airTimer > airTimeThreshold)
+        {
             isGrounded = false;
             return false;
         }
@@ -78,8 +84,10 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-    bool groundCheck() {
-        if ((controller.collisionFlags & CollisionFlags.Below) != 0) {
+    bool groundCheck()
+    {
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0)
+        {
             instantIsGrounded = true;
             return true;
         }
@@ -87,7 +95,8 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    void handleJump() {
+    void handleJump()
+    {
         if (Input.GetButtonDown("Jump") && smoothGroundCheck())
         {
 
@@ -100,11 +109,12 @@ public class PlayerController : MonoBehaviour
 
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             // smoothedIsGrounded = false;
-            airTimer = airTimeThreshold*2;
+            airTimer = airTimeThreshold * 2;
         }
     }
 
-    void handleMove() {
+    void handleMove()
+    {
         impulse.x = Input.GetAxisRaw("Horizontal");
         impulse.y = Input.GetAxisRaw("Vertical");
         impulse.Normalize();
@@ -115,12 +125,14 @@ public class PlayerController : MonoBehaviour
         controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
     }
 
-    void handleGravity() {
+    void handleGravity()
+    {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 
-    void onDamaged(float damage){
+    void onDamaged(float damage)
+    {
         health.damage(damage);
     }
 }

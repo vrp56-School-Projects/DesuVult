@@ -8,7 +8,7 @@ public class HoverSound : MonoBehaviour, IPointerEnterHandler
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(GetComponentInParent<CanvasGroup>().alpha == 1)
+        if (GetComponentInParent<CanvasGroup>().alpha == 1)
         {
             GetComponent<AudioSource>().Play();
         }

@@ -12,33 +12,39 @@ public class Boss : MonoBehaviour, IOnHit
         EventManager.StaggerBoss += OnStaggered;
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
         EventManager.StaggerBoss -= OnStaggered;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    enum BossState {
+    enum BossState
+    {
         Hidden,
         Invulnerable,
         Staggered,
 
     }
 
-    public void OnHit(float damage) {
-        if(state == BossState.Staggered){
+    public void OnHit(float damage)
+    {
+        if (state == BossState.Staggered)
+        {
             health.damage(damage);
             print("Damaged Boss");
         }
-        else {
+        else
+        {
             print("Boss Not Staggered");
         }
     }
 
-    void OnStaggered(){
+    void OnStaggered()
+    {
         state = BossState.Staggered;
     }
 }

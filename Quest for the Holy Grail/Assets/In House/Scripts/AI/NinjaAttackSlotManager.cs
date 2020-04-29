@@ -36,7 +36,7 @@ public class NinjaAttackSlotManager : MonoBehaviour
         bestPosition += offset;
         int bestSlot = -1;
         float bestDist = -99999f;
-        for (int index = 1; index < _slots.Count-1; ++index)
+        for (int index = 1; index < _slots.Count - 1; ++index)
         {
             if (_slots[index] != null)
                 continue;
@@ -71,6 +71,6 @@ public class NinjaAttackSlotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
