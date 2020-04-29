@@ -11,11 +11,11 @@ public class PlayerController_Sword : MonoBehaviour
     [SerializeField] private GameObject playerNatsuki, playerSatomi, playerHaruno;
     [SerializeField] private Transform followNatsuki, followSatomi, followHaruno;
 
-
     private Vector3 velocity;
     private float tempSlopeLimit;
     private float tempStepOffset;
     private Vector2 impulse;
+    private Stamina stamina;
 
     private Animator anim;
 
@@ -34,6 +34,7 @@ public class PlayerController_Sword : MonoBehaviour
     void Start() {
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;
+        stamina = GetComponent<Stamina>();
 
         /*
             get sword from PlayerInfo
@@ -46,6 +47,7 @@ public class PlayerController_Sword : MonoBehaviour
                 playerNatsuki.SetActive(true); // set proper model active
                 anim = playerNatsuki.GetComponent<Animator>(); // get proper animator
                 Camera.main.GetComponent<mouselook>().camFollow = followNatsuki; // set proper object for camera to follow
+                speed = 5.5f; // set proper walk speed;
                 break;
 
             case 1: // Satmoi
@@ -53,6 +55,7 @@ public class PlayerController_Sword : MonoBehaviour
                 playerSatomi.SetActive(true); // set proper model active
                 anim = playerSatomi.GetComponent<Animator>(); // get proper animator
                 Camera.main.GetComponent<mouselook>().camFollow = followSatomi; // set proper object for camera to follow
+                speed = 5f; // set proper walk speed;
                 break;
 
             case 2: // Haruno
@@ -60,6 +63,7 @@ public class PlayerController_Sword : MonoBehaviour
                 playerHaruno.SetActive(true); // set proper model active
                 anim = playerHaruno.GetComponent<Animator>(); // get proper animator
                 Camera.main.GetComponent<mouselook>().camFollow = followHaruno; // set proper object for camera to follow
+                speed = 4f; // set proper walk speed;
                 break;
         }
     }
@@ -138,13 +142,24 @@ public class PlayerController_Sword : MonoBehaviour
     }
 
     void handleMove() {
+
+        float sprintBonus = 1f;
+        anim.speed = 1f;
+
+        if((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && stamina.value > Time.deltaTime * 20){
+            print(stamina.value);
+            sprintBonus = 1.5f;
+            stamina.subtract(Time.deltaTime * 20);
+            anim.speed = 1.5f;
+        }
+
         impulse.x = Input.GetAxisRaw("Horizontal");
         impulse.y = Input.GetAxisRaw("Vertical");
         impulse.Normalize();
 
         Vector3 move = transform.right * impulse.x + transform.forward * impulse.y;
 
-        controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
+        controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * sprintBonus * Time.deltaTime);
 
         if(impulse.y > 0) anim.SetInteger("condition", 1);
         else if(impulse.y < 0) anim.SetInteger("condition", 2);
@@ -164,6 +179,7 @@ public class PlayerController_Sword : MonoBehaviour
         if(isGrounded && !isAttacking)
         {
             // if attack triggered, reserve attack
+            anim.speed = 1f;
             if(Input.GetKeyDown(KeyCode.Mouse0)) StartCoroutine(Attack(0));
             
             else if(Input.GetKeyDown(KeyCode.Mouse1)) StartCoroutine(Attack(1));
