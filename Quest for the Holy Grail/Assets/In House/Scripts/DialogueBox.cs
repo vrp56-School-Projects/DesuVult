@@ -20,6 +20,8 @@ public class DialogueBox : MonoBehaviour
     [SerializeField] private float delay;
     [SerializeField] private CamController cam;
     [SerializeField] private FadeObject BG;
+    [SerializeField] GameObject face;
+    [SerializeField] AudioClip[] lines1, lines2, natsukilines, satomilines, harunolines;
 
     int i = 0;
 
@@ -47,7 +49,6 @@ public class DialogueBox : MonoBehaviour
         0,
         4,
         3,
-        3,
         0,
         5,
         6,
@@ -68,7 +69,7 @@ public class DialogueBox : MonoBehaviour
         5,
         0,
         7,
-        7,
+        7, //
         3,
         0,
         0,
@@ -78,18 +79,35 @@ public class DialogueBox : MonoBehaviour
         6,
         5,
         0,
-        2,
+        3,
         2,
         2,
         0,
+        1,
         1
-
     };
 
     void Start()
     {
-        string[] scene = { };
-        int[] positions = { };
+        string[] scene = {};
+        int[] positions = {};
+        AudioClip[] clips = {};
+        AudioClip[] swordlines = {};
+        
+        switch(PlayerInfo.GetSwordIndex())
+        {
+            case 0:
+                swordlines = natsukilines;
+                break;
+
+            case 1:
+                swordlines = satomilines;
+                break;
+
+            case 2:
+                swordlines = harunolines;
+                break;
+        }
 
         if ((int)currentScene == 0)
         {
@@ -97,8 +115,7 @@ public class DialogueBox : MonoBehaviour
             {
                 "Knight: Villain! Return to me the holy chalice which you have stolen.",
                 "Ninja King: Verily, I know not of what you speak...",
-                "Knight: Underestimate not the power of the templar priests. The church knows your vile misdeeds.",
-                "You shall return the grail or you shall meet your end.",
+                "Knight: Underestimate not the power of the templar priests. We know your vile misdeeds.",
                 scene_swords[PlayerInfo.GetSwordIndex(), 0],
                 "Ninja King: Is that... one of the thre legendary 'talking blade waifus'???",
                 "My appologies, but I simply can't let you leave with such an item.",
@@ -108,6 +125,8 @@ public class DialogueBox : MonoBehaviour
                 "Ninja King: Make peace with your god, templar."
             };
             positions = cam_positions1;
+            clips = lines1;
+            clips[3] = swordlines[0];
         }
         else
         {
@@ -117,7 +136,7 @@ public class DialogueBox : MonoBehaviour
                 "Knight: Misguided fiend... This was the inevitable planning of god.",
                 scene_swords[PlayerInfo.GetSwordIndex(), 1],
                 "Ninja King: Please... allow me to keep the chalice... I need it...",
-                "Knight: Pray tell, why did you steal it in the first place?",
+                "Knight: Pray tell, for what reason?",
                 "Ninja King: I need it...",
                 "... for a costume...",
                 scene_swords[PlayerInfo.GetSwordIndex(), 2],
@@ -130,7 +149,8 @@ public class DialogueBox : MonoBehaviour
                 "But I find Japanese culture so... INTRIGUING!",
                 "All of my ninjas... none of them were Japanese at all...",
                 "We were simply playing in costumes...",
-                "I called it 'cosplaying'.",
+                "I call it 'cos-playing'.",
+                "What a twisted tale.",
                 "Knight: (Takes Holy Grail)",
                 "You sir... You who have disowned your own culture...",
                 "I shall call you 'weaboo'.",
@@ -139,10 +159,14 @@ public class DialogueBox : MonoBehaviour
                 "Now, perish from this world, weeb."
             };
             positions = cam_positions2;
+            clips = lines2;
+            clips[2] = swordlines[1];
+            clips[7] = swordlines[2];
+            clips[11] = swordlines[3];
         }
 
 
-        StartCoroutine(Cutscene(scene, positions));
+        StartCoroutine(Cutscene(scene, positions, clips));
     }
 
     void Update()
@@ -150,7 +174,7 @@ public class DialogueBox : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape)) NextScene();
     }
 
-    IEnumerator Cutscene(string[] cutscene, int[] cam_positions)
+    IEnumerator Cutscene(string[] cutscene, int[] cam_positions, AudioClip[] lines)
     {
 
         yield return new WaitForSeconds(delay);
@@ -160,6 +184,9 @@ public class DialogueBox : MonoBehaviour
             // clear box
             dialogueText.text = "";
             spaceToContinue.StopBlinking();
+
+            // play dialogue
+            GetComponent<AudioSource>().PlayOneShot(lines[i]);
 
             // move camera
             if (i > 0)
@@ -171,6 +198,13 @@ public class DialogueBox : MonoBehaviour
             {
                 cam.Trigger(cam_positions[i]);
             }
+
+            // reveal mask
+            if(currentScene == Scene.afterBossBattle && i == 9)
+            {
+                face.SetActive(true);
+            }
+
             i++;
 
             foreach (char c in s)
@@ -197,11 +231,8 @@ public class DialogueBox : MonoBehaviour
         {
             // SceneManager.LoadScene();
             Debug.Log("NextScene");
-        }
-        else
-        {
-            // SceneManager.LoadScene();
-            Debug.Log("Credits");
+        } else {
+            SceneManager.LoadScene("Credits");
         }
     }
 }
