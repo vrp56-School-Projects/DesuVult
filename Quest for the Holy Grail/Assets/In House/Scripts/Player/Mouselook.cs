@@ -7,7 +7,6 @@ public class MouseLook : MonoBehaviour
     public float yawSpeed = 300f;
     public float pitchSpeed = 600f;
     public Transform playerBody;
-    [SerializeField] private Camera camera;
 
     public Transform camFollow;
 
@@ -18,11 +17,13 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        playerBody = PlayerManager.instance.player.transform;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        GetComponent<Camera>().fieldOfView = Options.GetFOV();
         float mouseX = Input.GetAxis("Mouse X") * yawSpeed * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * pitchSpeed * Time.deltaTime;
 
@@ -34,8 +35,8 @@ public class MouseLook : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
 
-        playerBody.Rotate(Vector3.up * mouseX);
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * mouseX * Options.GetSensitivity()/10);
+        transform.localRotation = Quaternion.Euler(xRotation * Options.GetSensitivity()/10, 0f, 0f);
 
     }
 }

@@ -9584,8 +9584,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yawSpeed: 300
   pitchSpeed: 600
-  playerBody: {fileID: 8608575905075256151}
-  camera: {fileID: 8608575903445699800}
+  playerBody: {fileID: 0}
+  camera: {fileID: 0}
   camFollow: {fileID: 0}
   smoothSpeed: 0.125
 --- !u!1 &8608575903738542339
@@ -9805,7 +9805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 8608575905075256150}
   speed: 5
-  gravity: -9.81
+  gravity: -25
   jumpHeight: 2
   playerNatsuki: {fileID: 3647002043787218902}
   playerSatomi: {fileID: 6078782858296043853}
