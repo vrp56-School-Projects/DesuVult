@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class SwordSelectController : MonoBehaviour
 {
+    [SerializeField] private AudioClip natsukiClip, satomiClip, harunoClip;
+    [SerializeField] AudioSource swordSound;
+
     public Text selectionText;
     public FadeObject FG;
 
@@ -18,7 +21,6 @@ public class SwordSelectController : MonoBehaviour
 
     void Start()
     {
-
         // hide sword outlines
         OutlineObject[] Swords = GameObject.FindObjectsOfType<OutlineObject>();
 
@@ -57,11 +59,17 @@ public class SwordSelectController : MonoBehaviour
 
             selectedSword = highlightedSword;
 
+            if(selectedSword == "Natsuki") swordSound.GetComponent<AudioSource>().clip = null;
+            else if(selectedSword == "Satomi") swordSound.clip = satomiClip;
+            else if(selectedSword == "Haruno") swordSound.GetComponent<AudioSource>().clip = null;
+            swordSound.Play();
+
             selectionText.text =  selectedSword + " selected. Press 'space' to confirm your weapon.";
 
             Vector3 pos = GameObject.Find(selectedSword).transform.position;
 
             Camera.main.transform.LookAt(new Vector3(pos.x, 6.5f, pos.z));
+            GetComponent<Sound>().DoSound();
             confirm = true;
             
         }
@@ -70,8 +78,7 @@ public class SwordSelectController : MonoBehaviour
         {
             if(selectedSword == "Natsuki") PlayerInfo.SetSwordIndex(0);
             else if(selectedSword == "Satomi") PlayerInfo.SetSwordIndex(1);
-            else if(selectedSword == "Megumi") PlayerInfo.SetSwordIndex(2);
-            else if(selectedSword == "Haruno") PlayerInfo.SetSwordIndex(3);
+            else if(selectedSword == "Haruno") PlayerInfo.SetSwordIndex(2);
 
             print(PlayerInfo.GetSwordIndex());
             FG.StartFade(0);

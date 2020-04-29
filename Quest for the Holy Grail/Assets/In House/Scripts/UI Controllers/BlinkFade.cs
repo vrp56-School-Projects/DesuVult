@@ -7,15 +7,20 @@ public class BlinkFade : MonoBehaviour
 
     public float FadeDuration, StayDuration;
 
-    bool doBlink = false;
+    [SerializeField] bool doBlink = false;
 
-    void StartBlinking()
+    void Start()
+    {
+        if(doBlink) StartBlinking();
+    }
+
+    public void StartBlinking()
     {
         doBlink = true;
         StartCoroutine(Blink());
     }
 
-    void StopBLinking()
+    public void StopBlinking()
     {
         doBlink = false;
     }
@@ -23,17 +28,17 @@ public class BlinkFade : MonoBehaviour
     IEnumerator Blink()
     {
 
-        while(true)
+        while(doBlink)
         {
             // fade in
             float start = Time.time;
-            while(doBlink)
+            while(true)
             {
                 float percent = (Time.time - start)/FadeDuration;
 
                 GetComponent<CanvasGroup>().alpha = percent;
 
-                if(percent >= 1)
+                if(percent >= 1 || doBlink == false)
                 {    
                     break;
                 }
@@ -50,13 +55,15 @@ public class BlinkFade : MonoBehaviour
 
                 GetComponent<CanvasGroup>().alpha = 1-percent;
 
-                if(percent >= 1)
+                if(percent >= 1 || doBlink == false)
                 {    
                     yield return new WaitForSeconds(StayDuration);
                     break;
                 }
                 yield return new WaitForEndOfFrame();
             }
+
+            GetComponent<CanvasGroup>().alpha = 0;
         }
     }
 }

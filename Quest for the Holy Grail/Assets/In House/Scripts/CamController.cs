@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CamController : MonoBehaviour
 {
+    enum type{
+        intro,
+        outro
+    };
+    [SerializeField]
+    type thisType;
+    bool triggerNext = false;
 
     [System.Serializable]
     public class action
@@ -19,11 +26,11 @@ public class CamController : MonoBehaviour
     }
 
     public action[] actions;
-
-    public int[] ints;
-
+    
     IntroManager manager;
     int ind = 0;
+
+    int pos = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -36,32 +43,32 @@ public class CamController : MonoBehaviour
     // transform and repeat control
     IEnumerator Transform(action[] a)
     {
-        manager.PlayClip(0);
+        if(thisType == type.intro) manager.PlayClip(0);
 
         // initialize
-        float newX = a[0].startLoc[0];
-        float newY = a[0].startLoc[1];
-        float newZ = a[0].startLoc[2];
+        float newX = a[pos].startLoc[0];
+        float newY = a[pos].startLoc[1];
+        float newZ = a[pos].startLoc[2];
 
         transform.position = new Vector3(newX, newY, newZ);
 
         // delay
-        yield return new WaitForSeconds(a[0].movDelay);
+        yield return new WaitForSeconds(a[pos].movDelay);
 
         // do action
         float start = Time.time;
-        manager.PlayClip(1);
+        if(thisType == type.intro) manager.PlayClip(1);
 
-        while(true)
+        while(!triggerNext && a[pos].movDuration != 0)
         {
-            float percent = (Time.time - start)/a[0].movDuration;
+            float percent = (Time.time - start)/a[pos].movDuration;
 
             // if 100%, end transform
             if(percent >= 1)
             {
-                newX = a[0].endLoc[0];
-                newY = a[0].endLoc[1];
-                newZ = a[0].endLoc[2];
+                newX = a[pos].endLoc[0];
+                newY = a[pos].endLoc[1];
+                newZ = a[pos].endLoc[2];
 
                 transform.position = new Vector3(newX, newY, newZ);
 
@@ -71,9 +78,9 @@ public class CamController : MonoBehaviour
             // else, move
             else
             {
-                newX = Mathf.Lerp(a[0].startLoc[0], a[0].endLoc[0], percent);
-                newY = Mathf.Lerp(a[0].startLoc[1], a[0].endLoc[1], percent);
-                newZ = Mathf.Lerp(a[0].startLoc[2], a[0].endLoc[2], percent);
+                newX = Mathf.Lerp(a[pos].startLoc[0], a[pos].endLoc[0], percent);
+                newY = Mathf.Lerp(a[pos].startLoc[1], a[pos].endLoc[1], percent);
+                newZ = Mathf.Lerp(a[pos].startLoc[2], a[pos].endLoc[2], percent);
 
                 transform.position = new Vector3(newX, newY, newZ);
             }
@@ -81,10 +88,10 @@ public class CamController : MonoBehaviour
         }
 
         // wait for rotation to finish
-        yield return new WaitForSeconds((a[0].rotDelay + a[0].rotDuration) - (a[0].movDelay + a[0].movDuration));
+        yield return new WaitForSeconds((a[pos].rotDelay + a[pos].rotDuration) - (a[pos].movDelay + a[pos].movDuration));
 
-        // execute again if list isn't empty
-        if(a.Length-1 > 0)
+        // execute again if list isn't empty and intro type
+        if(a.Length-1 > 0 && thisType == type.intro)
         {
             // remove action
             var a_list = new List<action>(a);
@@ -94,34 +101,43 @@ public class CamController : MonoBehaviour
             StartCoroutine(Transform(a_list.ToArray()));
             StartCoroutine(Rotate(a_list.ToArray()));
         }
+
+        // execute on next position
+        if(thisType == type.outro)
+        {
+            while(!triggerNext) yield return new WaitForEndOfFrame();
+            triggerNext = false;
+            StartCoroutine(Transform(actions));
+            StartCoroutine(Rotate(actions));
+        }
     }
 
     // rotation control
     IEnumerator Rotate(action[] a)
     {
         // initialize
-        float newX = a[0].startRot[0];
-        float newY = a[0].startRot[1];
-        float newZ = a[0].startRot[2];
+        float newX = a[pos].startRot[0];
+        float newY = a[pos].startRot[1];
+        float newZ = a[pos].startRot[2];
 
         transform.rotation = Quaternion.Euler(newX, newY, newZ);
 
         // delay
-        yield return new WaitForSeconds(a[0].rotDelay);
+        yield return new WaitForSeconds(a[pos].rotDelay);
 
         // do action
         float start = Time.time;
 
-        while(true)
+        while(!triggerNext && a[pos].rotDuration != 0)
         {
-            float percent = (Time.time - start)/a[0].rotDuration;
+            float percent = (Time.time - start)/a[pos].rotDuration;
 
             // if 100%, end transform
             if(percent >= 1)
             {
-                newX = a[0].endRot[0];
-                newY = a[0].endRot[1];
-                newZ = a[0].endRot[2];
+                newX = a[pos].endRot[0];
+                newY = a[pos].endRot[1];
+                newZ = a[pos].endRot[2];
 
                 transform.rotation = Quaternion.Euler(newX, newY, newZ);
 
@@ -131,9 +147,9 @@ public class CamController : MonoBehaviour
             // else, move
             else
             {
-                newX = Mathf.Lerp(a[0].startRot[0], a[0].endRot[0], percent);
-                newY = Mathf.Lerp(a[0].startRot[1], a[0].endRot[1], percent);
-                newZ = Mathf.Lerp(a[0].startRot[2], a[0].endRot[2], percent);
+                newX = Mathf.Lerp(a[pos].startRot[0], a[pos].endRot[0], percent);
+                newY = Mathf.Lerp(a[pos].startRot[1], a[pos].endRot[1], percent);
+                newZ = Mathf.Lerp(a[pos].startRot[2], a[pos].endRot[2], percent);
 
                 transform.rotation = Quaternion.Euler(newX, newY, newZ);
             }
@@ -141,4 +157,9 @@ public class CamController : MonoBehaviour
         }
     }
 
+    public void Trigger(int position)
+    {
+        pos = position;
+        triggerNext = true;
+    }
 }

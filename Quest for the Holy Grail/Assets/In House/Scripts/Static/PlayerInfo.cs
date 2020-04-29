@@ -21,8 +21,7 @@ public class PlayerInfo : MonoBehaviour
 
         0: NATSUKI
         1: SATOMI
-        2: MEGUMI
-        3: HARUNO
+        2: HARUNO
     */
     static int SelectedSword;
 

@@ -6,10 +6,10 @@ public class FadeObject : MonoBehaviour
 {
     public enum FadeType
     {
-        FadeIn,
-        FadeOut,
-        InAndOut,
-        OnCommand
+        FadeIn,         // 0
+        FadeOut,        // 1
+        InAndOut,       // 2
+        OnCommand,      // 3
     }
 
     public float FadeDuration, StayDuration, Delay;
@@ -72,6 +72,12 @@ public class FadeObject : MonoBehaviour
         }
     }
 
+    /*
+        FadeIn,         0
+        FadeOut,        1
+        InAndOut,       2
+        OnCommand,      3
+    */
     public void StartFade(int _type)
     {
         gameObject.SetActive(true);
