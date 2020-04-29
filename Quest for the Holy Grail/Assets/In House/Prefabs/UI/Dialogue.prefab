@@ -552,13 +552,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6341425592785537444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712156d3f7172cd4091ff6c455fef149, type: 3}
+  m_Script: {fileID: 11500000, guid: f8737f66bee2094479989365568793f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 6341425591180288025}
-  spaceToContinue: {fileID: 6341425591601140756}
+  spaceToContinue: {fileID: 0}
   currentScene: 0
-  textSpeed: 30
+  textSpeed: 0
   delay: 0
   cam: {fileID: 0}
   BG: {fileID: 0}

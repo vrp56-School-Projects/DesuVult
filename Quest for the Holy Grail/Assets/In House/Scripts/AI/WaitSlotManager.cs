@@ -6,11 +6,11 @@ public class WaitSlotManager : MonoBehaviour
 {
     private List<GameObject> _slots;
     [SerializeField]
-    private int count = 4;
+    private int count = 8;
     [SerializeField]
-    public float distance = 1.5f;
+    public float distance = 3f;
     [SerializeField]
-    private float degrees = 360f;
+    private float degrees = 250f;
 
 
     // Start is called before the first frame update

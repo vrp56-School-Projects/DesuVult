@@ -46,21 +46,21 @@ public class PlayerController_Sword : MonoBehaviour
                 delay = AttackDetails.NatsukiTimings; // get delay values for attack timing
                 playerNatsuki.SetActive(true); // set proper model active
                 anim = playerNatsuki.GetComponent<Animator>(); // get proper animator
-                //Camera.main.GetComponent<mouselook>().camFollow = followNatsuki; // set proper object for camera to follow
+                Camera.main.GetComponent<MouseLook>().camFollow = followNatsuki; // set proper object for camera to follow
                 break;
 
             case 1: // Satmoi
                 delay = AttackDetails.SatomiTimings; // get delay values for attack timing
                 playerSatomi.SetActive(true); // set proper model active
                 anim = playerSatomi.GetComponent<Animator>(); // get proper animator
-                //Camera.main.GetComponent<mouselook>().camFollow = followSatomi; // set proper object for camera to follow
+                Camera.main.GetComponent<MouseLook>().camFollow = followSatomi; // set proper object for camera to follow
                 break;
 
             case 2: // Haruno
                 delay = AttackDetails.HarunoTimings; // get delay values for attack timing
                 playerHaruno.SetActive(true); // set proper model active
                 anim = playerHaruno.GetComponent<Animator>(); // get proper animator
-                //Camera.main.GetComponent<mouselook>().camFollow = followHaruno; // set proper object for camera to follow
+                Camera.main.GetComponent<MouseLook>().camFollow = followHaruno; // set proper object for camera to follow
                 break;
         }
     }
