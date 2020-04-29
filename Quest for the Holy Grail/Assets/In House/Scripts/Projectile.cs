@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private Vector3 direction;
     [SerializeField] private float speed;
-    [SerializeField] private float Damage = 10f;
+    [SerializeField] private float damage = 10f;
     void Start()
     {
         direction = Vector3.forward;
