@@ -56080,6 +56080,11 @@ PrefabInstance:
       propertyPath: face
       value: 
       objectReference: {fileID: 1034038661}
+    - target: {fileID: 6341425592785537464, guid: 288ee205f6ec6ae40b27de841e93f467,
+        type: 3}
+      propertyPath: currentScene
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7849422545093098839, guid: 288ee205f6ec6ae40b27de841e93f467,
         type: 3}
       propertyPath: m_AnchorMin.x

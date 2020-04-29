@@ -59,9 +59,9 @@ public class SwordSelectController : MonoBehaviour
 
             selectedSword = highlightedSword;
 
-            if(selectedSword == "Natsuki") swordSound.GetComponent<AudioSource>().clip = null;
+            if(selectedSword == "Natsuki") swordSound.clip = satomiClip;
             else if(selectedSword == "Satomi") swordSound.clip = satomiClip;
-            else if(selectedSword == "Haruno") swordSound.GetComponent<AudioSource>().clip = null;
+            else if(selectedSword == "Haruno") swordSound.clip = harunoClip;
             swordSound.Play();
 
             selectionText.text =  selectedSword + " selected. Press 'space' to confirm your weapon.";
