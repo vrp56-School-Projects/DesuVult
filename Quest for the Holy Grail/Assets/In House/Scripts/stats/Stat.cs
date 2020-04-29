@@ -11,30 +11,36 @@ public class Stat : MonoBehaviour
 
     public bool limitRange = true;
 
-    void Update() {
+
+    void Update()
+    {
         value += regenerationRate * Time.deltaTime;
         clamp();
     }
 
-    public void damage(float amount) {
+    public void damage(float amount)
+    {
         subtract(amount);
         clamp();
     }
 
-    public void subtract(float amount) {
+    public void subtract(float amount)
+    {
         value -= amount;
         clamp();
     }
 
-    public void add(float amount) {
+    public void add(float amount)
+    {
         value += amount;
         clamp();
     }
 
-    void clamp() {
-        if (limitRange) {
+    void clamp()
+    {
+        if (limitRange)
+        {
             value = Mathf.Clamp(value, min, max);
         }
     }
-
 }
