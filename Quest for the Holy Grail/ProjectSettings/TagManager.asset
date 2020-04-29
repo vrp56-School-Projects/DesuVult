@@ -15,7 +15,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Overlay
   - 
   - 
   - 
@@ -41,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Overlay
+    uniqueID: 2378606165
     locked: 0
