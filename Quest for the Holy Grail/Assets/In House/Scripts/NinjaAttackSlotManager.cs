@@ -8,7 +8,7 @@ public class NinjaAttackSlotManager : MonoBehaviour
     [SerializeField]
     public int count = 4;
     [SerializeField]
-    public float distance = 6f;
+    public float distance = 8f;
 
     // Start is called before the first frame update
     void Start()

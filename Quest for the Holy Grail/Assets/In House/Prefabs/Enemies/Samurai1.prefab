@@ -725,7 +725,7 @@ GameObject:
   - component: {fileID: 2551218505089295940}
   - component: {fileID: 1366435154788712555}
   m_Layer: 0
-  m_Name: Samurai1.2
+  m_Name: Samurai1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -783,7 +783,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.45
-  m_Speed: 6
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
