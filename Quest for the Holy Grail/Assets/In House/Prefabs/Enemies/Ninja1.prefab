@@ -1326,6 +1326,7 @@ GameObject:
   - component: {fileID: -4020398367300488845}
   - component: {fileID: 2611853022228089015}
   - component: {fileID: 3789543585801532712}
+  - component: {fileID: 8219451531296295110}
   m_Layer: 0
   m_Name: Ninja1
   m_TagString: Untagged
@@ -1442,6 +1443,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 8816930121656452452}
+--- !u!136 &8219451531296295110
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833247501495697434}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4833247501495697948
 GameObject:
   m_ObjectHideFlags: 0

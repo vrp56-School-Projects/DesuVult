@@ -16,12 +16,14 @@ public class PausePage : OptionsPage
 
         Initialize();
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Unpause()
     {
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         gameObject.SetActive(false);
     }
 }

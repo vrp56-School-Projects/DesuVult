@@ -17,6 +17,7 @@ public class Mouselook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         playerBody = PlayerManager.instance.player.transform;
     }
 
