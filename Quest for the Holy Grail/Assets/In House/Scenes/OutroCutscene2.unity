@@ -33845,8 +33845,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 456134, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.63248575
+      objectReference: {fileID: 0}
+    - target: {fileID: 456134, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.37547126
+      objectReference: {fileID: 0}
+    - target: {fileID: 477586, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5785476
+      objectReference: {fileID: 0}
+    - target: {fileID: 477586, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.63248575
+      objectReference: {fileID: 0}
+    - target: {fileID: 477586, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.35251346
+      objectReference: {fileID: 0}
+    - target: {fileID: 477586, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.3754713
+      objectReference: {fileID: 0}
+    - target: {fileID: 9501618, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bbf1779eb9c0af04f806be4ab2aecf4a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+--- !u!95 &1163602800 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9501618, guid: 278fbc8682262ca4fa2ece1a816e7f66,
+    type: 3}
+  m_PrefabInstance: {fileID: 1163602799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1165339891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67558,6 +67592,7 @@ MonoBehaviour:
   delay: 0
   cam: {fileID: 2057171061}
   BG: {fileID: 1322083824}
+  bossAnim: {fileID: 1163602800}
   face: {fileID: 1034038661}
   lines1:
   - {fileID: 8300000, guid: a8224284067129048be3ca48762cb5ca, type: 3}

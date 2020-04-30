@@ -197,6 +197,17 @@ public class DialogueBox : MonoBehaviour
                 bossAnim.SetBool("isCutscene", false);
             }
 
+            if(i == 0 && currentScene == Scene.afterBossBattle)
+            {
+                bossAnim.SetInteger("state", 2);
+                bossAnim.SetBool("isCutscene", false);
+            }
+
+            if(i == 1 && currentScene == Scene.afterBossBattle)
+            {
+                bossAnim.SetBool("isCutscene", true);
+            }
+
             // move camera
             if (i > 0)
             {
