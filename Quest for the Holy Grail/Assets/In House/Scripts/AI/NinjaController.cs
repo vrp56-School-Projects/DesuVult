@@ -19,6 +19,7 @@ public class NinjaController : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     NinjaAttackSlotManager attackSlotManager;
+    NinjaWeaponController weaponController;
 
 
 
@@ -26,9 +27,11 @@ public class NinjaController : MonoBehaviour
     void Start()
     {
         // Set variables for the AI to use
-        target = PlayerManager.instance.player.transform;
+        // FindPlayer();
         agent = GetComponent<NavMeshAgent>();
-        attackSlotManager = target.GetComponentInParent<NinjaAttackSlotManager>();
+        weaponController = GetComponentInChildren<NinjaWeaponController>();
+
+
 
         Patrol();
 
@@ -73,7 +76,7 @@ public class NinjaController : MonoBehaviour
 
             Debug.Log(gameObject.name + " Teleports behind you");
             attacking = true;
-            Attack();
+            //Attack();
 
         }
     }
@@ -81,13 +84,24 @@ public class NinjaController : MonoBehaviour
     private void Attack()
     {
         Debug.Log("Object thrown");
+        weaponController.ThrowWeapon();
+        _attackTimer = 0f;
 
+    }
+
+    private void FindPlayer()
+    {
+        target = PlayerManager.instance.player.transform;
+        attackSlotManager = target.GetComponentInParent<NinjaAttackSlotManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // get distance to player
+        if (target == null)
+            FindPlayer();
+
         _distance = Vector3.Distance(target.position, transform.position);
 
         // teleport if player is in attack range
@@ -95,6 +109,10 @@ public class NinjaController : MonoBehaviour
         {
             if (!attacking)
                 GetAttackSlot();
+
+            _attackTimer += Time.deltaTime;
+            if (_attackTimer >= _attackDelay && attacking)
+                Attack();
 
 
             if (target.GetComponentInParent<PlayerController_Sword>().isGrounded)
