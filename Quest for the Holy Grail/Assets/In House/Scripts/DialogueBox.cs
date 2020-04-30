@@ -20,6 +20,7 @@ public class DialogueBox : MonoBehaviour
     [SerializeField] private float delay;
     [SerializeField] private CamController cam;
     [SerializeField] private FadeObject BG;
+    [SerializeField] private Animator bossAnim;
     [SerializeField] GameObject face;
     [SerializeField] AudioClip[] lines1, lines2, natsukilines, satomilines, harunolines;
 
@@ -93,6 +94,8 @@ public class DialogueBox : MonoBehaviour
         int[] positions = {};
         AudioClip[] clips = {};
         AudioClip[] swordlines = {};
+
+        bossAnim.SetBool("isCutscene", true);
         
         switch(PlayerInfo.GetSwordIndex())
         {
@@ -187,6 +190,12 @@ public class DialogueBox : MonoBehaviour
 
             // play dialogue
             GetComponent<AudioSource>().PlayOneShot(lines[i]);
+
+            if(i == 9 && currentScene == Scene.beforeBossBattle)
+            {
+                bossAnim.SetInteger("state", 2);
+                bossAnim.SetBool("isCutscene", false);
+            }
 
             // move camera
             if (i > 0)
