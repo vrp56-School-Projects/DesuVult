@@ -725,6 +725,8 @@ GameObject:
   - component: {fileID: 2551218505089295940}
   - component: {fileID: 1366435154788712555}
   - component: {fileID: 8466675431227840266}
+  - component: {fileID: 5476891890626804433}
+  - component: {fileID: 3957014773084547093}
   m_Layer: 0
   m_Name: Samurai1
   m_TagString: Untagged
@@ -841,6 +843,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 1366435154788712555}
+--- !u!136 &5476891890626804433
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597513304480226149}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &3957014773084547093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597513304480226149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa29e59772b3bd4987acabbab101b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderer: {fileID: 0}
+  EnemyRenderer: {fileID: 4597513304477176747}
+  PlayerLooking: 0
+  MaxOutlineWidth: 1
+  color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &4597513304480226387
 GameObject:
   m_ObjectHideFlags: 0

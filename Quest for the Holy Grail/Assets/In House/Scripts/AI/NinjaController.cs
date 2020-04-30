@@ -56,13 +56,13 @@ public class NinjaController : MonoBehaviour
         Vector3 randomLocation = new Vector3(newX, gameObject.transform.position.y, newZ);
 
         agent.SetDestination(randomLocation);
-        Debug.Log("Location set");
+        //Debug.Log("Location set");
 
     }
 
     private void GetAttackSlot()
     {
-        Debug.Log("Fill attack slot");
+        //Debug.Log("Fill attack slot");
 
         if (attackSlotManager != null)
         {
@@ -74,7 +74,7 @@ public class NinjaController : MonoBehaviour
                 return;
             agent.Warp(attackSlotManager.GetSlotPosition(_slot));
 
-            Debug.Log(gameObject.name + " Teleports behind you");
+            //Debug.Log(gameObject.name + " Teleports behind you");
             attacking = true;
             //Attack();
 
