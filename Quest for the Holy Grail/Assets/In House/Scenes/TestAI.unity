@@ -23610,6 +23610,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ninja1
       objectReference: {fileID: 0}
+    - target: {fileID: 4833247501495697434, guid: 5aa60bf1c489aec43bcde00b68062d55,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4833247501495994676, guid: 5aa60bf1c489aec43bcde00b68062d55,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25792,37 +25797,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 862832634}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &867477132 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1741350596381478959, guid: ca9a856a8ad44744186212a6b87bacb1,
-    type: 3}
-  m_PrefabInstance: {fileID: 873916874}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &867477136 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5283999328074896209, guid: ca9a856a8ad44744186212a6b87bacb1,
     type: 3}
   m_PrefabInstance: {fileID: 873916874}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867477132}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb88efe6a5c668f41a32d3090210c20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &867477139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867477132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fa92b6468eb9564ba3cfa863dfd9a9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stat: {fileID: 867477136}
 --- !u!1001 &869275627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54032,7 +54018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1805682349
 Transform:
   m_ObjectHideFlags: 0
@@ -54082,7 +54068,9 @@ MonoBehaviour:
   - {fileID: 1884057195}
   - {fileID: 305570817}
   - {fileID: 1450807698}
-  _enemies: []
+  _enemies:
+  - {fileID: 4597513304480226149, guid: 0b22ff689316ece4caf29c8461b58750, type: 3}
+  - {fileID: 4833247501495697434, guid: 5aa60bf1c489aec43bcde00b68062d55, type: 3}
 --- !u!1001 &1806169985
 PrefabInstance:
   m_ObjectHideFlags: 0

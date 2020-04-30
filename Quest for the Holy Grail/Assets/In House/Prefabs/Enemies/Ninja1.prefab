@@ -1325,6 +1325,7 @@ GameObject:
   - component: {fileID: 8816930121656452452}
   - component: {fileID: -4020398367300488845}
   - component: {fileID: 2611853022228089015}
+  - component: {fileID: 3789543585801532712}
   m_Layer: 0
   m_Name: Ninja1
   m_TagString: Untagged
@@ -1427,6 +1428,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: 20
   attacking: 0
+--- !u!114 &3789543585801532712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833247501495697434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa92b6468eb9564ba3cfa863dfd9a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: {fileID: 8816930121656452452}
 --- !u!1 &4833247501495697948
 GameObject:
   m_ObjectHideFlags: 0
@@ -3695,7 +3709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8098457708846750458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.343, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4833247501495994676}

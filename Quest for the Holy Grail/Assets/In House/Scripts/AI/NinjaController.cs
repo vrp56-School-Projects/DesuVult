@@ -84,6 +84,8 @@ public class NinjaController : MonoBehaviour
     private void Attack()
     {
         Debug.Log("Object thrown");
+        // face player and throw
+        transform.LookAt(target.position);
         weaponController.ThrowWeapon();
         _attackTimer = 0f;
 

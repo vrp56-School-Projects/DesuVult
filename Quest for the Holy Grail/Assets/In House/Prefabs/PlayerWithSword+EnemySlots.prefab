@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 1741350596381478956}
   - component: {fileID: 8024652612273078573}
   - component: {fileID: 8593191846236264701}
+  - component: {fileID: 7302808962066690847}
+  - component: {fileID: 9180249000817760159}
   m_Layer: 9
   m_Name: PlayerWithSword+EnemySlots
   m_TagString: Player
@@ -232,6 +234,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 5283999328074896209}
+--- !u!114 &7302808962066690847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741350596381478959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0235d229fd6b6364790017417b705700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 4
+  distance: 1.2
+--- !u!114 &9180249000817760159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741350596381478959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497fd1ef9c644d942ae048bb80557c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 8
+  distance: 3
+  degrees: 250
 --- !u!1 &1741350596932962202
 GameObject:
   m_ObjectHideFlags: 0

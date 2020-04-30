@@ -724,6 +724,7 @@ GameObject:
   - component: {fileID: 4597513304480383800}
   - component: {fileID: 2551218505089295940}
   - component: {fileID: 1366435154788712555}
+  - component: {fileID: 8466675431227840266}
   m_Layer: 0
   m_Name: Samurai1
   m_TagString: Untagged
@@ -827,6 +828,19 @@ MonoBehaviour:
   max: 100
   regenerationRate: 0
   limitRange: 1
+--- !u!114 &8466675431227840266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597513304480226149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa92b6468eb9564ba3cfa863dfd9a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: {fileID: 1366435154788712555}
 --- !u!1 &4597513304480226387
 GameObject:
   m_ObjectHideFlags: 0
