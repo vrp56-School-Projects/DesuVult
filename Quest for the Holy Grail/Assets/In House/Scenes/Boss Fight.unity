@@ -2799,6 +2799,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Samurai_Warrior_White
       objectReference: {fileID: 0}
+    - target: {fileID: 187164, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     - target: {fileID: 420334, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.897516
