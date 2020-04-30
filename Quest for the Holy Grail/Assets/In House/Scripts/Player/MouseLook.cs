@@ -14,8 +14,8 @@ public class Mouselook : MonoBehaviour
     public float smoothSpeed = 0.125f;
 
     float xRotation = 0f;
-    // Start is called before the first frame update
-    void Start()
+
+    void OnTriggerStay(Collider col)
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerBody = PlayerManager.instance.player.transform;

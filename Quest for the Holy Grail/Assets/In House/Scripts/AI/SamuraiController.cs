@@ -10,10 +10,10 @@ public class SamuraiController : MonoBehaviour
     private float _patrolTimer = 0f;
     private float _patrolDelay = 3.0f;
     private float _patrolSpeed = 1.5f;
-    private int _attackSlot = -1;
-    private int _waitSlot = -1;
-    private bool _attacking = false;
-    private bool _waiting = false;
+    public int _attackSlot = -1;
+    public int _waitSlot = -1;
+    public bool _attacking = false;
+    public bool _waiting = false;
     private bool _patroling = false;
 
     public bool isLookedAt;
@@ -107,7 +107,7 @@ public class SamuraiController : MonoBehaviour
 
     }
 
-    IEnumerator DoDamage(Health playerHealth, float delay)
+    public IEnumerator DoDamage(Health playerHealth, float delay)
     {
         _attackTime = 0;
         anim.SetTrigger("Attack");
@@ -204,6 +204,8 @@ public class SamuraiController : MonoBehaviour
             anim.SetBool("Run", false);
             _patrolTimer += Time.deltaTime;
         }
+
+ 
 
     }
 
