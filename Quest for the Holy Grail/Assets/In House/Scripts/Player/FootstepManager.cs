@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class FootstepManager : MonoBehaviour
 {
     public AudioSource audioSource;
@@ -26,7 +25,8 @@ public class FootstepManager : MonoBehaviour
         //Debug.Log(Mathf.Floor(Time.time));
         if (playerMovement.isGrounded
         && (Mathf.Abs(Input.GetAxis("Vertical")) > .5f || Mathf.Abs(Input.GetAxis("Horizontal")) > .5f)
-        && canPlaySound ){
+        && canPlaySound)
+        {
             AudioClip[] clips;
             // get our left foot or right foot sound arrays
             // and pan stereo some
@@ -34,7 +34,9 @@ public class FootstepManager : MonoBehaviour
             {
                 clips = audioClipsLeft;
                 audioSource.panStereo = -.2f;
-            } else {
+            }
+            else
+            {
                 clips = audioClipsRight;
                 audioSource.panStereo = .2f;
             }
@@ -43,8 +45,8 @@ public class FootstepManager : MonoBehaviour
             int soundIndex = Mathf.FloorToInt(Random.value * clips.Length);
 
             //randomize our volume and pitch
-            audioSource.volume =Random.Range(.5f,1f);
-            audioSource.pitch = Random.Range(.9f,1.2f);
+            audioSource.volume = Random.Range(.5f, 1f);
+            audioSource.pitch = Random.Range(.9f, 1.2f);
 
 
             //play the desired sound
@@ -64,7 +66,8 @@ public class FootstepManager : MonoBehaviour
         float currentTime = Time.time;
 
         //If enough time has passed, allow another sound to play
-        if (currentTime - lastTime > timeBetweenPlay) {
+        if (currentTime - lastTime > timeBetweenPlay)
+        {
             lastTime = currentTime;
             canPlaySound = true;
 

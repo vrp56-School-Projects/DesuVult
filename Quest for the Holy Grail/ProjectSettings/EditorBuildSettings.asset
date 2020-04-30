@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/In House/Scenes/Level1Dungeon.unity
     guid: a2023929e6ac0654da799cee5b3d3d6e
+  - enabled: 1
+    path: Assets/In House/Scenes/Credits.unity
+    guid: ba23fd002ff777c4f9365fc96c352c28
   m_configObjects: {}

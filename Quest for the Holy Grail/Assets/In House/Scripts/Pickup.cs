@@ -8,11 +8,12 @@ public delegate void onCollision(float value);
 
 public class Pickup : MonoBehaviour
 {
-    private enum statType {
+    private enum statType
+    {
         Health,
         Stamina,
         DeusVult
-    }   
+    }
 
     public Collider player;
     [SerializeField] private statType stat;
@@ -29,22 +30,25 @@ public class Pickup : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player"){
-            switch(stat){
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            switch (stat)
+            {
                 case statType.Health:
-                EventManager.CallHealthPickup(value);
-                break;
+                    EventManager.CallHealthPickup(value);
+                    break;
                 case statType.Stamina:
-                EventManager.CallStaminaPickup(value);
-                break;
+                    EventManager.CallStaminaPickup(value);
+                    break;
                 case statType.DeusVult:
-                EventManager.CallDeusVultPickup(value);
-                break;
+                    EventManager.CallDeusVultPickup(value);
+                    break;
             }
             EventManager.CallPickup(value);
             Destroy(gameObject);
         }
-    
+
     }
 }

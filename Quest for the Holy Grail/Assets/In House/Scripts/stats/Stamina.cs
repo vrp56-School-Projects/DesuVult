@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Stamina : Stat
 {
-    void Start() {
+    void Start()
+    {
         EventManager.StaminaPickup += add;
     }
 
-    void onDisable() {
+    void onDisable()
+    {
         EventManager.StaminaPickup -= add;
     }
-
 }

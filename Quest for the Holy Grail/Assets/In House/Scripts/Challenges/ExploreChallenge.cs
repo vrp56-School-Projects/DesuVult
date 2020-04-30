@@ -8,6 +8,4 @@ public class ExploreChallenge : Challenge
     {
         EventManager.Explore += base.IncreaseCount;
     }
-
-
 }

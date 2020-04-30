@@ -2,22 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mouselook : MonoBehaviour
+public class MouseLook : MonoBehaviour
 {
     public float yawSpeed = 300f;
     public float pitchSpeed = 600f;
     public Transform playerBody;
     [SerializeField] private Camera camera;
 
+    public Transform camFollow;
+
+    public float smoothSpeed = 0.125f;
+
     float xRotation = 0f;
     // Start is called before the first frame update
     void Start()
     {
-      Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
+        playerBody = PlayerManager.instance.player.transform;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float mouseX = Input.GetAxis("Mouse X") * yawSpeed * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * pitchSpeed * Time.deltaTime;
@@ -25,20 +30,13 @@ public class Mouselook : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -85f, 85f);
 
-        playerBody.Rotate(Vector3.up * mouseX);
-        transform.localRotation = Quaternion.Euler(xRotation,0f,0f);
-        LookingAt();
-    }
+        // follow player 
+        Vector3 desiredPosition = camFollow.position;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        transform.position = smoothedPosition;
 
-    //Raises PlayerLooked event and passes whatever object has been looked at
-    void LookingAt()
-    {
-      Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            EventManager.CallPlayerLooked(hit);
-        }
+        playerBody.Rotate(Vector3.up * mouseX);
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
     }
-    
 }

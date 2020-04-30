@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class KillNinjaChallenge : Challenge
 {
-
     void Start()
     {
         EventManager.EnemyNinjaDied += IncreaseCount;

@@ -68,9 +68,9 @@ public class LightFlickerEffect : MonoBehaviour
 
         // Calculate new smoothed average
         light.intensity = lastSum / (float)smoothQueue.Count;
-        
+
     }
 
- 
+
 
 }
