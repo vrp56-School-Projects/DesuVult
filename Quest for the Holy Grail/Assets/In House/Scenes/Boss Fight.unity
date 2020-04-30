@@ -2809,7 +2809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420334, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4103174
+      value: -2.489
       objectReference: {fileID: 0}
     - target: {fileID: 420334, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2875,6 +2875,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: bbf1779eb9c0af04f806be4ab2aecf4a, type: 2}
+    - target: {fileID: 9501618, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
 --- !u!1001 &114241476
@@ -48118,8 +48122,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   currentCycle: 0
-  macGufinLocations: []
-  teleportLocations: []
+  macGufinLocations:
+  - {fileID: 1891187636}
+  - {fileID: 1664429904}
+  - {fileID: 1952657860}
+  - {fileID: 990978680}
+  teleportLocations:
+  - {fileID: 47209704}
+  - {fileID: 505747634}
+  - {fileID: 844191823}
+  - {fileID: 1500348044}
+  macGuffinKilled: 0
+  bossKilled: 0
+--- !u!54 &1616228273
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616228271}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1616228276
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616228271}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5321541, y: 1.9083562, z: 0.32754135}
+  m_Center: {x: 0.0013551712, y: 0.9590769, z: 0.0012111664}
 --- !u!4 &1617910394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 448988, guid: 72ee938e36712134b9a16980629526a3,

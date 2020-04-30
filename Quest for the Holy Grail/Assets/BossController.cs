@@ -24,8 +24,8 @@ public class BossController : MonoBehaviour
     Animator anim;
 
     // boolean to set when macguffin is killed
-    bool macGuffinKilled = false;
-    bool bossKilled = false;
+    [SerializeField] bool macGuffinKilled;
+    [SerializeField] bool bossKilled;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +36,9 @@ public class BossController : MonoBehaviour
         // start in macguffin state
         currentCycle = 0;
         currentState = State.MacGuffin;
+        macGuffinKilled = false;
+        bossKilled = false;
+        
         ExecuteState();
     }
 
