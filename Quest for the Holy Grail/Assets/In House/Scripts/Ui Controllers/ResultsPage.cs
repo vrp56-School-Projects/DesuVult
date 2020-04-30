@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResultsPage : MonoBehaviour
 {
@@ -9,8 +10,7 @@ public class ResultsPage : MonoBehaviour
 
     public Slider HealthBar, StaminaBar, ManaBar;
 
-    public Text HealthText, StaminaText, ManaText, PointsText,
-        KillsText, QuestsText, AbilitiesText;
+    public Text HealthText, StaminaText, ManaText, PointsText;
 
     float ResetMaxHealth, ResetMaxStamina, ResetMaxMana,
         ResetCurrentHealth, ResetCurrentStamina, ResetCurrentMana;
@@ -33,7 +33,7 @@ public class ResultsPage : MonoBehaviour
         UpdateMana();
         UpdatePoints();
 
-        UpdatePane2();
+        Time.timeScale = 0;
     }
 
     // upgrade health is points != 0
@@ -139,15 +139,17 @@ public class ResultsPage : MonoBehaviour
         PointsText.text = "Points Left: " + PlayerInfo.GetPoints().ToString();
     }
 
-    // update details in pane2
-    void UpdatePane2()
+    // next scene
+    public void Continue()
     {
-        /*
-            TO-DO:
-
-            Update # Kills
-            Update # total quests
-            Update unlocked abilities
-        */
+        if(PlayerInfo.GetPoints() != 0)
+        {
+            PointsText.text = "Spend all points to continue. Points Left: " + PlayerInfo.GetPoints().ToString();
+        } 
+        else 
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        }
     }
 }
