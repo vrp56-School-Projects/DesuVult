@@ -20,6 +20,7 @@ public class DialogueBox : MonoBehaviour
     [SerializeField] private float delay;
     [SerializeField] private CamController cam;
     [SerializeField] private FadeObject BG;
+    [SerializeField] private Animator bossAnim;
     [SerializeField] GameObject face;
     [SerializeField] AudioClip[] lines1, lines2, natsukilines, satomilines, harunolines;
 
@@ -93,6 +94,8 @@ public class DialogueBox : MonoBehaviour
         int[] positions = {};
         AudioClip[] clips = {};
         AudioClip[] swordlines = {};
+
+        bossAnim.SetBool("isCutscene", true);
         
         switch(PlayerInfo.GetSwordIndex())
         {
@@ -156,7 +159,7 @@ public class DialogueBox : MonoBehaviour
                 "I shall call you 'weaboo'.",
                 "The entire western world will know of your antics.",
                 "And they will cringe.",
-                "Now, perish from this world, weeb."
+                "Now, perish from this earth, weeb."
             };
             positions = cam_positions2;
             clips = lines2;
@@ -187,6 +190,23 @@ public class DialogueBox : MonoBehaviour
 
             // play dialogue
             GetComponent<AudioSource>().PlayOneShot(lines[i]);
+
+            if(i == 9 && currentScene == Scene.beforeBossBattle)
+            {
+                bossAnim.SetInteger("state", 2);
+                bossAnim.SetBool("isCutscene", false);
+            }
+
+            if(i == 0 && currentScene == Scene.afterBossBattle)
+            {
+                bossAnim.SetInteger("state", 2);
+                bossAnim.SetBool("isCutscene", false);
+            }
+
+            if(i == 1 && currentScene == Scene.afterBossBattle)
+            {
+                bossAnim.SetBool("isCutscene", true);
+            }
 
             // move camera
             if (i > 0)

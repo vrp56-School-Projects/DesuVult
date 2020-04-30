@@ -22,6 +22,7 @@ public class PlayerController_Sword : MonoBehaviour
     private Vector2 impulse;
 
     private Animator anim;
+    private Stamina stamina;
 
     public int sword = 0;
     float[,] delay = new float[3, 4];
@@ -37,6 +38,8 @@ public class PlayerController_Sword : MonoBehaviour
 
     void Start()
     {
+        sword = PlayerInfo.GetSwordIndex();
+        stamina = GetComponent<Stamina>();
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;
 
@@ -149,20 +152,30 @@ public class PlayerController_Sword : MonoBehaviour
         }
     }
 
-    void handleMove()
-    {
+    void handleMove() {
+
+        float sprintBonus = 1f;
+        anim.speed = 1f;
+
+        if((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && stamina.value > Time.deltaTime * 20){
+            print(stamina.value);
+            sprintBonus = 1.5f;
+            stamina.subtract(Time.deltaTime * 20);
+            anim.speed = 1.5f;
+        }
+
         impulse.x = Input.GetAxisRaw("Horizontal");
         impulse.y = Input.GetAxisRaw("Vertical");
         impulse.Normalize();
 
         Vector3 move = transform.right * impulse.x + transform.forward * impulse.y;
 
-        controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * Time.deltaTime);
+        controller.Move(Vector3.ClampMagnitude(move, 1f) * speed * sprintBonus * Time.deltaTime);
 
-        if (impulse.y > 0) anim.SetInteger("condition", 1);
-        else if (impulse.y < 0) anim.SetInteger("condition", 2);
-        else if (impulse.x > 0) anim.SetInteger("condition", 3);
-        else if (impulse.x < 0) anim.SetInteger("condition", 5);
+        if(impulse.y > 0) anim.SetInteger("condition", 1);
+        else if(impulse.y < 0) anim.SetInteger("condition", 2);
+        else if(impulse.x > 0) anim.SetInteger("condition", 3);
+        else if(impulse.x < 0) anim.SetInteger("condition", 5);
         else anim.SetInteger("condition", 0);
     }
 
@@ -178,6 +191,7 @@ public class PlayerController_Sword : MonoBehaviour
         if (isGrounded && !isAttacking)
         {
             // if attack triggered, reserve attack
+            anim.speed = 1;
             if (Input.GetKeyDown(KeyCode.Mouse0)) StartCoroutine(Attack(0));
 
             else if (Input.GetKeyDown(KeyCode.Mouse1)) StartCoroutine(Attack(1));

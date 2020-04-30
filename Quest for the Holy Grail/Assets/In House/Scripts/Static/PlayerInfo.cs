@@ -23,12 +23,12 @@ public class PlayerInfo : MonoBehaviour
         1: SATOMI
         2: HARUNO
     */
-    static int SelectedSword;
+    static int SelectedSword = 0;
 
     /*
         UPDATE THESE DURING EACH DUNGEON LEVEL
     */
-    static int Points = 0;                  // Number of quests completed
+    static int Points = 10;                  // Number of quests completed
     static int TotalEnemiesKilled = 0;      // Number of enemies killed
     static int Abilities = 0;               // Number of Abilities Unlocked
 

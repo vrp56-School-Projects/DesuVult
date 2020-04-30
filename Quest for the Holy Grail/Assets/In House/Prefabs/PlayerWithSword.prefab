@@ -9584,8 +9584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yawSpeed: 300
   pitchSpeed: 600
-  playerBody: {fileID: 8608575905075256151}
-  camera: {fileID: 8608575903445699800}
+  playerBody: {fileID: 0}
   camFollow: {fileID: 0}
   smoothSpeed: 0.125
 --- !u!1 &8608575903738542339
@@ -9628,10 +9627,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8608575905075256151}
   - component: {fileID: 8608575905075256150}
-  - component: {fileID: 2740935618854541335}
   - component: {fileID: 6078782859532823593}
   - component: {fileID: 8608575905075256170}
   - component: {fileID: 7149771729044280383}
+  - component: {fileID: 2740935618854541335}
+  - component: {fileID: 8295936456883050488}
+  - component: {fileID: 2020388954543690960}
   m_Layer: 9
   m_Name: PlayerWithSword
   m_TagString: Player
@@ -9679,23 +9680,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.94, z: 0}
---- !u!114 &2740935618854541335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8608575905075256169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb88efe6a5c668f41a32d3090210c20d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 100
-  min: 0
-  max: 100
-  regenerationRate: 1
-  limitRange: 1
 --- !u!82 &6078782859532823593
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9806,6 +9790,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 8608575905075256150}
   look: {fileID: 7149771729044280383}
+  speed: 5
+  gravity: -25
+  jumpHeight: 2
+  playerNatsuki: {fileID: 3647002043787218902}
+  playerSatomi: {fileID: 6078782858296043853}
+  playerHaruno: {fileID: 6078782858545702772}
   followNatsuki: {fileID: 6078782858454296388}
   followSatomi: {fileID: 6078782859507759818}
   followHaruno: {fileID: 6078782858867979729}
@@ -9823,7 +9813,7 @@ MonoBehaviour:
   attackLayer: 0
   attackIndex: 0
   airTimeThreshold: 0.5
---- !u!114 &7149771729044280383
+--- !u!114 &2740935618854541335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9837,6 +9827,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 8608575903445699800}
   raycastDistance: 3
+  m_Script: {fileID: 11500000, guid: cb88efe6a5c668f41a32d3090210c20d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 100
+  min: 0
+  max: 100
+  regenerationRate: 1
+  limitRange: 1
+--- !u!114 &8295936456883050488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608575905075256169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8da7d3de22bf741be97f7ab5826a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 100
+  min: 0
+  max: 100
+  regenerationRate: 2.5
+  limitRange: 1
+--- !u!114 &2020388954543690960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608575905075256169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f564c77e3995434faf1bb9889650b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 100
+  min: 0
+  max: 100
+  regenerationRate: 2.5
+  limitRange: 1
 --- !u!1001 &6078782859812122642
 PrefabInstance:
   m_ObjectHideFlags: 0
