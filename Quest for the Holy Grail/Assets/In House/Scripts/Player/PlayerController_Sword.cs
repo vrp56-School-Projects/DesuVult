@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerController_Sword : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private CharacterController controller;
+    [SerializeField] private LookAndSwing look;
+    [SerializeField] private Transform followNatsuki, followSatomi, followHaruno;
+    [SerializeField] private GameObject playerNatsuki, playerSatomi, playerHaruno;
+
+    [Header("Properties")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private GameObject playerNatsuki, playerSatomi, playerHaruno;
-    [SerializeField] private Transform followNatsuki, followSatomi, followHaruno;
 
 
     private Vector3 velocity;
@@ -196,6 +200,7 @@ public class PlayerController_Sword : MonoBehaviour
 
         // wait for animation
         yield return new WaitForSeconds(delay[attackLayer - 1, attackIndex]);
+        look.Hit(10f); //This is our hitreg. Not sure where exactly it goes
 
         // release attack
         isAttacking = false;
