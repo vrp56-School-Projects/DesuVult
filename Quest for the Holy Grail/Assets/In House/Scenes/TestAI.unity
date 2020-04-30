@@ -6948,6 +6948,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 233353328}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &234886398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4251793619886724042, guid: ca9a856a8ad44744186212a6b87bacb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 873916874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f564c77e3995434faf1bb9889650b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &239101413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30966,6 +30978,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1054579609}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1056804906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4251793620634373389, guid: ca9a856a8ad44744186212a6b87bacb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 873916874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8da7d3de22bf741be97f7ab5826a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1057945593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52067,6 +52091,21 @@ PrefabInstance:
       propertyPath: ManaBar
       value: 
       objectReference: {fileID: 1370525065}
+    - target: {fileID: 3987593455354952794, guid: d4af213a43e08354a901fc236359b3c6,
+        type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 867477136}
+    - target: {fileID: 3987593455354952794, guid: d4af213a43e08354a901fc236359b3c6,
+        type: 3}
+      propertyPath: stamina
+      value: 
+      objectReference: {fileID: 234886398}
+    - target: {fileID: 3987593455354952794, guid: d4af213a43e08354a901fc236359b3c6,
+        type: 3}
+      propertyPath: mana
+      value: 
+      objectReference: {fileID: 1056804906}
     - target: {fileID: 3987593455951260722, guid: d4af213a43e08354a901fc236359b3c6,
         type: 3}
       propertyPath: m_AnchorMax.x
