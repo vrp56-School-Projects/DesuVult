@@ -50,21 +50,21 @@ public class PlayerController_Sword : MonoBehaviour
                 delay = AttackDetails.NatsukiTimings; // get delay values for attack timing
                 playerNatsuki.SetActive(true); // set proper model active
                 anim = playerNatsuki.GetComponent<Animator>(); // get proper animator
-                Camera.main.GetComponent<Mouselook>().camFollow = followNatsuki; // set proper object for camera to follow
+                Camera.main.GetComponent<MouseLook>().camFollow = followNatsuki; // set proper object for camera to follow
                 break;
 
             case 1: // Satmoi
                 delay = AttackDetails.SatomiTimings; // get delay values for attack timing
                 playerSatomi.SetActive(true); // set proper model active
                 anim = playerSatomi.GetComponent<Animator>(); // get proper animator
-                Camera.main.GetComponent<Mouselook>().camFollow = followSatomi; // set proper object for camera to follow
+                Camera.main.GetComponent<MouseLook>().camFollow = followSatomi; // set proper object for camera to follow
                 break;
 
             case 2: // Haruno
                 delay = AttackDetails.HarunoTimings; // get delay values for attack timing
                 playerHaruno.SetActive(true); // set proper model active
                 anim = playerHaruno.GetComponent<Animator>(); // get proper animator
-                Camera.main.GetComponent<Mouselook>().camFollow = followHaruno; // set proper object for camera to follow
+                Camera.main.GetComponent<MouseLook>().camFollow = followHaruno; // set proper object for camera to follow
                 break;
         }
     }
@@ -96,6 +96,24 @@ public class PlayerController_Sword : MonoBehaviour
 
 
             velocity.y = 0f;
+        }
+
+        // Deus Vult
+        GameObject dv = GameObject.FindGameObjectWithTag("windArea").gameObject;
+        Mana mana = gameObject.GetComponentInChildren<Mana>();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+
+            if (mana.value >= 30)
+            {
+                mana.value -= 30;
+                dv.gameObject.GetComponent<WindArea>().dvC.enabled = true;
+                Wait();
+            }
+        }
+        else
+        {
+            dv.gameObject.GetComponent<WindArea>().dvC.enabled = false;
         }
     }
 
@@ -224,6 +242,11 @@ public class PlayerController_Sword : MonoBehaviour
             canMove = true;
             isAttacking = false;
         }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSecondsRealtime(2);
     }
 }
 

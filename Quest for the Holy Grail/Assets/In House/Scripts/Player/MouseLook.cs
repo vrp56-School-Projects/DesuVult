@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mouselook : MonoBehaviour
+public class MouseLook : MonoBehaviour
 {
     public float yawSpeed = 300f;
     public float pitchSpeed = 600f;

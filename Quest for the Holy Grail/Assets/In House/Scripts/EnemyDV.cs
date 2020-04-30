@@ -12,6 +12,7 @@ public class EnemyDV : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        windZone = GameObject.FindGameObjectWithTag("windArea");
     }
 
     // Update is called once per frame
@@ -21,7 +22,12 @@ public class EnemyDV : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if (inWindZone)
+        {
+            rb.AddForce(transform.position * windZone.GetComponent<WindArea>().strength, ForceMode.Acceleration);
+            inWindZone = false;
+
+        }
     }
 
     private void OnTriggerEnter(Collider coll)
@@ -46,12 +52,12 @@ public class EnemyDV : MonoBehaviour
 
         }
 
-        
+
     }
 
     private void OnTriggerExit(Collider coll)
     {
-        if(coll.gameObject.tag == "windArea")
+        if (coll.gameObject.tag == "windArea")
         {
             inWindZone = false;
         }
