@@ -10,7 +10,7 @@ Material:
   m_Name: SimpleDungeons_Mat
   m_Shader: {fileID: 4800000, guid: 8b2a2793f1967a54186f6e8a1e37b559, type: 3}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1

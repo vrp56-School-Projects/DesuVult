@@ -47,14 +47,26 @@ public class EventManager
     }
 
     public delegate void Damaged(float damage);
+    public delegate void enemyDamaged(float damage, GameObject gameObject);
     public static event Damaged PlayerDamaged;
     public static void CallPlayerDamaged(float damage) {
         PlayerDamaged?.Invoke(damage);
     }
 
+    public static event enemyDamaged EnemyDamaged;
+    // public static void CallEnemyDamaged(float damage, GameObject gameObject){
+    //     EnemyDamaged?.Invoke(damage, gameObject);
+    // }
+
+
+
     public static event Action Explore;
     public static void CallExplored() {
         Explore?.Invoke();
+    }
+    public static event Action StaggerBoss;
+    public static void CallStaggerBoss() {
+        StaggerBoss?.Invoke();
     }
 
     public static event Action ChallengeCompleted;
