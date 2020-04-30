@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BossController : MonoBehaviour
+public class BossController : MonoBehaviour, IOnHit
 {
 
     // boss states
@@ -16,12 +16,15 @@ public class BossController : MonoBehaviour
 
     [SerializeField] State currentState; // current state of boss
     [SerializeField] int currentCycle; // current cycle (number of times the boss has finished a sequence)
+    [SerializeField] Health health;
 
     // locations
     [SerializeField] Transform[] macGufinLocations;
     [SerializeField] Transform[] teleportLocations;
 
     Animator anim;
+    public GameObject[] MacGuffins;
+
 
     // boolean to set when macguffin is killed
     [SerializeField] bool macGuffinKilled;
@@ -32,6 +35,7 @@ public class BossController : MonoBehaviour
     {
         // initialize
         anim = GetComponent<Animator>();
+        EventManager.StaggerBoss += () => macGuffinKilled = true;
 
         // start in macguffin state
         currentCycle = 0;
@@ -61,6 +65,18 @@ public class BossController : MonoBehaviour
                 break;
         }
     }
+    public void OnHit(float damage)
+    {
+        if (currentState == State.Vulnerable)
+        {
+            health.damage(damage);
+            print("Damaged Boss");
+        }
+        else
+        {
+            print("Boss Not Staggered");
+        }
+    }
 
     // handles macguffin sequence
     IEnumerator ExecuteMacGuffin()
@@ -75,8 +91,10 @@ public class BossController : MonoBehaviour
         /*
         =======
         SPAWN MACGUFFIN @ macGuffinLocations[currentCycle-1].position;
+        
         ======
         */
+        MacGuffins[currentCycle - 1].SetActive(true);
 
         // trigger animation
         anim.SetInteger("state", 0);
@@ -105,15 +123,22 @@ public class BossController : MonoBehaviour
         MAKE DAMAGEABLE
         ======
         */
+        health.value = 100;
 
         // infinite loop until killed
-        while(!bossKilled) yield return new WaitForEndOfFrame();
+        while (!bossKilled)
+        {
+            if (health.value == 0) break;
+            yield return new WaitForEndOfFrame();
+        }
+
 
         /*
         =======
         MAKE INVINCEABLE
         ======
         */
+        
 
         // check if game is over
         if(currentCycle == 4)

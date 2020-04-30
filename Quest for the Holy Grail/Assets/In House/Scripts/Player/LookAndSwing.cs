@@ -37,6 +37,7 @@ public class LookAndSwing : MonoBehaviour
             if (hit.transform ? true : false)
             {
                 hit.transform.gameObject.GetComponent<IOnHit>()?.OnHit(damage);
-            }
+                gameObject.GetComponent<Sound>().DoSound();
+        }
     }
 }

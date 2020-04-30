@@ -89,6 +89,6 @@ public class SwordSelectController : MonoBehaviour
     IEnumerator StartGame()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("Level1Dungeon");
+        SceneManager.LoadScene("Level2Dungeon");
     }
 }

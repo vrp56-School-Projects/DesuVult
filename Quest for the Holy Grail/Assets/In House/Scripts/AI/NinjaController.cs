@@ -12,6 +12,10 @@ public class NinjaController : MonoBehaviour
     private int _slot = -1;
     private float _attackTimer = 0f;
     private float _attackDelay = 2.0f;
+    private SpawnManager spawnManager;
+
+    [SerializeField]
+    private Health _ninjaHealth;
 
 
     public bool attacking = false;
@@ -20,6 +24,7 @@ public class NinjaController : MonoBehaviour
     NavMeshAgent agent;
     NinjaAttackSlotManager attackSlotManager;
     NinjaWeaponController weaponController;
+    Animator anim;
 
 
 
@@ -30,7 +35,8 @@ public class NinjaController : MonoBehaviour
         // FindPlayer();
         agent = GetComponent<NavMeshAgent>();
         weaponController = GetComponentInChildren<NinjaWeaponController>();
-
+        spawnManager = GameObject.FindGameObjectWithTag("Spawner").GetComponent<SpawnManager>();
+        anim = this.GetComponentInParent<Animator>();
 
 
         Patrol();
@@ -85,6 +91,7 @@ public class NinjaController : MonoBehaviour
     {
         Debug.Log("Object thrown");
         // face player and throw
+        anim.SetTrigger("Throw");
         transform.LookAt(target.position);
         weaponController.ThrowWeapon();
         _attackTimer = 0f;
@@ -100,6 +107,11 @@ public class NinjaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_ninjaHealth.value == 0)
+        {
+            spawnManager.EnemyKilled(gameObject);
+        }
+
         // get distance to player
         if (target == null)
             FindPlayer();
@@ -137,8 +149,14 @@ public class NinjaController : MonoBehaviour
                 Patrol();
         }
 
-        if (agent.remainingDistance <= 0f)
+        // Start run animation when moving
+        if (agent.remainingDistance > 0f)
         {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
             _patrolTimer += Time.deltaTime;
         }
 

@@ -249,8 +249,8 @@ public class DialogueBox : MonoBehaviour
     {
         if (currentScene == Scene.beforeBossBattle)
         {
-            // SceneManager.LoadScene();
-            Debug.Log("NextScene");
+            SceneManager.LoadScene("Boss Fight");
+            
         } else {
             SceneManager.LoadScene("Credits");
         }

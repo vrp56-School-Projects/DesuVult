@@ -8,6 +8,7 @@ public class MacGuffinController : MonoBehaviour, IOnHit
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,6 +20,6 @@ public class MacGuffinController : MonoBehaviour, IOnHit
     public void OnHit(float damage)
     {
         EventManager.CallStaggerBoss();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

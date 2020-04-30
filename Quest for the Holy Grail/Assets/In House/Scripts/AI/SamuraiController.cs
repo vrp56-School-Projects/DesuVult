@@ -27,6 +27,7 @@ public class SamuraiController : MonoBehaviour
     SamuraiAttackSlotManager attackSlotManager;
     WaitSlotManager waitSlotManager;
     Animator anim;
+    private SpawnManager spawnManager;
 
     // remove after changing stats code
     Health playerHealthScript;
@@ -46,14 +47,22 @@ public class SamuraiController : MonoBehaviour
         waitSlotManager = target.GetComponentInParent<WaitSlotManager>();
         playerHealthScript = target.GetComponentInChildren<Health>();
         _attackDistance = attackSlotManager.distance + 0.2f;
+        spawnManager = GameObject.FindGameObjectWithTag("Spawner").GetComponent<SpawnManager>();
 
         SetRandomLocation();
     }
 
-    public void OnHit(float damage)
+    //public void OnHit(float damage)
+    //{
+    //    _samuraiHealth.damage(damage);
+    //}
+
+    private void FindPlayer()
     {
-        _samuraiHealth.damage(damage);
+        target = PlayerManager.instance.player.transform;
+        attackSlotManager = target.GetComponentInParent<SamuraiAttackSlotManager>();
     }
+
 
     private void CheckAttackSlot()
     {
@@ -135,6 +144,14 @@ public class SamuraiController : MonoBehaviour
 
     private void Update()
     {
+        if (_samuraiHealth.value == 0)
+        {
+            spawnManager.EnemyKilled(gameObject);
+        }
+        // get distance to player
+        if (target == null)
+            FindPlayer();
+
         float distance = Vector3.Distance(target.position, transform.position);
 
         // Player within aggro range and need to try to fill attack or wait slot
@@ -194,6 +211,7 @@ public class SamuraiController : MonoBehaviour
 
         }
 
+        
         // Start run animation when moving
         if (agent.remainingDistance > 0f)
         {

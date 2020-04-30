@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class YouLoseManager : MonoBehaviour
 {
-
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void GiveUp()
     {
         SceneManager.LoadScene("MainMenu");
@@ -13,6 +16,6 @@ public class YouLoseManager : MonoBehaviour
 
     public void TryAgain()
     {
-        SceneManager.LoadScene("IntroCutscene");
+        SceneManager.LoadScene(PlayerInfo.currentScene);
     }
 }

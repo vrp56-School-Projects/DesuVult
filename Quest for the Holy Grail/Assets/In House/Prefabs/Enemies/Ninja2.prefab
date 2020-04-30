@@ -2900,6 +2900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackRadius: 20
+  _ninjaHealth: {fileID: 5321027888111052019}
   attacking: 0
 --- !u!114 &3021919340538706210
 MonoBehaviour:

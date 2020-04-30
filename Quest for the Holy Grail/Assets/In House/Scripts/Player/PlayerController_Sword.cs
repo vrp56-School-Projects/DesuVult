@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController_Sword : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class PlayerController_Sword : MonoBehaviour
 
     private Animator anim;
     private Stamina stamina;
+    [SerializeField] private PausePage pause;
+    private Health health;
+    private bool paused = false;
 
     public int sword = 0;
     float[,] delay = new float[3, 4];
@@ -42,6 +46,8 @@ public class PlayerController_Sword : MonoBehaviour
         stamina = GetComponent<Stamina>();
         tempSlopeLimit = controller.slopeLimit;
         tempStepOffset = controller.stepOffset;
+        health = gameObject.GetComponent<Health>();
+
 
         /*
             get sword from PlayerInfo
@@ -74,10 +80,24 @@ public class PlayerController_Sword : MonoBehaviour
 
     void Update()
     {
+        paused = false;
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            
+            pause.gameObject.SetActive(true);
+            paused = true;
+        }
         if (canMove)
         {
             handleMove();
             handleJump();
+        }
+
+        if (health.value <= 3f)
+        {
+            PlayerInfo.currentScene = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene("Lose");
         }
 
         handleAttack();
@@ -188,7 +208,7 @@ public class PlayerController_Sword : MonoBehaviour
     void handleAttack()
     {
         // if grounded
-        if (isGrounded && !isAttacking)
+        if (isGrounded && !isAttacking && !paused)
         {
             // if attack triggered, reserve attack
             anim.speed = 1;
@@ -213,8 +233,23 @@ public class PlayerController_Sword : MonoBehaviour
         anim.SetInteger("attackIndex", attackIndex);
 
         // wait for animation
-        yield return new WaitForSeconds(delay[attackLayer - 1, attackIndex]);
-        look.Hit(10f); //This is our hitreg. Not sure where exactly it goes
+        yield return new WaitForSeconds(delay[attackLayer - 1, attackIndex]/2);
+        switch (PlayerInfo.GetSwordIndex())
+        {
+            case 0:
+                look.Hit(20f); //This is our hitreg. Not sure where exactly it goes
+                break;
+            case 1:
+                look.Hit(30f);
+                break;
+            case 2:
+                look.Hit(40f);
+                break;
+        }
+        
+        yield return new WaitForSeconds(delay[attackLayer - 1, attackIndex]/2);
+
+
 
         // release attack
         isAttacking = false;

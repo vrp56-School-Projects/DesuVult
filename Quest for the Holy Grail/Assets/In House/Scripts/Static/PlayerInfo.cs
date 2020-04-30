@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerInfo : MonoBehaviour
     static float CurrentMana = 100f;
 
     static int TotalQuestsComplete;
+
+    public static int currentScene;
 
     /*
         USE THESE TO FIND WHICH SWORD THE PLAYER IS USING:

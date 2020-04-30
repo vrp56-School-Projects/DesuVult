@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
     public void EnemyKilled(GameObject enemy)
     {
         _spawnedEnemies.Remove(enemy);
-
+        Destroy(enemy);
     }
 
     IEnumerator SpawnDelay()
