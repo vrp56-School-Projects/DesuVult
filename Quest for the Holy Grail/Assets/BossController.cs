@@ -36,6 +36,7 @@ public class BossController : MonoBehaviour, IOnHit
         // initialize
         anim = GetComponent<Animator>();
         EventManager.StaggerBoss += () => macGuffinKilled = true;
+        
 
         // start in macguffin state
         currentCycle = 0;
@@ -94,7 +95,7 @@ public class BossController : MonoBehaviour, IOnHit
         
         ======
         */
-        MacGuffins[currentCycle - 1].SetActive(true);
+
 
         // trigger animation
         anim.SetInteger("state", 0);

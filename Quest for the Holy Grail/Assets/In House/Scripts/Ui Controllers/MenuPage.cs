@@ -42,4 +42,12 @@ public class MenuPage : MonoBehaviour
             b.interactable = true;
         }
     }
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.F11))
+        {
+            SceneManager.LoadScene("OutroCutscene1");
+        }
+    }
 }
